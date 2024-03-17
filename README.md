@@ -1,5 +1,5 @@
 ### Hi there 👋
-I'm a passionate and growing developer, currently focused on Frontend Development.
+I'm a passionate and growing developer, currently focused on Frontend Development with a little bit of Backend.
 
 - 🔭 I’m currently working on **HavenChat, a web application allowing real time messaging.**
 
