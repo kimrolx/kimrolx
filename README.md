@@ -1,5 +1,3 @@
-![](https://komarev.com/ghpvc/?username=kimrolx)
-
 ###
 
 <h1 align="left">こんにちは~ 👋 </h1> 
@@ -67,6 +65,12 @@
   <img src="https://skillicons.dev/icons?i=mysql" height="40" alt="mysql logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=gcp" height="40" alt="googlecloud logo"  />
+</div>
+
+###
+
+<div align="center">
+  <img src="https://profile-counter.glitch.me/kimrolx/count.svg?"  />
 </div>
 
 ###
