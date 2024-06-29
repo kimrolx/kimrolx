@@ -1,8 +1,11 @@
+![](https://komarev.com/ghpvc/?username=kimrolx)
+
+###
+
 <h1 align="left">こんにちは~ 👋 </h1> 
 
 ###
 
-![](https://komarev.com/ghpvc/?username=kimrolx)
 <p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web App Penetration Testing.</p>
 
 ###
