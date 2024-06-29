@@ -2,7 +2,8 @@
 
 ###
 
-<p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there.</p>
+<p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web Penetration Testing.
+</p>
 
 ###
 
