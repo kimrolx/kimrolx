@@ -2,8 +2,7 @@
 
 ###
 
-<p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web Penetration Testing.
-</p>
+<p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web App Penetration Testing.</p>
 
 ###
 
@@ -15,7 +14,10 @@
 - 🔭 I’m currently working on:
   - [Haven](https://github.com/kimrolx/Haven) -  a web application that allows real time messaging.
   - [EcoPoints](https://github.com/kimrolx/EcoPoints) - a system where it provides points based on the amount of plastic bottles recycled in the EcoPoints' IoT device.
-- 📚 I'm currently learning how to develop mobile apps with Flutter and how to optimize performance in React applications.
+- 📚 I'm currently learning how to:
+  - improve web application security through CTF challenges and hands-on penetration testing.
+  - develop mobile apps with Flutter.
+  - optimize performance in React applications.
 - 🎯 Goals: To be able to work and keep up with knowledgeable people in the industry.
 - 🎲 Fun fact: Australia is wider than the moon. 🌕
 
