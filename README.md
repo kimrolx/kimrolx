@@ -1,7 +1,8 @@
-<h1 align="left">こんにちは~ 👋</h1>
+<h1 align="left">こんにちは~ 👋 </h1> 
 
 ###
 
+![](https://komarev.com/ghpvc/?username=kimrolx)
 <p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web App Penetration Testing.</p>
 
 ###
@@ -63,12 +64,6 @@
   <img src="https://skillicons.dev/icons?i=mysql" height="40" alt="mysql logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=gcp" height="40" alt="googlecloud logo"  />
-</div>
-
-###
-
-<div align="center">
-  <img src="https://profile-counter.glitch.me/kimrolx/count.svg?"  />
 </div>
 
 ###
