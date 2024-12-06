@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">I'm a passionate and growing developer, currently focused on Frontend Development but I also dabble in Backend Development here and there. I'm also interested in Web App Penetration Testing.</p>
+<p align="left">Software developer with a growing experience in frontend development using React and Typescript, currently transitioning into fullstack roles with PostgreSQL and NestJS. Developed mobile applications during my education using Flutter, Dart, and Firebase. Skilled in solving complex problems and committed to continual skill development.</p>
 
 ###
 
@@ -16,10 +16,7 @@
   - [EcoPoints](https://github.com/kimrolx/EcoPoints) - a system where it provides points based on the amount of plastic bottles recycled in the EcoPoints' IoT device.
 - 📚 I'm currently learning how to:
   - improve web application security through CTF challenges and hands-on penetration testing.
-  - develop mobile apps with Flutter.
-  - optimize performance in React applications.
-- 🎯 Goals: To be able to work and keep up with knowledgeable people in the industry.
-- 🎲 Fun fact: Australia is wider than the moon. 🌕
+- 🎯 Goals: To contribute to impactful projects in a collaborative environment.
 
 ###
 
