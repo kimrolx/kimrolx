@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">Software developer with a growing experience in frontend development using React and Typescript, currently transitioning into fullstack roles with NodeJS, NestJs Microservices, and SQL. Developed mobile applications during my education using Flutter, Dart, and Firebase. Skilled in solving complex problems and committed to continual skill development.</p>
+<p align="left">Software developer with a growing experience in frontend development using React and Typescript, currently transitioning into fullstack roles with NodeJS, NestJS Microservices, and SQL. Developed mobile applications during my education using Flutter, Dart, and Firebase. Skilled in solving complex problems and committed to continual skill development.</p>
 
 ###
 
