@@ -9,7 +9,7 @@ function App() {
     <div className="min-h-screen">
       <TopBar />
 
-      <div className="flex flex-col gap-24 my-4 relative z-10">
+      <div className="flex flex-col my-12 relative z-10">
         {/* Landing Page */}
         <div id="home" className="min-h-screen flex flex-col gap-32 border-b border-[#b8b8b8]">
           <AnimatedRandomHello />

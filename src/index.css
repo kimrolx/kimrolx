@@ -6,6 +6,7 @@
 
 @theme {
     --font-poppins: 'Poppins', sans-serif;
+    --text-secondary-color: #FFB22C;
 }
 
 .centered {
@@ -41,7 +42,7 @@ h5 {
 }
 
 h6 {
-    @apply text-lg;
+    @apply text-sm;
 }
 
 @theme inline {
