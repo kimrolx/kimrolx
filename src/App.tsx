@@ -1,15 +1,24 @@
-import { useState } from 'react';
 import './App.css';
 import TopBar from './components/top-bar/TopBar';
+import AnimatedRandomHello from './components/animated-random-hello/AnimatedRandomHello';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
+    <div className="min-h-svh min-w-svw">
       <TopBar />
 
-      <div>zzzz</div>
+      <div className="mx-96 my-8 relative z-10">
+        <AnimatedRandomHello />
+      </div>
+
+      <div className="background">
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+        <span className="ball" />
+      </div>
     </div>
   );
 }
