@@ -5,30 +5,34 @@
     --font-poppins: 'Poppins', sans-serif;
 }
 
+.centered {
+    @apply flex items-center justify-center;
+}
+
 body {
     @apply font-poppins bg-[#0A0A0A] text-[#DFE0E2];
 }
 
 h1 {
-    @apply text-5xl font-bold text-[#DFE0E2];
+    @apply text-6xl font-bold;
 }
 
 h2 {
-    @apply text-4xl font-bold text-[#DFE0E2];
+    @apply text-4xl font-bold;
 }
 
 h3 {
-    @apply text-3xl font-bold text-[#DFE0E2];
+    @apply text-3xl font-bold;
 }
 
 h4 {
-    @apply text-2xl font-bold text-[#DFE0E2];
+    @apply text-2xl;
 }
 
 h5 {
-    @apply text-xl font-bold text-[#DFE0E2];
+    @apply text-xl;
 }
 
 h6 {
-    @apply text-lg font-bold text-[#DFE0E2];
+    @apply text-lg;
 }
