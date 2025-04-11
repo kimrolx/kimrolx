@@ -1,7 +1,7 @@
 import { useTypewriter } from './hooks/useTypewriter';
 
 const greetings = [
-  'Kamusta', // Filipino
+  'Kumusta?', // Filipino
   'Hello', // English
   'Bonjour', // French
   'Hola', // Spanish

@@ -12,6 +12,10 @@
     @apply flex items-center justify-center;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     @apply font-poppins bg-[#0A0A0A] text-[#DFE0E2];
 }
@@ -148,10 +152,11 @@ h6 {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
 }
