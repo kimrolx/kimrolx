@@ -11,7 +11,7 @@ function App() {
 
       <div className="flex flex-col my-12 relative z-10">
         {/* Landing Page */}
-        <div id="home" className="min-h-screen flex flex-col gap-32 border-b border-[#b8b8b8]">
+        <div id="home" className="min-h-screen w-full flex flex-col gap-32 max-sm:gap-10 border-b border-[#b8b8b8]">
           <AnimatedRandomHello />
           <div>
             <HomePage />

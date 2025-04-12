@@ -1,12 +1,13 @@
 import { TimelineItems } from '@/types/timeline';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import griffinLogo from '@/assets/griffin_logo.png';
 
 export default function ExperiencePage() {
   const items: TimelineItems[] = [
     {
       id: 'griffin',
-      companyIcon: 'src/assets/griffin_logo.png',
+      companyIcon: griffinLogo,
       jobTitle: 'Fullstack Developer',
       companyName: 'Griffin31',
       date: 'August 2024 - Present',
@@ -22,8 +23,14 @@ export default function ExperiencePage() {
   ];
 
   return (
-    <>
-      <p className="text-5xl text-center p-12 font-bold">Professional Experience </p>
+    <div className="p-6">
+      <div className="flex flex-col text-center gap-4 mb-10">
+        <h1>Professional Experience </h1>
+        <h5>
+          I'm currently working at Griffin31 as a Fullstack Developer, growing my skillset and teaming up with various
+          professionals.
+        </h5>
+      </div>
       <VerticalTimeline>
         {items.map((item) => (
           <VerticalTimelineElement
@@ -35,7 +42,7 @@ export default function ExperiencePage() {
             iconStyle={{ background: 'white' }}
             icon={
               <div className="flex items-center justify-center w-full h-full">
-                <img src={item.companyIcon} alt={item.companyName} className="w-10 h-10 object-contain" />
+                <img src={item.companyIcon} alt={item.companyName} className="w-7 h-7 md:w-10 md:h-10 object-contain" />
               </div>
             }
           >
@@ -65,6 +72,6 @@ export default function ExperiencePage() {
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
-    </>
+    </div>
   );
 }

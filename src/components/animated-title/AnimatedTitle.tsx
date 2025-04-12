@@ -22,12 +22,12 @@ export default function AnimatedTitles() {
   }, []);
 
   return (
-    <h2
-      className={`transition-opacity duration-500 text-2xl font-semibold ${
+    <p
+      className={`transition-opacity duration-500 text-4xl max-xs:text-2xl sm:text-3xl font-bold ${
         isVisible ? 'opacity-100' : 'opacity-0'
       } text-[#FFB22C]`}
     >
       {currentTitle}
-    </h2>
+    </p>
   );
 }

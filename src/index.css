@@ -7,6 +7,8 @@
 @theme {
     --font-poppins: 'Poppins', sans-serif;
     --text-secondary-color: #FFB22C;
+    --breakpoint-xs: 23.5rem;
+    --breakpoint-sm: 25rem;
 }
 
 .centered {
@@ -22,11 +24,11 @@ body {
 }
 
 h1 {
-    @apply text-6xl font-bold;
+    @apply text-6xl font-bold max-xs:text-4xl sm:text-5xl;
 }
 
 h2 {
-    @apply text-4xl font-bold;
+    @apply text-4xl font-bold max-xs:text-xl sm:text-2xl;
 }
 
 h3 {
@@ -38,7 +40,7 @@ h4 {
 }
 
 h5 {
-    @apply text-xl;
+    @apply text-xl max-xs:text-base sm:text-lg;
 }
 
 h6 {
