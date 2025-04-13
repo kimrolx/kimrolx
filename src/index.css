@@ -9,6 +9,7 @@
     --text-secondary-color: #FFB22C;
     --breakpoint-xs: 23.5rem;
     --breakpoint-sm: 31.25rem;
+    --complete-green: #05a005;
 }
 
 .centered {
@@ -28,7 +29,7 @@ h1 {
 }
 
 h2 {
-    @apply text-2xl font-bold max-xs:text-xl md:text-2xl m-0 p-0;
+    @apply text-2xl font-bold max-xs:text-xl md:text-4xl m-0 p-0;
 }
 
 h3 {

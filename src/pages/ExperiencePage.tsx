@@ -29,7 +29,7 @@ const items: TimelineItems[] = [
     ],
     techStack: [
       { label: 'TypeScript', color: '#3079C6' },
-      { label: 'React', color: '#61DAFB', textColor: '#000000' },
+      { label: 'React', color: '#61DAFB' },
       { label: 'Redux', color: '#7F42C3' },
       { label: 'Axios', color: '#6624E9' },
       { label: 'NestJS', color: '#EA2845' },

@@ -10,11 +10,11 @@ function App() {
     <div className="min-h-screen">
       <TopBar />
 
-      <div className="flex flex-col relative z-10">
+      <div className="flex flex-col relative z-10 scroll-smooth">
         {/* Landing Page */}
         <div
           id="home"
-          className="min-h-screen w-full flex flex-col px-6 mt-30 max-sm:mt-20 gap-16 max-sm:gap-20 border-b border-[#b8b8b8]"
+          className="min-h-screen w-full flex flex-col px-6 mt-15 max-sm:mt-20 gap-16 max-sm:gap-20 border-b border-[#b8b8b8]"
         >
           <AnimatedRandomHello />
           <div>

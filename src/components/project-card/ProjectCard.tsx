@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ProjectItem } from '@/types/project';
 import { glassmorphismStyle } from '@/pages/ExperiencePage';
 import { Badge } from '../badge';
+import { FaGithub } from 'react-icons/fa';
+import { AiFillPicture } from 'react-icons/ai';
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -9,12 +11,20 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(-1);
+  const [fade, setFade] = useState(true);
+  const imageCycleIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  console.log('currentImageIndex', currentImageIndex);
 
   const handleClick = () => setFlipped(!flipped);
 
   const BackSideContent = (
-    <div className="flex flex-col gap-3 p-4 border rounded-md shadow-lg" style={glassmorphismStyle}>
-      <h3 className="mb-2">{project.title}</h3>
+    <div className="flex flex-col gap-3 p-4 rounded-md shadow-lg" style={glassmorphismStyle}>
+      <div className="flex flex-row justify-between items-center">
+        <h3 className="mb-2">{project.title}</h3>
+        <Badge label={project.status.label} color={project.status.color} />
+      </div>
       <h6 className="font-semibold">
         {project.startDate} - {project.endDate}
       </h6>
@@ -30,10 +40,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     // Outer wrapper with a margin to avoid overlap with adjacent cards.
-    <div className="cursor-pointer" style={{ perspective: '1000px' }} onClick={handleClick}>
-      <div className="relative w-full md:w-[500px]">
+    <div className="flex flex-col items-center gap-4" style={{ perspective: '1000px' }}>
+      <div className="cursor-pointer relative w-full md:w-[500px]" onClick={handleClick}>
         <div
-          className="transition-transform duration-500"
+          className="transition-transform duration-500 min-h-64"
           style={{
             transformStyle: 'preserve-3d',
             transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
@@ -45,12 +55,40 @@ export function ProjectCard({ project }: ProjectCardProps) {
               backfaceVisibility: 'hidden',
               transform: 'rotateY(0deg)',
             }}
+            onMouseEnter={() => {
+              if (project.images && project.images.length > 0) {
+                imageCycleIntervalRef.current = setInterval(() => {
+                  setFade(false);
+                  setTimeout(() => {
+                    setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
+                    setFade(true);
+                  }, 300);
+                }, 2000);
+              }
+            }}
+            onMouseLeave={() => {
+              if (imageCycleIntervalRef.current) {
+                clearInterval(imageCycleIntervalRef.current);
+                imageCycleIntervalRef.current = null;
+              }
+              setFade(true);
+              setCurrentImageIndex(-1);
+            }}
           >
-            <img src="https://via.placeholder.com/500x300" alt="Placeholder" className="object-cover w-full h-full" />
+            <img
+              src={
+                currentImageIndex === -1
+                  ? project.coverImage
+                  : project.images?.[currentImageIndex] ?? project.coverImage
+              }
+              alt="cover-image"
+              className="object-cover w-full h-full"
+              style={{ transition: 'opacity 500ms ease', opacity: fade ? 1 : 0 }}
+            />
           </div>
 
           <div
-            className="border rounded-md shadow-lg hover:scale-105 transition-all duration-300"
+            className="rounded-md shadow-lg hover:scale-105 transition-all duration-300"
             style={{
               transform: 'rotateY(180deg)',
               backfaceVisibility: 'hidden',
@@ -60,6 +98,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
       </div>
+      <a
+        href={project.githubUrl ? project.githubUrl : project.images ? project.images[0] : '#'}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline transition-all duration-300 hover:cursor-pointer hover:text-blue-500"
+      >
+        {project.githubUrl ? <FaGithub size={'2rem'} /> : project.images ? <AiFillPicture /> : ''}
+      </a>
     </div>
   );
 }
