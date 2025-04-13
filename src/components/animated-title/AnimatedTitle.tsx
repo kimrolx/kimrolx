@@ -23,7 +23,7 @@ export default function AnimatedTitles() {
 
   return (
     <p
-      className={`transition-opacity duration-500 text-4xl max-xs:text-2xl sm:text-3xl font-bold ${
+      className={`transition-opacity duration-500 text-3xl max-xs:text-2xl md:text-4xl font-bold ${
         isVisible ? 'opacity-100' : 'opacity-0'
       } text-[#FFB22C]`}
     >

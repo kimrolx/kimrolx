@@ -21,7 +21,7 @@ export default function AnimatedRandomHello() {
   });
 
   return (
-    <span className={`text-5xl max-sm:text-3xl font-bold text-center`}>
+    <span className={`text-3xl md:text-5xl font-bold text-center`}>
       {animatedText} &#128075;
       <span className="border-r-2 border-current animate-pulse ml-1"></span>
     </span>

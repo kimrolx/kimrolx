@@ -3,28 +3,37 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import griffinLogo from '@/assets/griffin_logo.png';
 
-export default function ExperiencePage() {
-  const items: TimelineItems[] = [
-    {
-      id: 'griffin',
-      companyIcon: griffinLogo,
-      jobTitle: 'Fullstack Developer',
-      companyName: 'Griffin31',
-      date: 'August 2024 - Present',
-      employmentType: 'Full-time',
-      description: [
-        'Developed web applications using ReactJS, Typescript, and Redux for efficient state management.',
-        'Improved data integrity and performance by streamlining database operations with Typeorm and PostgreSQL.',
-        'Developed scalable RESTful APIs with NestJS and Axios.',
-        'Collaborated with cross-functional teams to gather requirements and deliver high-quality software solutions.',
-      ],
-      techStack: ['TypeScript', 'React', 'Redux', 'Axios', 'NestJS', 'PostgreSQL'],
-    },
-  ];
+export const glassmorphismStyle = {
+  background: 'rgba(255, 255, 255, 0.05)',
+  borderRadius: '16px',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+  backdropFilter: 'blur(3.3px)',
+  WebkitBackdropFilter: 'blur(3.3px)',
+  border: '1px solid rgba(255, 255, 255, 0.17)',
+};
 
+const items: TimelineItems[] = [
+  {
+    id: 'griffin',
+    companyIcon: griffinLogo,
+    jobTitle: 'Fullstack Developer',
+    companyName: 'Griffin31',
+    date: 'August 2024 - Present',
+    employmentType: 'Full-time',
+    description: [
+      'Developed web applications using ReactJS, Typescript, and Redux for efficient state management.',
+      'Improved data integrity and performance by streamlining database operations with Typeorm and PostgreSQL.',
+      'Developed scalable RESTful APIs with NestJS and Axios.',
+      'Collaborated with cross-functional teams to gather requirements and deliver high-quality software solutions.',
+    ],
+    techStack: ['TypeScript', 'React', 'Redux', 'Axios', 'NestJS', 'PostgreSQL'],
+  },
+];
+
+export default function ExperiencePage() {
   return (
-    <div className="p-6">
-      <div className="flex flex-col text-center gap-4 mb-10">
+    <div className="px-6">
+      <div className="flex flex-col text-center gap-4 mb-15">
         <h1>Professional Experience </h1>
         <h5>
           I'm currently working at Griffin31 as a Fullstack Developer, growing my skillset and teaming up with various
@@ -35,10 +44,10 @@ export default function ExperiencePage() {
         {items.map((item) => (
           <VerticalTimelineElement
             key={item.id}
-            contentStyle={{ background: 'white', color: '#0A0A0A' }}
+            contentStyle={glassmorphismStyle}
             contentArrowStyle={{ borderRight: '7px solid inherit' }}
             date={item.date}
-            dateClassName="text-white"
+            dateClassName="text-white mt-4"
             iconStyle={{ background: 'white' }}
             icon={
               <div className="flex items-center justify-center w-full h-full">
