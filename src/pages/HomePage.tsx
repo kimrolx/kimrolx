@@ -1,11 +1,6 @@
 import AnimatedTitles from '@/components/animated-title/AnimatedTitle';
-import { Button } from '@/components/ui/button';
 
 export default function HomePage() {
-  const onViewWorkClick = () => {
-    console.log('view work clicked');
-  };
-
   return (
     <div className="max-w-3xl m-auto centered flex-col gap-10 ">
       {/* Introduction */}
