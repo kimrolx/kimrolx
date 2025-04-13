@@ -6,5 +6,9 @@ export type TimelineItems = {
   description: string[];
   date: string;
   employmentType: string;
-  techStack?: string[];
+  techStack: {
+    label: string;
+    color: string;
+    textColor?: string;
+  }[];
 };

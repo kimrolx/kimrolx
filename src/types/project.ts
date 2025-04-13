@@ -8,7 +8,11 @@ export type ProjectItem = {
   endDate: string;
   status: ProjectStatus;
   teamMembers?: string[];
-  techStack: string[];
+  techStack: {
+    label: string;
+    color: string;
+    textColor?: string;
+  }[];
   githubUrl?: string;
 };
 

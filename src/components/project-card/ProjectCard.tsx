@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ProjectItem } from '@/types/project';
 import { glassmorphismStyle } from '@/pages/ExperiencePage';
+import { Badge } from '../badge';
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -9,46 +10,54 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   const [flipped, setFlipped] = useState(false);
 
-  // Toggle flipped state on click
   const handleClick = () => setFlipped(!flipped);
 
+  const BackSideContent = (
+    <div className="flex flex-col gap-3 p-4 border rounded-md shadow-lg" style={glassmorphismStyle}>
+      <h3 className="mb-2">{project.title}</h3>
+      <h6 className="font-semibold">
+        {project.startDate} - {project.endDate}
+      </h6>
+      <p className="text-sm/6 mb-2 text-justify">{project.description}</p>
+
+      <div className="flex flex-wrap gap-2">
+        {project.techStack.map((tech) => (
+          <Badge key={tech.label} label={tech.label} color={tech.color} textColor={tech.textColor} />
+        ))}
+      </div>
+    </div>
+  );
+
   return (
-    <div className="p-4 cursor-pointer w-full centered" style={{ perspective: '1000px' }} onClick={handleClick}>
-      <div
-        className="relative w-full h-64 md:w-[500px] md:h-[700px] transition-transform duration-500 grid"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
-      >
-        {/* Front side with placeholder image */}
+    // Outer wrapper with a margin to avoid overlap with adjacent cards.
+    <div className="cursor-pointer" style={{ perspective: '1000px' }} onClick={handleClick}>
+      <div className="relative w-full md:w-[500px]">
         <div
-          className="col-start-1 row-start-1 border rounded-md shadow-lg hover:scale-105 transition-all duration-300"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <div className="bg-gray-300 flex items-center justify-center w-full">
-            <span className="text-xl font-bold">Placeholder Image</span>
-          </div>
-        </div>
-        {/* Back Side */}
-        <div
-          className="col-start-1 row-start-1 border rounded-md shadow-lg hover:scale-105 transition-all duration-300 p-4 flex flex-col gap-2"
+          className="transition-transform duration-500"
           style={{
-            ...glassmorphismStyle,
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            transformStyle: 'preserve-3d',
+            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           }}
         >
-          <div className="flex flex-row items-center justify-between">
-            <h2 className="mb-2">{project.title}</h2>
-            <h6>
-              {project.startDate} - {project.endDate}
-            </h6>
+          <div
+            className="absolute inset-0 border rounded-md shadow-lg hover:scale-105 transition-all duration-300"
+            style={{
+              backfaceVisibility: 'hidden',
+              transform: 'rotateY(0deg)',
+            }}
+          >
+            <img src="https://via.placeholder.com/500x300" alt="Placeholder" className="object-cover w-full h-full" />
           </div>
-          <p className="text-sm mb-2">{project.description}</p>
-          <p className="text-xs mb-1">
-            <span className="font-bold">Tech:</span> {project.techStack.join(', ')}
-          </p>
+
+          <div
+            className="border rounded-md shadow-lg hover:scale-105 transition-all duration-300"
+            style={{
+              transform: 'rotateY(180deg)',
+              backfaceVisibility: 'hidden',
+            }}
+          >
+            {BackSideContent}
+          </div>
         </div>
       </div>
     </div>

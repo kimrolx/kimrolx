@@ -2,6 +2,7 @@ import { TimelineItems } from '@/types/timeline';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import griffinLogo from '@/assets/griffin_logo.png';
+import { Badge } from '@/components/badge';
 
 export const glassmorphismStyle = {
   background: 'rgba(255, 255, 255, 0.05)',
@@ -26,7 +27,15 @@ const items: TimelineItems[] = [
       'Developed scalable RESTful APIs with NestJS and Axios.',
       'Collaborated with cross-functional teams to gather requirements and deliver high-quality software solutions.',
     ],
-    techStack: ['TypeScript', 'React', 'Redux', 'Axios', 'NestJS', 'PostgreSQL'],
+    techStack: [
+      { label: 'TypeScript', color: '#3079C6' },
+      { label: 'React', color: '#61DAFB', textColor: '#000000' },
+      { label: 'Redux', color: '#7F42C3' },
+      { label: 'Axios', color: '#6624E9' },
+      { label: 'NestJS', color: '#EA2845' },
+      { label: 'PostgreSQL', color: '#2F6792' },
+      { label: 'TypeORM', color: '#E83524' },
+    ],
   },
 ];
 
@@ -47,7 +56,7 @@ export default function ExperiencePage() {
             contentStyle={glassmorphismStyle}
             contentArrowStyle={{ borderRight: '7px solid inherit' }}
             date={item.date}
-            dateClassName="text-white mt-4"
+            dateClassName="text-white max-sm:mt-2"
             iconStyle={{ background: 'white' }}
             icon={
               <div className="flex items-center justify-center w-full h-full">
@@ -68,15 +77,11 @@ export default function ExperiencePage() {
             </ul>
 
             <div className="flex flex-wrap gap-2 mt-5">
-              {item.techStack?.map((tech, index) => (
-                <span
-                  key={index}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full 
-                transition transform duration-200 hover:scale-105 hover:shadow-md"
-                >
-                  {tech}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {item.techStack.map((tech) => (
+                  <Badge key={tech.label} label={tech.label} color={tech.color} textColor={tech.textColor} />
+                ))}
+              </div>
             </div>
           </VerticalTimelineElement>
         ))}
