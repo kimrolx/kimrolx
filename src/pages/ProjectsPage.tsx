@@ -1,15 +1,20 @@
 import { ProjectCard } from '@/components/project-card/ProjectCard';
 import { ProjectItem } from '@/types/project';
-import EcoPointsMobileCoverPage from '@/assets/ecopoints_mobile.png';
-import EcoPointsWeb from '@/assets/ecopoints-web.png';
-import EcoPointsWebAdminDashboard from '@/assets/ecopoints-web-admin-dashboard.png';
-import EcoPointsVendorRewards from '@/assets/ecopoints-vendor-rewards.png';
+import MobileScreenCoverPage from '@/assets/mobile_cover_image.png';
+import MobileScreenCoverPage2 from '@/assets/mobile_cover_image2.png';
+import DesktopScreenCoverPage from '@/assets/desktop_cover_image.png';
+import DesktopScreenCoverPage2 from '@/assets/desktop_cover_image2.png';
+import WebMobileCoverImage from '@/assets/web_mobile_cover_image.png';
+import WebMobileCoverImage2 from '@/assets/web_mobile_cover_image2.png';
+import WebDesktopCoverImage from '@/assets/web_desktop_cover_image.png';
+import WebDesktopCoverImage2 from '@/assets/web_desktop_cover_image2.png';
 
 const projectItems: ProjectItem[] = [
   {
     id: 'ecopoints-mobileapp',
     title: 'EcoPoints',
-    coverImage: EcoPointsMobileCoverPage,
+    coverImage: [MobileScreenCoverPage, DesktopScreenCoverPage],
+    images: [MobileScreenCoverPage2, DesktopScreenCoverPage2],
     description:
       'EcoPoints enhances recycling engagement at the University of San Jose – Recoletos by using a gamified, point-based reward system. A semi-smart trashcan identifies and counts plastic bottles, awarding points redeemable for meals, supplies, event tickets, and more. This project leverages technology and behavioral science to foster a sustainable culture on campus.',
     startDate: 'June 2024',
@@ -26,8 +31,8 @@ const projectItems: ProjectItem[] = [
   {
     id: 'ecopoints-webapp',
     title: 'EcoPoints Web Dashboard ',
-    coverImage: EcoPointsWeb,
-    images: [EcoPointsWebAdminDashboard, EcoPointsVendorRewards],
+    coverImage: [WebMobileCoverImage, WebDesktopCoverImage],
+    images: [WebMobileCoverImage2, WebDesktopCoverImage2],
     description:
       'A dashboard for EcoPoints, where data visualization and user interaction are key. The project focuses on creating a user-friendly interface for managing and visualizing EcoPoints data.',
     startDate: 'June 2024',

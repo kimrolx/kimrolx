@@ -1,9 +1,24 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProjectItem } from '@/types/project';
 import { glassmorphismStyle } from '@/pages/ExperiencePage';
 import { Badge } from '../badge';
 import { FaGithub } from 'react-icons/fa';
 import { AiFillPicture } from 'react-icons/ai';
+
+export function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  return isDesktop;
+}
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -13,9 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(-1);
   const [fade, setFade] = useState(true);
-  const imageCycleIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  console.log('currentImageIndex', currentImageIndex);
+  const isDesktop = useIsDesktop();
 
   const handleClick = () => setFlipped(!flipped);
 
@@ -50,40 +63,46 @@ export function ProjectCard({ project }: ProjectCardProps) {
           }}
         >
           <div
-            className="absolute inset-0 border rounded-md shadow-lg hover:scale-105 transition-all duration-300"
+            className="absolute inset-0 shadow-lg hover:scale-105 transition-all duration-300"
             style={{
               backfaceVisibility: 'hidden',
               transform: 'rotateY(0deg)',
             }}
             onMouseEnter={() => {
               if (project.images && project.images.length > 0) {
-                imageCycleIntervalRef.current = setInterval(() => {
-                  setFade(false);
-                  setTimeout(() => {
-                    setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
-                    setFade(true);
-                  }, 300);
-                }, 2000);
+                // Fade-out and then switch to alternate image with no grayscale.
+                setFade(false);
+                setTimeout(() => {
+                  setCurrentImageIndex(0);
+                  setFade(true);
+                }, 300);
               }
             }}
             onMouseLeave={() => {
-              if (imageCycleIntervalRef.current) {
-                clearInterval(imageCycleIntervalRef.current);
-                imageCycleIntervalRef.current = null;
-              }
-              setFade(true);
-              setCurrentImageIndex(-1);
+              // Fade-out and then reset to coverImage (with grayscale).
+              setFade(false);
+              setTimeout(() => {
+                setCurrentImageIndex(-1);
+                setFade(true);
+              }, 300);
             }}
           >
             <img
               src={
                 currentImageIndex === -1
-                  ? project.coverImage
-                  : project.images?.[currentImageIndex] ?? project.coverImage
+                  ? isDesktop
+                    ? project.coverImage[1]
+                    : project.coverImage[0]
+                  : isDesktop
+                  ? project.images?.[1]
+                  : project.images?.[0]
               }
               alt="cover-image"
-              className="object-cover w-full h-full"
-              style={{ transition: 'opacity 500ms ease', opacity: fade ? 1 : 0 }}
+              className="object-cover w-full h-full rounded-md"
+              style={{
+                transition: 'opacity 1500ms ease, transform 1500ms ease, filter 1500ms ease',
+                filter: currentImageIndex === -1 ? 'grayscale(100%)' : 'grayscale(0%)',
+              }}
             />
           </div>
 
