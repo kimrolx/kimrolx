@@ -27,7 +27,6 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   const [flipped, setFlipped] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(-1);
-  const [fade, setFade] = useState(true);
   const isDesktop = useIsDesktop();
 
   const handleClick = () => setFlipped(!flipped);
@@ -70,20 +69,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             }}
             onMouseEnter={() => {
               if (project.images && project.images.length > 0) {
-                // Fade-out and then switch to alternate image with no grayscale.
-                setFade(false);
                 setTimeout(() => {
                   setCurrentImageIndex(0);
-                  setFade(true);
                 }, 300);
               }
             }}
             onMouseLeave={() => {
-              // Fade-out and then reset to coverImage (with grayscale).
-              setFade(false);
               setTimeout(() => {
                 setCurrentImageIndex(-1);
-                setFade(true);
               }, 300);
             }}
           >
