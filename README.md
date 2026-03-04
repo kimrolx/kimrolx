@@ -10,13 +10,12 @@
 
 ###
 
-- 🎓 I'm currently studying for my Bachelor's Degree in Information Technology.
-- 🔭 I’m currently working on:
-  - [Haven](https://github.com/kimrolx/Haven) -  a web application that allows real time messaging.
-  - [EcoPoints](https://github.com/kimrolx/EcoPoints) - a system where it provides points based on the amount of plastic bottles recycled in the EcoPoints' IoT device.
+- 🎓 I am a graduate of Bachelor of Science in Information Technology.
+- 🔭 I’m currently working on growing my skillset by contributing to companies and projects.
 - 📚 I'm currently learning how to:
   - improve web application security through CTF challenges and hands-on penetration testing.
-- 🎯 Goals: To contribute to impactful projects in a collaborative environment.
+  - work with CI/CD pipelines efficiently, DevOps, and deployment.
+- 🎯 Goals: To contribute to projects that help improve my work.
 
 ###
 
@@ -60,12 +59,6 @@
   <img src="https://skillicons.dev/icons?i=git" height="40" alt="git logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=github" height="40" alt="github logo"  />
-</div>
-
-###
-
-<div align="center">
-  <img src="https://profile-counter.glitch.me/kimrolx/count.svg?"  />
 </div>
 
 ###
