@@ -15,6 +15,7 @@
 - 📚 I'm currently learning how to:
   - improve web application security through CTF challenges and hands-on penetration testing.
   - work with CI/CD pipelines efficiently, DevOps, and deployment.
+  - build APIs over HTTP with GraphQL.
 - 🎯 Goals: To contribute to projects that help improve my work.
 
 ###
