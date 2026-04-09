@@ -1,8 +1,8 @@
-<h1 align="left">こんにちは~ 👋 </h1> 
+<h1 align="left">こんにちは~ 👋 </h1>
 
 ###
 
-<p align="left">Software developer with a growing experience in frontend development using React and Typescript, currently transitioning into fullstack roles with NodeJS, NestJS Microservices, and SQL. Developed mobile applications during my education using Flutter, Dart, and Firebase. Skilled in solving complex problems and committed to continual skill development.</p>
+<p align="left">Full-stack engineer with proven expertise in building scalable web and mobile applications. Specialized in frontend development with React and TypeScript, with deep proficiency in backend systems using NestJS microservices, Node.js, and relational/NoSQL databases. Experienced in architecting production-grade solutions, system design, and delivering high-performance applications. Strong background in mobile development with Flutter and proven ability to bridge frontend-backend integration.</p>
 
 ###
 
@@ -10,13 +10,13 @@
 
 ###
 
-- 🎓 I am a graduate of Bachelor of Science in Information Technology.
-- 🔭 I’m currently working on growing my skillset by contributing to companies and projects.
-- 📚 I'm currently learning how to:
-  - improve web application security through CTF challenges and hands-on penetration testing.
-  - work with CI/CD pipelines efficiently, DevOps, and deployment.
-  - build APIs over HTTP with GraphQL.
-- 🎯 Goals: To contribute to projects that help improve my work.
+- 🎓 Bachelor of Science in Information Technology.
+- 🔭 Building production applications, leading technical initiatives, and mentoring through collaborative development.
+- 📚 Focused on:
+  - Architecting secure, scalable web applications and implementing security best practices.
+  - Optimizing CI/CD pipelines and DevOps workflows for efficient deployment.
+  - API design and implementation using REST and GraphQL standards.
+- 🎯 Committed to writing maintainable code, fostering engineering excellence, and solving complex technical challenges.
 
 ###
 
@@ -61,6 +61,22 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=github" height="40" alt="github logo"  />
 </div>
+
+###
+
+<h2 align="left">Featured Projects</h2>
+
+###
+
+**[Trimmly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
+- Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
+- Built with **NestJS**, **React**, **MongoDB**, **Redis**
+- Production-grade infrastructure handling high-volume link operations
+
+**[EcoPoints](https://github.com/kimrolx/EcoPoints-Mobile)** — Gamified Sustainability Platform
+- Mobile and web applications for engaging university community in recycling initiatives
+- Implemented point-based reward system with real-time tracking
+- Tech: **Flutter**, **Dart**, **React**, **Firebase**, **Firestore**
 
 ###
 

@@ -51,6 +51,24 @@ const projectItems: ProjectItem[] = [
     ],
     githubUrl: 'https://github.com/nnyyyy3/EcoPoints-Web',
   },
+  {
+    id: 'trimmly',
+    title: 'Trimmly',
+    coverImage: [],
+    description:
+      'A production-grade URL shortener and link management platform. Trimmly provides a fast, intuitive interface for shortening long URLs, organizing links, and tracking performance metrics. Built with a robust backend to handle high-volume link generation and analytics.',
+    startDate: 'Production',
+    endDate: '',
+    status: { label: 'Completed', color: 'var(--complete-green)' },
+    techStack: [
+      { label: 'TypeScript', color: '#3079C6' },
+      { label: 'NestJS', color: '#EA2845' },
+      { label: 'React', color: '#61DAFB' },
+      { label: 'Tailwind CSS', color: '#16BECB' },
+      { label: 'MongoDB', color: '#13AA52' },
+      { label: 'Redis', color: '#DC382D' },
+    ],
+  },
 ];
 
 export default function ProjectsPage() {
