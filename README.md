@@ -20,6 +20,22 @@
 
 ###
 
+<h2 align="left">Featured Projects</h2>
+
+###
+
+**[Trimmly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
+- Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
+- Built with **NestJS**, **React**, **MongoDB**, **Redis**
+- Production-grade infrastructure handling high-volume link operations
+
+**[EcoPoints](https://github.com/kimrolx/EcoPoints-Mobile)** — Gamified Sustainability Platform
+- Mobile and web applications for engaging university community in recycling initiatives
+- Implemented point-based reward system with real-time tracking
+- Tech: **Flutter**, **Dart**, **React**, **Firebase**, **Firestore**
+
+###
+
 <h2 align="left">Technologies I've Used</h2>
 
 ###
@@ -64,21 +80,6 @@
 
 ###
 
-<h2 align="left">Featured Projects</h2>
-
-###
-
-**[Trimmly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
-- Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
-- Built with **NestJS**, **React**, **MongoDB**, **Redis**
-- Production-grade infrastructure handling high-volume link operations
-
-**[EcoPoints](https://github.com/kimrolx/EcoPoints-Mobile)** — Gamified Sustainability Platform
-- Mobile and web applications for engaging university community in recycling initiatives
-- Implemented point-based reward system with real-time tracking
-- Tech: **Flutter**, **Dart**, **React**, **Firebase**, **Firestore**
-
-###
 
 <div align="center">
   <img src="https://streak-stats.demolab.com?user=kimrolx&locale=en&mode=daily&theme=dark&hide_border=true&border_radius=5&order=3" height="150" alt="streak graph"  />
