@@ -24,7 +24,7 @@
 
 ###
 
-**[Trimmly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
+**[Trimly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
 - Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
 - Built with **NestJS**, **React**, **MongoDB**, **Redis**
 - Production-grade infrastructure handling high-volume link operations
