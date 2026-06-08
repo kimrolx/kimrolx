@@ -8,13 +8,25 @@
         "role": "neutral",
         "displayName": "Ink Black",
         "canonical": "#0A0A0A",
-        "tonalRamp": ["#0A0A0A", "#171717", "#262626", "#3a3a3a", "#525252", "#737373", "#a3a3a3", "#dfe0e2"]
+        "tonalRamp": ["#0A0A0A", "#141414", "#1B1B1B", "#262626", "#3a3a3a", "#525252", "#737373", "#a3a3a3"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#141414",
+        "tonalRamp": ["#0a0a0a", "#141414", "#1b1b1b", "#242424", "#2f2f2f", "#3b3b3b", "#4a4a4a", "#5c5c5c"]
       },
       "ash": {
         "role": "neutral",
         "displayName": "Light Ash",
         "canonical": "#DFE0E2",
         "tonalRamp": ["#2b2c2e", "#404143", "#5a5b5d", "#76777a", "#949598", "#b4b5b8", "#cdced0", "#dfe0e2"]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Ink Dim",
+        "canonical": "#9A9DA3",
+        "tonalRamp": ["#34363a", "#46484d", "#5b5e63", "#717479", "#878a90", "#9a9da3", "#b4b6bb", "#cfd0d4"]
       },
       "amber": {
         "role": "primary",
@@ -26,46 +38,47 @@
         "role": "secondary",
         "displayName": "Workshop Teal",
         "canonical": "#006D5B",
-        "tonalRamp": ["#00231d", "#003a30", "#005045", "#006d5b", "#018a73", "#11a98e", "#4fc7b1", "#9ee3d6"]
+        "tonalRamp": ["#00231d", "#003a30", "#005045", "#006d5b", "#018a73", "#11a98e", "#34c7ac", "#9ee3d6"]
+      },
+      "teal-ink": {
+        "role": "secondary",
+        "displayName": "Text Teal",
+        "canonical": "#34C7AC",
+        "tonalRamp": ["#00231d", "#003a30", "#005045", "#018a73", "#11a98e", "#34c7ac", "#6fdac6", "#a8ebdd"]
       },
       "signal-green": {
         "role": "tertiary",
         "displayName": "Signal Green",
-        "canonical": "#05A005",
-        "tonalRamp": ["#012e01", "#024802", "#036303", "#05a005", "#1cc01c", "#4dd44d", "#85e585", "#c2f2c2"]
-      },
-      "hairline": {
-        "role": "neutral",
-        "displayName": "Hairline",
-        "canonical": "#B8B8B8",
-        "tonalRamp": ["#2e2e2e", "#474747", "#636363", "#808080", "#9d9d9d", "#b8b8b8", "#d2d2d2", "#ededed"]
+        "canonical": "#21C521",
+        "tonalRamp": ["#012e01", "#024802", "#036303", "#058a05", "#10ab10", "#21c521", "#5cdb5c", "#9eeb9e"]
       }
     },
     "typographyMeta": {
       "hello": { "displayName": "Hello", "purpose": "Animated multilingual typewriter greeting; the human handshake above the hero." },
-      "display": { "displayName": "Display", "purpose": "Page-defining H1 headings." },
-      "headline": { "displayName": "Headline", "purpose": "Section and sub-statement H2 headings." },
-      "title": { "displayName": "Title", "purpose": "Card and job titles (H3-H4)." },
+      "display": { "displayName": "Display", "purpose": "Page-defining hero heading (Hanken Grotesk 800)." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings with a leading amber tick." },
+      "title": { "displayName": "Title", "purpose": "Project and role titles." },
       "body": { "displayName": "Body", "purpose": "Paragraphs; cap measure at 65-75ch." },
-      "label": { "displayName": "Label", "purpose": "Badges and dense metadata only." }
+      "label": { "displayName": "Label", "purpose": "JetBrains Mono: nav, dates, status, tech tags, metadata." }
     },
+    "fonts": [
+      { "name": "sans", "family": "Hanken Grotesk", "fallback": "system-ui, sans-serif", "usage": "All prose and headings." },
+      { "name": "mono", "family": "JetBrains Mono", "fallback": "ui-monospace, monospace", "usage": "Technical labels only; never body prose." }
+    ],
     "shadows": [
-      { "name": "ambient-glow", "value": "0 0 5.5vmin currentColor", "purpose": "The drifting background orbs (amber/teal). The room's light; persistent, behind content, never on content." },
-      { "name": "lift", "value": "0 10px 15px -3px rgba(0,0,0,0.4)", "purpose": "Hover-only lift on project cards, paired with scale(1.05). State, not rest." },
-      { "name": "glass", "value": "0 4px 30px rgba(0,0,0,0.1)", "purpose": "Legacy glass treatment on timeline + card backs. Flagged for reduction; do not expand." }
+      { "name": "ambient-glow", "value": "0 0 5.5vmin currentColor", "purpose": "The drifting background orbs (amber/teal). The room's light; persistent, behind content, never on content." }
     ],
     "motion": [
-      { "name": "ease-out-fast", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Recommended ease-out-expo for state transitions (links, hovers)." },
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for state transitions and reveals." },
       { "name": "duration-state", "value": "200ms", "purpose": "Button and link state changes." },
-      { "name": "duration-card", "value": "300ms", "purpose": "Card hover lift/scale." },
-      { "name": "duration-flip", "value": "500ms", "purpose": "Project card 3D flip." },
+      { "name": "reveal", "value": "0.7s ease-out-expo", "purpose": "Scroll reveal (opacity + 16px lift); always resolves to visible via a timeout safety net." },
       { "name": "orb-drift", "value": "linear infinite 26s-53s", "purpose": "Ambient background orb rotation; per-orb varied duration." },
-      { "name": "typewriter", "value": "250ms/char + 2000ms pause", "purpose": "Greeting typing cadence." }
+      { "name": "typewriter", "value": "230ms/char + 2000ms pause", "purpose": "Greeting typing cadence." }
     ],
     "breakpoints": [
       { "name": "xs", "value": "23.5rem" },
-      { "name": "sm", "value": "31.25rem" },
-      { "name": "md", "value": "48rem" }
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
     ]
   },
   "components": [
@@ -73,83 +86,83 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Hero call-to-action ('View my work'). Light fill that inverts to ink-black on hover.",
+      "description": "Principal action in a region. Amber fill, ink-black text (~10:1 contrast).",
       "html": "<a class=\"ds-btn-primary\" href=\"#projects\">View my work</a>",
-      "css": ".ds-btn-primary { display: inline-block; background: #DFE0E2; color: #0A0A0A; font-family: Poppins, sans-serif; font-size: 0.875rem; padding: 8px 12px; border-radius: 8px; text-decoration: none; transition: background 0.2s cubic-bezier(0.16,1,0.3,1), color 0.2s; } .ds-btn-primary:hover { background: #0A0A0A; color: #DFE0E2; } .ds-btn-primary:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #FFB22C; color: #0A0A0A; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; text-decoration: none; transition: background 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #f0a526; } .ds-btn-primary:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
     },
     {
       "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Secondary action ('Learn more'). Transparent, text brightens on hover.",
-      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Learn more</a>",
-      "css": ".ds-btn-ghost { display: inline-block; background: transparent; color: #DFE0E2; font-family: Poppins, sans-serif; font-size: 0.875rem; padding: 8px 12px; text-decoration: none; transition: color 0.2s; } .ds-btn-ghost:hover { color: #FFFFFF; } .ds-btn-ghost:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
+      "description": "Secondary action. Outlined, transparent; border and text shift to amber on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#contact\">Get in touch</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #DFE0E2; border: 1px solid rgba(255,255,255,0.18); font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; text-decoration: none; transition: color 0.2s, border-color 0.2s; } .ds-btn-ghost:hover { color: #FFB22C; border-color: #FFB22C; } .ds-btn-ghost:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
     },
     {
-      "name": "Badge",
+      "name": "Tech Tag",
       "kind": "chip",
-      "refersTo": "badge",
-      "description": "Data-driven tech/status pill. Background is set per item; the tiny size is what licenses the dense color.",
-      "html": "<span class=\"ds-badge\" style=\"background:#3079C6\">TypeScript</span>",
-      "css": ".ds-badge { display: inline-block; padding: 4px 8px; font-family: Poppins, sans-serif; font-size: 11px; font-weight: 600; color: #FFFFFF; border-radius: 4px; line-height: 1.2; }"
+      "refersTo": "tech-tag",
+      "description": "Neutral chip with a brand-color dot. Color is signal, not fill.",
+      "html": "<span class=\"ds-tag\"><span class=\"ds-tag-dot\" style=\"background:#3079c6\"></span>TypeScript</span>",
+      "css": ".ds-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.1); background: #141414; border-radius: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; color: #9A9DA3; } .ds-tag-dot { width: 6px; height: 6px; border-radius: 9999px; }"
     },
     {
       "name": "Nav Link",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "Top-bar link over a translucent blurred bar on the dark field.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#home\">Home</a><a class=\"ds-nav-link\" href=\"#experience\">Experience</a><a class=\"ds-nav-link\" href=\"#projects\">Projects</a></nav>",
-      "css": ".ds-nav { display: flex; gap: 32px; justify-content: center; align-items: center; height: 64px; padding: 0 16px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(255,255,255,0.04); } .ds-nav-link { font-family: Poppins, sans-serif; font-size: 0.875rem; color: #DFE0E2; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: #FFB22C; } .ds-nav-link:focus-visible { outline: 2px solid #FFB22C; outline-offset: 4px; }"
+      "description": "Mono top-bar link over a translucent blurred bar. In-view section turns amber.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#projects\">Projects</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#experience\">Experience</a><a class=\"ds-nav-link\" href=\"#about\">About</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 28px; align-items: center; height: 56px; padding: 0 24px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(10,10,10,0.7); border-bottom: 1px solid rgba(255,255,255,0.1); } .ds-nav-link { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8125rem; color: #9A9DA3; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: #DFE0E2; } .ds-nav-link--active { color: #FFB22C; } .ds-nav-link:focus-visible { outline: 2px solid #FFB22C; outline-offset: 4px; }"
     },
     {
-      "name": "Project Card",
-      "kind": "card",
+      "name": "Project Terminal Media",
+      "kind": "custom",
       "refersTo": null,
-      "description": "Flip card: desaturated cover at rest, full color + lift on hover. Front shown here.",
-      "html": "<div class=\"ds-card\"><img class=\"ds-card-img\" src=\"\" alt=\"project cover\" /></div>",
-      "css": ".ds-card { width: 100%; max-width: 500px; min-height: 256px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-card:hover { transform: scale(1.05); } .ds-card-img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 1.5s ease; } .ds-card:hover .ds-card-img { filter: grayscale(0%); }"
+      "description": "Fallback media for projects without a screenshot: a small mono terminal motif so no project ships empty.",
+      "html": "<div class=\"ds-term\"><div class=\"ds-term-bar\"><span></span><span></span><span></span><em>trimmly</em></div><div class=\"ds-term-body\"><p><span class=\"t\">$</span> shorten <span class=\"f\">https://example.com/a/very/long/path</span></p><p><span class=\"a\">&rarr;</span> trimmly.xyz/<span class=\"a\">k3a9</span></p><p class=\"f\">2,481 clicks · 99.98% uptime</p></div></div>",
+      "css": ".ds-term { border: 1px solid rgba(255,255,255,0.1); background: #141414; border-radius: 12px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8125rem; } .ds-term-bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); } .ds-term-bar span { width: 10px; height: 10px; border-radius: 9999px; background: #6B6E74; } .ds-term-bar em { margin-left: 8px; font-style: normal; font-size: 0.75rem; color: #6B6E74; } .ds-term-body { display: flex; flex-direction: column; gap: 12px; padding: 24px; color: #9A9DA3; } .ds-term-body p { margin: 0; word-break: break-all; } .ds-term .t { color: #34C7AC; } .ds-term .a { color: #FFB22C; } .ds-term .f { color: #6B6E74; }"
     },
     {
       "name": "Animated Greeting",
       "kind": "custom",
       "refersTo": null,
-      "description": "Multilingual typewriter greeting with a blinking cursor. The system's human handshake.",
-      "html": "<span class=\"ds-hello\">Kumusta? 👋<span class=\"ds-hello-cursor\"></span></span>",
-      "css": ".ds-hello { font-family: Poppins, sans-serif; font-weight: 700; font-size: clamp(1.875rem, 5vw, 3rem); color: #DFE0E2; } .ds-hello-cursor { display: inline-block; width: 2px; height: 1em; margin-left: 4px; background: currentColor; vertical-align: text-bottom; animation: ds-blink 1s steps(2) infinite; } @keyframes ds-blink { 50% { opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-hello-cursor { animation: none; } }"
+      "description": "Multilingual typewriter greeting with a blinking amber caret. The system's human handshake.",
+      "html": "<span class=\"ds-hello\">Kumusta? 👋<span class=\"ds-hello-caret\"></span></span>",
+      "css": ".ds-hello { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(1.5rem, 5vw, 1.875rem); color: #9A9DA3; } .ds-hello-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 2px; background: #FFB22C; vertical-align: text-bottom; animation: ds-blink 1s steps(2) infinite; } @keyframes ds-blink { 50% { opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-hello-caret { animation: none; } }"
     }
   ],
   "narrative": {
     "northStar": "The Midnight Workshop",
-    "overview": "A near-black canvas lit by a single warm lamp. This is the desk of an engineer building after hours: the room is dark and quiet, the work is the only thing in focus, and warmth comes from two small light sources, an amber glow and a teal glow, drifting at the edges. The personality is precise, confident, and refined, never loud. Confidence here is shown by restraint: a near-black field, generous breathing room, and color used so sparingly that when it appears it carries weight. The system is content-forward and low-chrome. Type is one family (Poppins) carried by weight contrast, not decoration. Motion is ambient rather than choreographed on every section. The human notes (the multilingual greeting, the Philippines flag in the heading) are earned, specific touches against an otherwise austere frame.",
+    "overview": "A near-black canvas lit by a single warm lamp. This is the desk of an engineer building after hours: the room is dark and quiet, the work is the only thing in focus, and warmth comes from two small light sources, an amber glow and a teal glow, drifting at the edges. The personality is precise, confident, and refined, never loud. Confidence here is shown by restraint: a near-black field, generous breathing room, and color used so sparingly that when it appears it carries weight. Prose and headings ride one humanist grotesque (Hanken Grotesk) carried by weight contrast; a monospace (JetBrains Mono) handles the machine's readouts. Motion is ambient plus a subtle scroll reveal that always resolves to visible. The human notes (the multilingual greeting, the Philippines flag in the heading) are earned, specific touches against an otherwise austere frame.",
     "keyCharacteristics": [
       "Near-black #0A0A0A body with light-ash #DFE0E2 text. Dark is the deliberate surface, not a toggle.",
       "Two signal accents (amber, teal) used on ≤10% of any screen.",
-      "One typeface, Poppins, across the whole system.",
-      "Ambient glow as the only persistent motion; everything else is state-driven.",
-      "Breathing room and hairline dividers carry structure, not boxes."
+      "Two typefaces: Hanken Grotesk for prose, JetBrains Mono for technical labels.",
+      "Depth is tonal (bg → surface → surface-2 + hairline borders), not shadow or glass.",
+      "Ambient glow as the only persistent motion; reveals always resolve to visible."
     ],
     "rules": [
       { "name": "The Signal Rule", "body": "Amber and teal together occupy ≤10% of any screen. They are light sources, not surfaces. The moment an accent fills a region, it has stopped being a signal.", "section": "colors" },
       { "name": "The One Flag Rule", "body": "The Philippines gradient (#0038A8 -> #CE1126) appears exactly once, on 'Philippines' in the hero. It is the single sanctioned gradient-on-text because it is a flag, not decoration. Nowhere else.", "section": "colors" },
-      { "name": "The One Voice Rule", "body": "Poppins is the only family. Never introduce a second typeface for contrast; reach for weight and size instead.", "section": "typography" },
-      { "name": "The No-Shout Rule", "body": "Display tops out near 3rem. The page never exceeds it to feel bigger; hierarchy is relative, not loud.", "section": "typography" },
-      { "name": "The Flat-By-Default Rule", "body": "Flat content casts no shadow at rest. Shadow and lift are responses to hover/state, never ambient on a card sitting still.", "section": "elevation" }
+      { "name": "The Two Voices Rule", "body": "Exactly two families: Hanken Grotesk for everything you read, JetBrains Mono for what the machine reports. No third typeface. Prose is never mono.", "section": "typography" },
+      { "name": "The No-Shout Rule", "body": "Display tops out near 3.75rem. The page never exceeds it to feel bigger; hierarchy is relative, not loud.", "section": "typography" },
+      { "name": "The Tonal-Depth Rule", "body": "Layering is done with the three surface tones plus hairline borders, not shadows or glass. If a panel needs to lift, raise its tone, don't float it.", "section": "elevation" }
     ],
     "dos": [
       "Do keep the body on ink black #0A0A0A with light-ash #DFE0E2 text. Dark is the committed surface, not a theme toggle.",
       "Do confine amber #FFB22C and teal #006D5B to ≤10% of any view (The Signal Rule). Treat them as light, not paint.",
-      "Do build hierarchy with Poppins weights (400 -> 700) and scale alone (The One Voice Rule).",
-      "Do keep flat content flat at rest; reserve shadow-lg and scale(1.05) for hover (The Flat-By-Default Rule).",
-      "Do verify the nav hover color and any gray-on-dark text clears 4.5:1 against #0A0A0A.",
-      "Do give every animation a prefers-reduced-motion: reduce fallback: freeze the background orbs and settle the typewriter on one static greeting."
+      "Do build hierarchy with Hanken Grotesk weights (400 -> 800) and scale; reserve JetBrains Mono for labels (The Two Voices Rule).",
+      "Do layer with the three surface tones and hairline borders, not shadows or glass (The Tonal-Depth Rule).",
+      "Do keep ink-dim #9A9DA3 the floor for body text on #0A0A0A; use text-safe teal #34C7AC when teal must be read.",
+      "Do give every animation a prefers-reduced-motion fallback, and make scroll reveals resolve to visible even if the observer never fires."
     ],
     "donts": [
       "Don't build the generic dev-template portfolio: hero + skill-icon grid + endless identical cards. It is a named anti-reference.",
       "Don't drift toward a corporate SaaS landing: no buzzwords, no stock-photo enterprise tone, no hero-metric template.",
-      "Don't clutter. Hairline dividers and whitespace carry structure; resist packing sections with boxes.",
-      "Don't expand the glass treatment. Glass is legacy, scoped to the timeline and card backs only; new surfaces use solid or tonal-on-dark layering.",
+      "Don't reintroduce glassmorphism. It was removed in the rebuild; depth is tonal.",
+      "Don't gate content visibility on a scroll animation. Reveals enhance an already-visible default and always resolve to visible.",
       "Don't introduce a second gradient-on-text. The Philippines flag is the single sanctioned one (The One Flag Rule).",
-      "Don't add a second typeface for richness. One voice.",
+      "Don't add a third typeface, and don't fill tech tags with solid brand color. Color is the dot; the chip stays neutral.",
       "Don't ship gray body text that reads under 4.5:1 on the dark field for elegance."
     ]
   }

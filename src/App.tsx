@@ -1,49 +1,30 @@
-import './App.css';
-import TopBar from './components/top-bar/TopBar';
-import HomePage from './pages/HomePage';
-import ExperiencePage from './pages/ExperiencePage';
-import AnimatedRandomHello from './components/animated-random-hello/AnimatedRandomHello';
-import ProjectsPage from './pages/ProjectsPage';
+import { GlowBackground } from "@/components/GlowBackground";
+import { TopBar } from "@/components/TopBar";
+import { Hero } from "@/sections/Hero";
+import { Experience } from "@/sections/Experience";
+import { Projects } from "@/sections/Projects";
+import { About } from "@/sections/About";
+import { Contact } from "@/sections/Contact";
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <>
+      <GlowBackground />
+      <a
+        href="#experience"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-md focus:bg-amber focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
+      >
+        Skip to content
+      </a>
       <TopBar />
-
-      <div className="flex flex-col relative z-10 scroll-smooth">
-        {/* Landing Page */}
-        <div
-          id="home"
-          className="min-h-screen w-full flex flex-col px-6 mt-15 max-sm:mt-20 gap-16 max-sm:gap-20 border-b border-[#b8b8b8]"
-        >
-          <AnimatedRandomHello />
-          <div>
-            <HomePage />
-          </div>
-        </div>
-
-        <div id="experience" className="w-full border-b border-[#b8b8b8]">
-          <div className="my-16">
-            <ExperiencePage />
-          </div>
-        </div>
-
-        <div id="projects" className="w-full border-b border-[#b8b8b8]">
-          <div className="my-16">
-            <ProjectsPage />
-          </div>
-        </div>
-      </div>
-
-      <div className="background">
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-        <span className="ball" />
-      </div>
-    </div>
+      <main className="relative" style={{ zIndex: "var(--z-content)" }}>
+        <Hero />
+        <Experience />
+        <Projects />
+        <About />
+        <Contact />
+      </main>
+    </>
   );
 }
 

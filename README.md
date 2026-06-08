@@ -2,7 +2,11 @@
 
 ###
 
-<p align="left">Full-stack engineer with proven expertise in building scalable web and mobile applications. Specialized in frontend development with React and TypeScript, with deep proficiency in backend systems using NestJS microservices, Node.js, and relational/NoSQL databases. Experienced in architecting production-grade solutions, system design, and delivering high-performance applications. Strong background in mobile development with Flutter and proven ability to bridge frontend-backend integration.</p>
+<p align="left">I'm a Software Engineer focused on building and scaling secure, production-grade systems across the full stack. I take ownership of end-to-end feature delivery, from system design and API architecture to frontend integration and cloud deployment, primarily using TypeScript, NestJS, PostgreSQL, and React.</p>
+
+###
+
+<p align="left">My work extends beyond feature development into platform reliability and engineering efficiency. I design and maintain CI/CD pipelines with GitHub Actions, implement containerized deployments with Docker, and manage cloud delivery through Azure services such as ACR and ACA, enabling faster, more consistent releases while reducing operational overhead.</p>
 
 ###
 
@@ -10,13 +14,10 @@
 
 ###
 
-- 🎓 Bachelor of Science in Information Technology.
-- 🔭 Building production applications, leading technical initiatives, and mentoring through collaborative development.
-- 📚 Focused on:
-  - Architecting secure, scalable web applications and implementing security best practices.
-  - Optimizing CI/CD pipelines and DevOps workflows for efficient deployment.
-  - API design and implementation using REST and GraphQL standards.
-- 🎯 Committed to writing maintainable code, fostering engineering excellence, and solving complex technical challenges.
+- 🎓 B.S. in Information Technology, University of San Jose – Recoletos.
+- 🔭 Building production systems end to end: system design, API architecture, frontend integration, and cloud deployment.
+- ⚙️ Working with CI/CD (GitHub Actions), containerized deployments (Docker), and cloud delivery on Azure (ACR, ACA).
+- 🎯 Focused on ownership, scalability, and long-term maintainability, delivering systems that are resilient and production-ready.
 
 ###
 
@@ -72,6 +73,12 @@
   <img src="https://skillicons.dev/icons?i=supabase" height="40" alt="supabase logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=gcp" height="40" alt="googlecloud logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=azure" height="40" alt="azure logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=docker" height="40" alt="docker logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=githubactions" height="40" alt="github actions logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=git" height="40" alt="git logo"  />
   <img width="12" />

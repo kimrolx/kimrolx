@@ -10,7 +10,7 @@ Mixed visitors landing on Kim Roland Berame's personal site: recruiters and hiri
 
 ## Product Purpose
 
-A portfolio for a full-stack engineer (React/TypeScript frontend, NestJS/Node backend, Flutter mobile). It exists to establish credibility fast and convert a skim into a contact or a deeper read of the work. Success: a visitor leaves understanding what Kim builds, trusts the competence, and knows how to reach him or see his code.
+A portfolio for a software engineer (TypeScript/NestJS/PostgreSQL/React full stack, plus CI/CD, Docker, and Azure cloud delivery). It exists to establish credibility fast and convert a skim into a contact or a deeper read of the work. Success: a visitor leaves understanding what Kim builds, trusts the competence, and knows how to reach him or see his code.
 
 ## Brand Personality
 
