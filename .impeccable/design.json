@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-09T00:00:00.000Z",
+  "title": "Design System: Kim Roland Berame Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink-black": {
+        "role": "neutral",
+        "displayName": "Ink Black",
+        "canonical": "#0A0A0A",
+        "tonalRamp": ["#0A0A0A", "#171717", "#262626", "#3a3a3a", "#525252", "#737373", "#a3a3a3", "#dfe0e2"]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Light Ash",
+        "canonical": "#DFE0E2",
+        "tonalRamp": ["#2b2c2e", "#404143", "#5a5b5d", "#76777a", "#949598", "#b4b5b8", "#cdced0", "#dfe0e2"]
+      },
+      "amber": {
+        "role": "primary",
+        "displayName": "Amber Signal",
+        "canonical": "#FFB22C",
+        "tonalRamp": ["#3a2400", "#5c3a00", "#855400", "#b07200", "#d99300", "#ffb22c", "#ffc966", "#ffe0a8"]
+      },
+      "teal": {
+        "role": "secondary",
+        "displayName": "Workshop Teal",
+        "canonical": "#006D5B",
+        "tonalRamp": ["#00231d", "#003a30", "#005045", "#006d5b", "#018a73", "#11a98e", "#4fc7b1", "#9ee3d6"]
+      },
+      "signal-green": {
+        "role": "tertiary",
+        "displayName": "Signal Green",
+        "canonical": "#05A005",
+        "tonalRamp": ["#012e01", "#024802", "#036303", "#05a005", "#1cc01c", "#4dd44d", "#85e585", "#c2f2c2"]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#B8B8B8",
+        "tonalRamp": ["#2e2e2e", "#474747", "#636363", "#808080", "#9d9d9d", "#b8b8b8", "#d2d2d2", "#ededed"]
+      }
+    },
+    "typographyMeta": {
+      "hello": { "displayName": "Hello", "purpose": "Animated multilingual typewriter greeting; the human handshake above the hero." },
+      "display": { "displayName": "Display", "purpose": "Page-defining H1 headings." },
+      "headline": { "displayName": "Headline", "purpose": "Section and sub-statement H2 headings." },
+      "title": { "displayName": "Title", "purpose": "Card and job titles (H3-H4)." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs; cap measure at 65-75ch." },
+      "label": { "displayName": "Label", "purpose": "Badges and dense metadata only." }
+    },
+    "shadows": [
+      { "name": "ambient-glow", "value": "0 0 5.5vmin currentColor", "purpose": "The drifting background orbs (amber/teal). The room's light; persistent, behind content, never on content." },
+      { "name": "lift", "value": "0 10px 15px -3px rgba(0,0,0,0.4)", "purpose": "Hover-only lift on project cards, paired with scale(1.05). State, not rest." },
+      { "name": "glass", "value": "0 4px 30px rgba(0,0,0,0.1)", "purpose": "Legacy glass treatment on timeline + card backs. Flagged for reduction; do not expand." }
+    ],
+    "motion": [
+      { "name": "ease-out-fast", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Recommended ease-out-expo for state transitions (links, hovers)." },
+      { "name": "duration-state", "value": "200ms", "purpose": "Button and link state changes." },
+      { "name": "duration-card", "value": "300ms", "purpose": "Card hover lift/scale." },
+      { "name": "duration-flip", "value": "500ms", "purpose": "Project card 3D flip." },
+      { "name": "orb-drift", "value": "linear infinite 26s-53s", "purpose": "Ambient background orb rotation; per-orb varied duration." },
+      { "name": "typewriter", "value": "250ms/char + 2000ms pause", "purpose": "Greeting typing cadence." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "23.5rem" },
+      { "name": "sm", "value": "31.25rem" },
+      { "name": "md", "value": "48rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Hero call-to-action ('View my work'). Light fill that inverts to ink-black on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#projects\">View my work</a>",
+      "css": ".ds-btn-primary { display: inline-block; background: #DFE0E2; color: #0A0A0A; font-family: Poppins, sans-serif; font-size: 0.875rem; padding: 8px 12px; border-radius: 8px; text-decoration: none; transition: background 0.2s cubic-bezier(0.16,1,0.3,1), color 0.2s; } .ds-btn-primary:hover { background: #0A0A0A; color: #DFE0E2; } .ds-btn-primary:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action ('Learn more'). Transparent, text brightens on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Learn more</a>",
+      "css": ".ds-btn-ghost { display: inline-block; background: transparent; color: #DFE0E2; font-family: Poppins, sans-serif; font-size: 0.875rem; padding: 8px 12px; text-decoration: none; transition: color 0.2s; } .ds-btn-ghost:hover { color: #FFFFFF; } .ds-btn-ghost:focus-visible { outline: 2px solid #FFB22C; outline-offset: 2px; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Data-driven tech/status pill. Background is set per item; the tiny size is what licenses the dense color.",
+      "html": "<span class=\"ds-badge\" style=\"background:#3079C6\">TypeScript</span>",
+      "css": ".ds-badge { display: inline-block; padding: 4px 8px; font-family: Poppins, sans-serif; font-size: 11px; font-weight: 600; color: #FFFFFF; border-radius: 4px; line-height: 1.2; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Top-bar link over a translucent blurred bar on the dark field.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#home\">Home</a><a class=\"ds-nav-link\" href=\"#experience\">Experience</a><a class=\"ds-nav-link\" href=\"#projects\">Projects</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 32px; justify-content: center; align-items: center; height: 64px; padding: 0 16px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(255,255,255,0.04); } .ds-nav-link { font-family: Poppins, sans-serif; font-size: 0.875rem; color: #DFE0E2; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: #FFB22C; } .ds-nav-link:focus-visible { outline: 2px solid #FFB22C; outline-offset: 4px; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Flip card: desaturated cover at rest, full color + lift on hover. Front shown here.",
+      "html": "<div class=\"ds-card\"><img class=\"ds-card-img\" src=\"\" alt=\"project cover\" /></div>",
+      "css": ".ds-card { width: 100%; max-width: 500px; min-height: 256px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-card:hover { transform: scale(1.05); } .ds-card-img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 1.5s ease; } .ds-card:hover .ds-card-img { filter: grayscale(0%); }"
+    },
+    {
+      "name": "Animated Greeting",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Multilingual typewriter greeting with a blinking cursor. The system's human handshake.",
+      "html": "<span class=\"ds-hello\">Kumusta? 👋<span class=\"ds-hello-cursor\"></span></span>",
+      "css": ".ds-hello { font-family: Poppins, sans-serif; font-weight: 700; font-size: clamp(1.875rem, 5vw, 3rem); color: #DFE0E2; } .ds-hello-cursor { display: inline-block; width: 2px; height: 1em; margin-left: 4px; background: currentColor; vertical-align: text-bottom; animation: ds-blink 1s steps(2) infinite; } @keyframes ds-blink { 50% { opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-hello-cursor { animation: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Workshop",
+    "overview": "A near-black canvas lit by a single warm lamp. This is the desk of an engineer building after hours: the room is dark and quiet, the work is the only thing in focus, and warmth comes from two small light sources, an amber glow and a teal glow, drifting at the edges. The personality is precise, confident, and refined, never loud. Confidence here is shown by restraint: a near-black field, generous breathing room, and color used so sparingly that when it appears it carries weight. The system is content-forward and low-chrome. Type is one family (Poppins) carried by weight contrast, not decoration. Motion is ambient rather than choreographed on every section. The human notes (the multilingual greeting, the Philippines flag in the heading) are earned, specific touches against an otherwise austere frame.",
+    "keyCharacteristics": [
+      "Near-black #0A0A0A body with light-ash #DFE0E2 text. Dark is the deliberate surface, not a toggle.",
+      "Two signal accents (amber, teal) used on ≤10% of any screen.",
+      "One typeface, Poppins, across the whole system.",
+      "Ambient glow as the only persistent motion; everything else is state-driven.",
+      "Breathing room and hairline dividers carry structure, not boxes."
+    ],
+    "rules": [
+      { "name": "The Signal Rule", "body": "Amber and teal together occupy ≤10% of any screen. They are light sources, not surfaces. The moment an accent fills a region, it has stopped being a signal.", "section": "colors" },
+      { "name": "The One Flag Rule", "body": "The Philippines gradient (#0038A8 -> #CE1126) appears exactly once, on 'Philippines' in the hero. It is the single sanctioned gradient-on-text because it is a flag, not decoration. Nowhere else.", "section": "colors" },
+      { "name": "The One Voice Rule", "body": "Poppins is the only family. Never introduce a second typeface for contrast; reach for weight and size instead.", "section": "typography" },
+      { "name": "The No-Shout Rule", "body": "Display tops out near 3rem. The page never exceeds it to feel bigger; hierarchy is relative, not loud.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Flat content casts no shadow at rest. Shadow and lift are responses to hover/state, never ambient on a card sitting still.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the body on ink black #0A0A0A with light-ash #DFE0E2 text. Dark is the committed surface, not a theme toggle.",
+      "Do confine amber #FFB22C and teal #006D5B to ≤10% of any view (The Signal Rule). Treat them as light, not paint.",
+      "Do build hierarchy with Poppins weights (400 -> 700) and scale alone (The One Voice Rule).",
+      "Do keep flat content flat at rest; reserve shadow-lg and scale(1.05) for hover (The Flat-By-Default Rule).",
+      "Do verify the nav hover color and any gray-on-dark text clears 4.5:1 against #0A0A0A.",
+      "Do give every animation a prefers-reduced-motion: reduce fallback: freeze the background orbs and settle the typewriter on one static greeting."
+    ],
+    "donts": [
+      "Don't build the generic dev-template portfolio: hero + skill-icon grid + endless identical cards. It is a named anti-reference.",
+      "Don't drift toward a corporate SaaS landing: no buzzwords, no stock-photo enterprise tone, no hero-metric template.",
+      "Don't clutter. Hairline dividers and whitespace carry structure; resist packing sections with boxes.",
+      "Don't expand the glass treatment. Glass is legacy, scoped to the timeline and card backs only; new surfaces use solid or tonal-on-dark layering.",
+      "Don't introduce a second gradient-on-text. The Philippines flag is the single sanctioned one (The One Flag Rule).",
+      "Don't add a second typeface for richness. One voice.",
+      "Don't ship gray body text that reads under 4.5:1 on the dark field for elegance."
+    ]
+  }
+}
