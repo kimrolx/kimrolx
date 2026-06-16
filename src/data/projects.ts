@@ -1,4 +1,4 @@
-import { FaGithub, FaAppStoreIos } from 'react-icons/fa';
+import { FaGithub, FaApple } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import type { Project } from '@/types';
 
@@ -30,7 +30,7 @@ export const projects: Project[] = [
       {
         label: 'Get on the App Store',
         href: 'https://apps.apple.com/us/app/machina-know-your-ride/id6775355789',
-        icon: FaAppStoreIos,
+        icon: FaApple,
       },
     ],
     images: [

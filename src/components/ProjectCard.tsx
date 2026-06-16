@@ -1,5 +1,6 @@
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
+import { AppStoreBadge } from "./AppStoreBadge";
 import { ButtonLink } from "./Button";
 import { ProjectMedia } from "./ProjectMedia";
 import { StatusPill } from "./StatusPill";
@@ -33,19 +34,23 @@ export function ProjectCard({ project, reversed }: ProjectCardProps) {
 
         <TechList items={project.techStack} />
 
-        <div className="mt-1 flex flex-wrap gap-3">
-          {project.links.map(({ label, href, icon: Icon }) => (
-            <ButtonLink
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant={project.featured ? "primary" : "ghost"}
-            >
-              <Icon aria-hidden="true" className="h-4 w-4" />
-              {label}
-            </ButtonLink>
-          ))}
+        <div className="mt-1 flex flex-wrap items-center gap-3">
+          {project.links.map(({ label, href, icon: Icon }) =>
+            href.includes("apps.apple.com") ? (
+              <AppStoreBadge key={label} href={href} />
+            ) : (
+              <ButtonLink
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant={project.featured ? "primary" : "ghost"}
+              >
+                <Icon aria-hidden="true" className="h-4 w-4" />
+                {label}
+              </ButtonLink>
+            ),
+          )}
         </div>
       </div>
     </article>
