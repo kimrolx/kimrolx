@@ -25,6 +25,12 @@
 
 ###
 
+**[MACHINA](https://apps.apple.com/us/app/machina-know-your-ride/id6775355789)** — iOS Motorcycle Maintenance Tracker
+- Offline-first app tracking service intervals, history, and costs per bike — multi-bike, no account, fully on-device
+- Instrument-cluster aesthetic: monospace, signal-orange on near-black
+- Built with **React Native**, **Expo**, **TypeScript**, **SQLite**, **Drizzle ORM**, **Zustand**
+- Live on the App Store since June 2026, peaked **#3 in Utilities**
+
 **[Trimly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
 - Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
 - Built with **NestJS**, **React**, **MongoDB**, **Redis**
@@ -60,6 +66,8 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=flutter" height="40" alt="flutter logo"  />
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=expo" height="40" alt="expo logo"  />
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=remix" height="40" alt="remix logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=nextjs" height="40" alt="nextjs logo"  />
@@ -67,6 +75,8 @@
   <img src="https://skillicons.dev/icons?i=postgres" height="40" alt="postgresql logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=mysql" height="40" alt="mysql logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=sqlite" height="40" alt="sqlite logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=firebase" height="40" alt="firebase logo"  />
   <img width="12" />

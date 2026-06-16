@@ -1,11 +1,44 @@
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaAppStoreIos } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import type { Project } from '@/types';
 
 import ecoMobile from '@/assets/mobile_cover_image2.png';
 import ecoWeb from '@/assets/web_desktop_cover_image2.png';
+import machinaDashboard from '@/assets/machina/3.png';
+import machinaHistory from '@/assets/machina/5.png';
 
 export const projects: Project[] = [
+  {
+    id: 'machina',
+    title: 'MACHINA',
+    kind: 'iOS App — Motorcycle Maintenance Tracker',
+    period: '2026 – Present',
+    status: 'Production',
+    description:
+      "Offline-first iOS app that tracks motorcycle service intervals and history per bike — what's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities.",
+    techStack: [
+      { label: 'TypeScript', color: '#3079c6' },
+      { label: 'React Native', color: '#61dafb' },
+      { label: 'Expo', color: '#e5e5e5' },
+      { label: 'Expo Router', color: '#a78bfa' },
+      { label: 'SQLite', color: '#0f80cc' },
+      { label: 'Drizzle ORM', color: '#c5f74f' },
+      { label: 'Zustand', color: '#d98c5f' },
+      { label: 'Reanimated', color: '#fa7d7d' },
+    ],
+    links: [
+      {
+        label: 'Get on the App Store',
+        href: 'https://apps.apple.com/us/app/machina-know-your-ride/id6775355789',
+        icon: FaAppStoreIos,
+      },
+    ],
+    images: [
+      { src: machinaDashboard, alt: 'MACHINA dashboard showing odometer, overdue and due-soon service counts' },
+      { src: machinaHistory, alt: 'MACHINA service history list with logged maintenance and costs' },
+    ],
+    featured: true,
+  },
   {
     id: 'trimly',
     title: 'Trimly',
