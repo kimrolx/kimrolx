@@ -1,41 +1,35 @@
 import type { Experience } from "@/types";
 import { TechList } from "./TechTag";
 
-type ExperienceEntryProps = {
-  experience: Experience;
-  isLast?: boolean;
-};
-
-export function ExperienceEntry({ experience, isLast }: ExperienceEntryProps) {
+export function ExperienceEntry({ experience }: { experience: Experience }) {
   return (
-    <li className="relative flex gap-5 sm:gap-6">
-      <div className="flex flex-col items-center">
-        <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full border border-border bg-white">
-          <img
-            src={experience.logo}
-            alt={`${experience.company} logo`}
-            className="h-7 w-7 object-contain"
-          />
-        </span>
-        {!isLast && <span aria-hidden="true" className="mt-2 w-px flex-1 bg-border" />}
+    <li className="grid grid-cols-1 gap-6 border-t border-line-2 pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+      {/* Meta column */}
+      <div className="flex flex-col gap-4">
+        <span className="label text-ink-3">{experience.period}</span>
+        <div className="flex items-center gap-3">
+          <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-sm border border-line bg-surface">
+            <img
+              src={experience.logo}
+              alt={`${experience.company} logo`}
+              className="h-6 w-6 object-contain"
+            />
+          </span>
+          <span className="flex flex-col">
+            <span className="font-semibold text-ink">{experience.company}</span>
+            <span className="text-sm text-ink-3">{experience.employmentType}</span>
+          </span>
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 pb-2">
-        <div className="flex flex-col gap-1">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 className="text-xl font-bold">{experience.role}</h3>
-            <span className="font-mono text-xs text-ink-faint">{experience.period}</span>
-          </div>
-          <p className="font-mono text-sm text-ink-dim">
-            {experience.company}
-            <span className="text-ink-faint"> · {experience.employmentType}</span>
-          </p>
-        </div>
+      {/* Content column */}
+      <div className="flex flex-col gap-6">
+        <h3 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{experience.role}</h3>
 
-        <ul className="flex flex-col gap-2">
+        <ul className="flex max-w-prose flex-col gap-3">
           {experience.highlights.map((point) => (
-            <li key={point} className="flex gap-2.5 text-ink-dim">
-              <span aria-hidden="true" className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-teal-ink" />
+            <li key={point} className="flex gap-3.5 text-ink-2">
+              <span aria-hidden="true" className="mt-3 h-px w-4 shrink-0 bg-red" />
               <span>{point}</span>
             </li>
           ))}

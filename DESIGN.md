@@ -1,208 +1,194 @@
 ---
 name: Kim Roland Berame Portfolio
-description: A near-black engineer's portfolio lit by sparse amber and teal signal.
+description: An engineer's portfolio as a Swiss typographic specimen on near-black, marked in one Swiss red.
 colors:
-  ink-black: "#0A0A0A"
-  surface: "#141414"
-  surface-2: "#1B1B1B"
-  ash: "#DFE0E2"
-  ink-dim: "#9A9DA3"
-  ink-faint: "#6B6E74"
-  amber: "#FFB22C"
-  teal: "#006D5B"
-  teal-ink: "#34C7AC"
-  signal-green: "#21C521"
-  flag-blue: "#0038A8"
-  flag-red: "#CE1126"
-  hairline: "#B8B8B8"
+  bg: "oklch(0.16 0 0)"
+  surface: "oklch(0.205 0 0)"
+  inset: "oklch(0.135 0 0)"
+  line: "oklch(1 0 0 / 0.1)"
+  line-2: "oklch(1 0 0 / 0.2)"
+  ink: "oklch(0.97 0 0)"
+  ink-2: "oklch(0.74 0 0)"
+  ink-3: "oklch(0.62 0 0)"
+  red: "oklch(0.63 0.23 25)"
+  red-ink: "oklch(0.7 0.2 27)"
 typography:
-  hello:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(1.875rem, 5vw, 3rem)"
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
   display:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 5vw, 3rem)"
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(3rem, 11vw, 6rem)"
+    fontWeight: 900
+    lineHeight: 0.9
+    letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(1.25rem, 4vw, 2.25rem)"
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(2.25rem, 6vw, 3.75rem)"
+    fontWeight: 800
+    lineHeight: 1
+    letterSpacing: "-0.04em"
   title:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: "normal"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(1.5rem, 3vw, 2rem)"
+    fontWeight: 800
+    lineHeight: 1.05
+    letterSpacing: "-0.035em"
   body:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.65
     letterSpacing: "normal"
   label:
-    fontFamily: "JetBrains Mono, ui-monospace, monospace"
-    fontSize: "0.75rem"
-    fontWeight: 500
-    lineHeight: 1.2
-    letterSpacing: "normal"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
+    fontSize: "0.6875rem"
+    fontWeight: 600
+    lineHeight: 1.3
+    letterSpacing: "0.14em"
+    textTransform: "uppercase"
 rounded:
-  badge: "4px"
-  md: "8px"
-  lg: "10px"
-  glass: "16px"
+  sm: "2px"
+  md: "3px"
 spacing:
   sm: "8px"
   md: "16px"
   lg: "40px"
-  section: "64px"
+  section: "160px"
 components:
   button-primary:
-    backgroundColor: "{colors.amber}"
-    textColor: "{colors.ink-black}"
-    rounded: "{rounded.md}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.bg}"
+    rounded: "{rounded.sm}"
     padding: "10px 20px"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.ash}"
-    rounded: "{rounded.md}"
+    textColor: "{colors.ink}"
+    border: "1px solid {colors.line-2}"
+    rounded: "{rounded.sm}"
     padding: "10px 20px"
   tech-tag:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink-dim}"
-    rounded: "{rounded.md}"
+    backgroundColor: "transparent"
+    textColor: "{colors.ink-2}"
+    border: "1px solid {colors.line}"
+    rounded: "{rounded.sm}"
     padding: "4px 10px"
   nav-link:
     backgroundColor: "transparent"
-    textColor: "{colors.ink-dim}"
+    textColor: "{colors.ink-3}"
 ---
 
 # Design System: Kim Roland Berame Portfolio
 
 ## 1. Overview
 
-**Creative North Star: "The Midnight Workshop"**
+**Creative North Star: "The Specimen Sheet (Dark)"**
 
-A near-black canvas lit by a single warm lamp. This is the desk of an engineer building after hours: the room is dark and quiet, the work is the only thing in focus, and warmth comes from two small light sources, an amber glow and a teal glow, drifting at the edges. The personality is precise, confident, and refined, never loud. Confidence here is shown by restraint: a near-black field, generous breathing room, and color used so sparingly that when it appears it carries weight.
+The page is a Swiss typographic specimen, set on a near-black sheet. One grotesque (Schibsted Grotesk) carries every level by weight and scale alone, from a 400-weight paragraph to a 900-weight name that fills the fold. Structure is drawn with hairline rules, not boxes; whitespace is generous and deliberate; one Swiss red marks the few things that matter (the name's terminal period, the active nav link, header ticks, hover states, the scroll rule). The voice is precise and confident: an engineer who lets type and grid do the talking.
 
-The system is content-forward and low-chrome. Prose and headings ride one humanist grotesque (Hanken Grotesk) carried by weight contrast; a monospace (JetBrains Mono) handles the machine's readouts, nav, dates, status, and tags. Motion is ambient (slow-drifting background glow, a typewriter greeting) plus a subtle scroll reveal that always resolves to visible, never choreographed entrances on every section. The human notes (the multilingual greeting, the Philippines flag in the heading) are earned, specific touches against an otherwise austere frame.
-
-This system explicitly rejects the **generic dev-template portfolio** (hero + skill-icon grid + endless identical cards), the **corporate SaaS landing** (sterile, buzzword-heavy, stock-photo enterprise tone), and **clutter** (cramped, no breathing room). It is a person's workshop, not a product page.
+This is a **deliberate departure** from the prior "Drafting Table (Night)" — the dim ink-slate field, the schematic grid, the generative flow-field hero, the signal-orange CAD title blocks and monospace instrument readouts are all retired. No blueprint, no developer-IDE glow, no editorial-serif affectation. The register is International Typographic Style (Vignelli red/black/white), translated to a dark surface.
 
 **Key Characteristics:**
-- Near-black `#0A0A0A` body with light-ash `#DFE0E2` text. Dark is the deliberate surface, not a toggle.
-- Two signal accents (amber, teal) used on ≤10% of any screen.
-- Two typefaces: Hanken Grotesk for prose, JetBrains Mono for technical labels.
-- Ambient glow as the only persistent motion; reveals always resolve to visible.
-- Breathing room and hairline dividers carry structure, not boxes.
+- Near-black **achromatic** field (`oklch(0.16 0 0)`) — no hue tint. White ink, one red accent.
+- **One family**, Schibsted Grotesk, 400 → 900. Hierarchy is weight and scale, never a second typeface.
+- **Hairline rules over boxes.** Sections, spec lists, and entries are separated by `line` / `line-2` hairlines. Cards and framed plates are gone.
+- **Red as accent, not paint.** Red points at one thing per region; it never fills a surface.
+- **Balanced motion.** Hero load stagger, scroll-reveal (visible by default), Lenis smooth scroll, one thin red scroll rule. Reduced-motion fallbacks throughout.
 
 ## 2. Colors
 
-A dark, low-saturation field where two warm-cool accents act as light sources, plus a national flag used once as a personal signature.
+A near-black achromatic field where white ink and one Swiss red do all the work.
 
 ### Primary
-- **Amber Signal** (`#FFB22C`): The brand's warm light. Used for the strongest single highlight on a view, the even-numbered background glow orbs, and key emphasis. Treated as rare; its scarcity is the point.
-
-### Secondary
-- **Workshop Teal** (`#006D5B`): The cool counter-light. Carries small factual signals (employment-type label, odd-numbered glow orbs) and pairs with amber at the screen edges. Deep enough to recede, saturated enough to register.
-
-### Tertiary
-- **Signal Green** (`#21C521`): Positive status (a "Production" / "Completed" dot). Status only, never decoration.
-- **Text Teal** (`#34C7AC`): Text-safe teal for the rare place teal must be read (highlight dots, employment label). The dark brand teal `#006D5B` is glow/fill only.
-- **Flag Blue** (`#0038A8`) and **Flag Red** (`#CE1126`): The Philippines flag, used exactly once, on the word "Philippines" in the hero. A personal signature, not a palette.
+- **Swiss Red** (`red` `oklch(0.63 0.23 25)`): The one accent. The name's period, the nav active marker, section header ticks, the highlight dashes in Experience, hover states, and the scroll rule. `red-ink` (`oklch(0.7 0.2 27)`) is the lighter step for red used as small text on dark.
 
 ### Neutral
-- **Ink Black** (`#0A0A0A`): The body and fixed background. The whole room.
-- **Surface / Surface-2** (`#141414` / `#1B1B1B`): Tonal step-ups for chips, frames, and the nav, separated by hairline borders.
-- **Light Ash** (`#DFE0E2`) and **Ink Dim** (`#9A9DA3`): Primary and secondary text. Both clear 4.5:1 on ink black; ink-dim is the floor.
-- **Hairline** (`oklch(1 0 0 / 0.1)`): Section and component dividers. Structure without boxes.
+- **Bg / Surface / Inset** (`oklch(0.16…)` / `oklch(0.205…)` / `oklch(0.135…)`): The sheet, raised tone (logo wells, nav), recessed tone (media frames). All achromatic.
+- **Ink / Ink-2 / Ink-3** (`oklch(0.97…)` / `oklch(0.74…)` / `oklch(0.62…)`): Display + body (~17:1), secondary prose (~7:1), labels + meta (~5:1). All clear AA on the field.
+- **Line / Line-2** (`white / 0.1`, `/ 0.2`): Hairline separators and structural rules.
 
 ### Named Rules
-**The Signal Rule.** Amber and teal together occupy ≤10% of any screen. They are light sources, not surfaces. The moment an accent fills a region, it has stopped being a signal.
+**The Red Rule.** Red is accent, never fill. It points at one thing per region and never becomes a background or a body-text color (use `red-ink` when red must read small). The moment red fills a surface it has stopped being the accent.
 
-**The One Flag Rule.** The Philippines gradient (`#0038A8` → `#CE1126`) appears exactly once, on "Philippines" in the hero. It is the single sanctioned gradient-on-text in the system because it is a flag, not decoration. Nowhere else.
+**Achromatic Neutrals.** Every surface and ink is chroma 0. Warmth or coolness is never added "for mood"; the page is neutral so the red reads.
 
 ## 3. Typography
 
-**Display / Body Font:** Hanken Grotesk (with `system-ui, sans-serif` fallback)
-**Technical Label Font:** JetBrains Mono (with `ui-monospace, monospace` fallback)
+**One Family:** Schibsted Grotesk (with `system-ui, sans-serif` fallback), weights 400 / 500 / 600 / 700 / 800 / 900.
 
-**Character:** A humanist grotesque carries all prose and headings, weight (400 → 800) and scale doing the hierarchy. A monospace handles the workshop's "instrument readouts": nav, dates, status, tech tags, and metadata. The mono is register-earned, this is literally a software engineer's site, not costume; it never sets body prose.
+**Character:** A contemporary neo-grotesque with a touch of mechanical precision — neutral enough to be authoritative, distinct enough to avoid the Helvetica/Inter monoculture. Hierarchy is carried entirely by weight (400 body → 900 display) and a fluid modular scale.
 
 ### Hierarchy
-- **Hello** (700, `clamp(1.5rem, 5vw, 1.875rem)`, 1.1): The animated typewriter greeting. Sets the human tone before anything else loads.
-- **Display / H1** (800, `clamp(2.25rem, 6vw, 3.75rem)`, 1.1): Page-defining hero heading.
-- **Headline / H2** (700, `clamp(1.875rem, 4vw, 2.25rem)`, 1.1): Section headings, with a leading amber tick.
-- **Title / H3** (700, `1.25rem–1.5rem`, 1.3): Project and role titles.
-- **Body** (400, `1rem`, 1.6): Paragraphs and descriptions. Cap measure at 65–75ch (`max-w-prose`).
-- **Label** (500, `0.75rem`, mono): Nav, dates, status, tech tags, metadata.
+- **Display / H1** (900, `clamp(3rem, 11vw, 6rem)`, 0.9, `-0.04em`): The hero name and the Contact headline. Ceiling 6rem.
+- **Headline / H2** (800, `clamp(2.25rem, 6vw, 3.75rem)`, `-0.04em`): Section titles.
+- **Title / H3** (800, `clamp(1.5rem, 3vw, 2rem)`): Project and role titles.
+- **Body** (400, `1rem`, 1.65): Prose. Measure capped at `max-w-prose` (~65ch).
+- **Label** (`.label`, 600, `0.6875rem`, `0.14em`, uppercase): Spec labels, meta, nav. Used sparingly on header rules and ruled lists, never as a kicker above every heading.
 
 ### Named Rules
-**The Two Voices Rule.** Exactly two families: Hanken Grotesk for everything you read, JetBrains Mono for what the machine reports (labels, dates, paths, tags). No third typeface. Prose is never mono.
+**One Voice.** Exactly one typeface. Weight and scale carry every level; there is no second family and no monospace.
 
-**The No-Shout Rule.** Display tops out near 3.75rem. The page never exceeds it to "feel bigger"; hierarchy is relative, not loud.
+**The No-Shout Rule.** Display tops out at 6rem; letter-spacing never tighter than `-0.04em`.
 
 ## 4. Elevation
 
-A flat, dark system with one signature exception: the ambient glow layer. There are no decorative drop-shadows. Depth comes from the fixed background of slow-drifting, blurred color orbs (amber and teal, `box-shadow: ±40vmin 0 ~5.5vmin currentColor`) at `z-index: 0` behind everything, with a radial vignette keeping text legible. Surfaces step up by tone, not shadow: `bg` (`#0A0A0A`) → `surface` (`#141414`) → `surface-2` (`#1B1B1B`), separated by `1px` borders at `oklch(1 0 0 / 0.1)`. Glass (translucent blur panels) was removed in the rebuild; it is not part of the system.
+A flat system. Depth is rule, tone, and whitespace — never shadow or glass. Three achromatic tones (`bg` → `surface` → `inset`) and two hairline weights (`line`, `line-2`) build every layer. The only true overlay is the lightbox scrim (`bg/92` + blur).
 
-### Shadow Vocabulary
-- **Ambient glow** (`box-shadow: ±40vmin 0 ~5.5vmin currentColor` on orbs): The room's light. Persistent, behind content, never on content.
-
-### Named Rules
-**The Tonal-Depth Rule.** Layering is done with the three surface tones plus hairline borders, not shadows or glass. If a panel needs to lift, raise its tone, don't float it.
+### Named Rule
+**Rules, Not Boxes.** Separation is a hairline and whitespace, not a bordered card. Spec lists, the Experience entries, the About toolkit, and the Contact links are all ruled rows on the open field. Where a frame is unavoidable (project media, the no-screenshot Detail block, the lightbox), it is a single hairline one level deep, never nested.
 
 ## 5. Components
 
 ### Navigation (TopBar)
-- **Style:** Sticky top bar, translucent `bg/70` with `backdrop-blur-md` and a bottom hairline, above all content (`--z-nav`). Brand on the left (`kim.berame`, mono, `.berame` in amber; shortens to `kim.b` below `sm`), section links on the right.
-- **Typography:** Mono links, `0.8125rem` (`text-xs` below `sm` with tighter gap to prevent overflow on narrow phones).
-- **States:** `ink-dim` default → `ink` on hover; the in-view section is `amber` (tracked via `IntersectionObserver`).
+- Sticky bar, `bg/85` with `backdrop-blur-md` and a bottom hairline. Wordmark `Kim Berame.` (red period). Section links right; the in-view link turns `ink` and grows a 4px red rule before it (IntersectionObserver).
 
-### Buttons (`ButtonLink`)
-- **Shape:** Rounded `10px` (`rounded-md`), `10px 20px` padding, semibold.
-- **Primary:** Amber fill (`#FFB22C`), ink-black text (~10:1 contrast), `hover:bg-amber/90`. Used for the principal action in a region; small enough to respect The Signal Rule.
-- **Ghost:** Transparent with a `border-strong` outline, ash text; border and text shift to amber on hover.
+### Scroll rule (ScrollProgress)
+- A 2px red rule pinned to the top edge, `scaleX` springing with scroll depth. Transform-only; spring drops under reduced motion.
 
-### Tech Tag (`TechTag`)
-- **Style:** Small `surface` chip, `rounded-md`, mono `text-xs`, `ink-dim` label, with a `1.5px` brand-color dot. Color appears only as the dot, the chip itself stays neutral.
-- **Use:** Tech stacks on projects and experience. Replaces the old fully-color-filled badge; color is now signal, not fill.
+### Buttons (ButtonLink)
+- Square (`rounded-sm`), semibold, `verb + object`. **Primary:** solid white (`ink`) fill, near-black (`bg`) text — the Swiss black/white key; lifts 1px and dims to `ink-2` on hover. **Ghost:** `line-2` hairline, ink text; border and text warm to red on hover.
 
-### Project Row (`ProjectCard`)
-- **Layout:** A two-column row (`md:grid-cols-2`) that alternates side per index for rhythm; stacks to one column on mobile. Both tracks carry `min-w-0` so long content can't blow out the grid.
-- **Media (`ProjectMedia`):** A screenshot in a bordered `surface` frame when one exists (lazy-loaded, full color, no grayscale gate); otherwise a small mono "terminal" motif so no project ships as an empty block. No flip, no hover-gated content, nothing hidden on mobile.
-- **Content:** Status pill + period (mono), title, kind (mono), description, tech tags, link buttons.
+### Tech chips (TechTag / TechList)
+- A hairline chip with a medium label, no color dot, no mono. A flex-wrapping set under each project and role.
 
-### Timeline (`ExperienceEntry`)
-- **Style:** Lean native timeline (no third-party component). A logo node on a white circle, a `1px` connector line that omits on the last entry, role + period (mono), company + employment type (mono), teal-dotted highlights, tech tags.
-- **Accent:** Highlight bullets and the employment label use text-safe teal (`#34C7AC`), not the dark brand teal.
+### Spec & skill lists (Hero spec, SkillGroup)
+- Ruled rows on the open field: a `.label` in a fixed left column, the value or component list to its right, hairline `border-t` between rows. No surrounding box.
 
-### Signature: Animated Greeting (`TypewriterGreeting`)
-- **Style:** Typewriter cycling through 11 languages (Filipino first), `~230ms` per character, `2000ms` pause, blinking amber caret. The system's human handshake. Degrades to a single static greeting under reduced motion; an `sr-only` "Hello, welcome." carries it to assistive tech.
+### Status (StatusPill)
+- A `.label` with a dot: filled red for live / production / in-progress, hollow `ink-3` ring for completed.
 
-## 6. Do's and Don'ts
+### Section header (SheetHeading)
+- A full-width `line-2` rule marked by a single red square tick, an optional right-aligned count, then an oversized H2. No repeated eyebrow.
+
+### Project media (ProjectMedia, Lightbox)
+- Framed screenshots (single hairline, `inset` ground) that open in a blurred lightbox (Escape / backdrop / button to close, body scroll locked). Projects without screenshots get an honest typographic **Detail** block (project / live-at / type) — never an empty rectangle, never invented metrics.
+
+### Signature: Greeting (TypewriterGreeting)
+- The multilingual greeting cycles letter-by-letter with a blinking red caret — the page's one human note, the single carryover from the prior design. Degrades to one static greeting under reduced motion; `sr-only` carries it to assistive tech.
+
+## 6. Motion
+
+- **Hero load:** orchestrated stagger (`motion`) — greeting → name → role rule → intro → keys → socials; the spec list resolves last.
+- **Scroll reveals:** sections fade-lift via a `data-reveal` pattern that is **visible by default** and resolves to visible even if the observer never fires (timeout safety net).
+- **Scroll:** Lenis inertial smooth scroll with native anchor handling, disabled entirely under reduced motion; a thin red rule tracks depth.
+- No parallax, no scroll-linked drift, no draw-on schematics — the prior scroll choreography is retired in favor of Swiss stillness with a few precise moments.
+
+### Named Rule
+**Reveal-to-Visible.** Every reveal enhances an already-visible default. No content is gated behind a class-triggered transition; headless renders and background tabs always show full content.
+
+## 7. Do's and Don'ts
 
 ### Do:
-- **Do** keep the body on ink black `#0A0A0A` with light-ash `#DFE0E2` text. Dark is the committed surface, not a theme toggle.
-- **Do** confine amber `#FFB22C` and teal `#006D5B` to ≤10% of any view (The Signal Rule). Treat them as light, not paint.
-- **Do** build hierarchy with Hanken Grotesk weights (400 → 800) and scale; reserve JetBrains Mono for labels (The Two Voices Rule).
-- **Do** layer with the three surface tones and hairline borders, not shadows or glass (The Tonal-Depth Rule).
-- **Do** keep `ink-dim` (`#9A9DA3`) the floor for body text on `#0A0A0A` (~6:1); use text-safe teal (`#34C7AC`) when teal must be read.
-- **Do** give every animation a `prefers-reduced-motion: reduce` fallback, and make scroll reveals resolve to visible even if the observer never fires (a timeout safety net).
+- **Do** keep the body on the near-black achromatic field with near-white `ink`. Dark is the committed surface.
+- **Do** carry hierarchy with Schibsted Grotesk weights (400 → 900) and scale (One Voice).
+- **Do** separate with hairline rules and whitespace, not boxes (Rules, Not Boxes).
+- **Do** treat red as a precise accent; use `red-ink` when it must read small (The Red Rule).
+- **Do** keep `ink-2` (~7:1) the floor for secondary prose; `ink-3` for labels and meta only.
+- **Do** give every animation a reduced-motion fallback: static greeting, no smooth scroll, reveals resolve to visible.
 
 ### Don't:
-- **Don't** build the **generic dev-template portfolio**: hero + skill-icon grid + endless identical cards. It is a named anti-reference.
-- **Don't** drift toward a **corporate SaaS landing**: no buzzwords, no stock-photo enterprise tone, no hero-metric template.
-- **Don't** clutter. Hairline dividers and whitespace carry structure; resist packing sections with boxes.
-- **Don't** reintroduce glassmorphism. It was removed in the rebuild; depth is tonal, not translucent-blur.
-- **Don't** gate content visibility on a scroll animation. Reveals enhance an already-visible default and always resolve to visible (no blank sections in headless renders or background tabs).
-- **Don't** introduce a second gradient-on-text. The Philippines flag is the single sanctioned one (The One Flag Rule); everywhere else, color is solid and emphasis is weight.
-- **Don't** add a third typeface. Two voices: Hanken Grotesk and JetBrains Mono.
-- **Don't** fill tech tags with solid brand color. Color is the dot; the chip stays neutral.
-- **Don't** ship gray body text that reads under 4.5:1 on the dark field "for elegance".
+- **Don't** reintroduce the blueprint: schematic grid, flow-field, CAD title blocks, monospace readouts, signal orange, or draw-on rails.
+- **Don't** add a second typeface or any monospace.
+- **Don't** let red fill a surface or set body text (The Red Rule).
+- **Don't** wrap content in cards or nest frames (Rules, Not Boxes).
+- **Don't** tint the neutrals warm or cool (Achromatic Neutrals).
+- **Don't** add an uppercase tracked eyebrow above every heading; the `.label` is for ruled lists and one header tick, not a per-section kicker.
+- **Don't** gate content visibility on a scroll animation (Reveal-to-Visible).
+- **Don't** invent project metrics; the Detail block states only what is true.

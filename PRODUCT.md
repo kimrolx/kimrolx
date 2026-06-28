@@ -32,4 +32,4 @@ Precise, confident, refined. Engineer-forward voice that proves competence witho
 
 ## Accessibility & Inclusion
 
-Target WCAG AA: body text ≥4.5:1 contrast, large text ≥3:1, semantic markup, keyboard-navigable. Honor `prefers-reduced-motion` everywhere, especially the animated floating-ball background and the typewriter greeting, which must degrade to a static state.
+Target WCAG AA: body text ≥4.5:1 contrast, large text ≥3:1, semantic markup, keyboard-navigable, against the near-black achromatic field. Honor `prefers-reduced-motion` everywhere: Lenis smooth scroll yields to native scrolling, the hero load stagger and scroll reveals resolve to fully visible, and the typewriter greeting holds on one language. Motion is restrained by default (a load stagger, scroll reveals, one thin scroll rule), so there is no scroll-jacking to disable.

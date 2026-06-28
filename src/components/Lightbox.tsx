@@ -62,9 +62,10 @@ export function Lightbox({ image, onClose }: LightboxProps) {
           onClose();
         }
       }}
+      style={{ zIndex: "var(--z-lightbox)" }}
       className={[
-        "fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-8",
-        "bg-black/80 backdrop-blur-md transition-opacity duration-300 ease-out",
+        "fixed inset-0 flex items-center justify-center p-4 sm:p-8",
+        "bg-bg/92 backdrop-blur-md transition-opacity duration-300 ease-out",
         shown ? "opacity-100" : "opacity-0",
       ].join(" ")}
     >
@@ -72,7 +73,7 @@ export function Lightbox({ image, onClose }: LightboxProps) {
         type="button"
         aria-label="Close preview"
         onClick={close}
-        className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-surface/70 text-ink backdrop-blur transition-colors hover:border-amber hover:text-amber sm:right-6 sm:top-6"
+        className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-line-2 bg-surface/80 text-ink backdrop-blur transition-colors hover:border-red hover:text-red-ink sm:right-6 sm:top-6"
       >
         <FiX className="h-5 w-5" />
       </button>
@@ -82,7 +83,7 @@ export function Lightbox({ image, onClose }: LightboxProps) {
         alt={image?.alt}
         onClick={(e) => e.stopPropagation()}
         className={[
-          "max-h-full max-w-full rounded-lg border border-border object-contain shadow-2xl",
+          "max-h-full max-w-full rounded-sm border border-line-2 object-contain shadow-2xl",
           "transition-all duration-300 ease-out",
           shown ? "scale-100 opacity-100" : "scale-95 opacity-0",
         ].join(" ")}

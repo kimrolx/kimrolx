@@ -2,8 +2,6 @@ import type { IconType } from "react-icons";
 
 export type Tech = {
   label: string;
-  /** Brand color, used as a subtle dot beside the label. */
-  color: string;
 };
 
 export type ProjectStatus = "In Progress" | "Completed" | "Production";
@@ -12,6 +10,19 @@ export type ProjectLink = {
   label: string;
   href: string;
   icon: IconType;
+};
+
+export type CaseStudySection = {
+  /** Short ruled-row label, e.g. "The problem". */
+  label: string;
+  /** A paragraph, or a list of points. */
+  body: string | string[];
+};
+
+export type CaseStudy = {
+  sections: CaseStudySection[];
+  /** Optional single honest headline stat for the outcome. */
+  stat?: { value: string; label: string };
 };
 
 export type Project = {
@@ -28,6 +39,8 @@ export type Project = {
   images?: { src: string; alt: string }[];
   /** Marks the flagship project for emphasis. */
   featured?: boolean;
+  /** Optional expandable deep-dive, shown under the project. */
+  caseStudy?: CaseStudy;
 };
 
 export type Experience = {

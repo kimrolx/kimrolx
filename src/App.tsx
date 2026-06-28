@@ -1,4 +1,5 @@
-import { GlowBackground } from "@/components/GlowBackground";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { TopBar } from "@/components/TopBar";
 import { Hero } from "@/sections/Hero";
 import { Experience } from "@/sections/Experience";
@@ -8,11 +9,11 @@ import { Contact } from "@/sections/Contact";
 
 function App() {
   return (
-    <>
-      <GlowBackground />
+    <SmoothScroll>
+      <ScrollProgress />
       <a
-        href="#experience"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-md focus:bg-amber focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
+        href="#home"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
       >
         Skip to content
       </a>
@@ -24,7 +25,7 @@ function App() {
         <About />
         <Contact />
       </main>
-    </>
+    </SmoothScroll>
   );
 }
 

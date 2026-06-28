@@ -1,57 +1,51 @@
 @import "tailwindcss";
 
 /* ============================================================
-   The Midnight Workshop — design tokens
-   Dark, engineer-forward. Amber + teal as ≤10% signal.
+   The Specimen Sheet (Dark) — design tokens
+   A Swiss typographic specimen on near-black. One family
+   (Schibsted Grotesk) carries every level by weight + scale.
+   White ink, generous whitespace, hairline rules, one Swiss red.
+   Reference: International Typographic Style, Vignelli red/black/white.
    ============================================================ */
 @theme {
-  /* Type */
-  --font-sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Type — one grotesk, weight does the work */
+  --font-sans: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
 
-  /* Surfaces (near-black field, subtly layered) */
-  --color-bg: #0a0a0a;
-  --color-surface: #141414;
-  --color-surface-2: #1b1b1b;
-  --color-border: oklch(1 0 0 / 0.1);
-  --color-border-strong: oklch(1 0 0 / 0.18);
+  /* Surfaces — near-black, achromatic (no hue tint) */
+  --color-bg: oklch(0.16 0 0); /* body — the sheet */
+  --color-surface: oklch(0.205 0 0); /* raised tone */
+  --color-inset: oklch(0.135 0 0); /* recessed tone */
 
-  /* Ink */
-  --color-ink: #dfe0e2;
-  --color-ink-dim: #9a9da3;
-  --color-ink-faint: #82858b; /* lifted to ~5:1 on bg — AA for small text */
+  /* Lines — hairline rules, light on dark */
+  --color-line: oklch(1 0 0 / 0.1); /* fine separators */
+  --color-line-2: oklch(1 0 0 / 0.2); /* structural rules */
 
-  /* Signal accents */
-  --color-amber: #ffb22c;
-  --color-teal: #006d5b; /* glow / fills only (too dark for text) */
-  --color-teal-ink: #34c7ac; /* text-safe teal on dark */
-  --color-signal: #21c521; /* positive status */
+  /* Ink — all clear AA on bg */
+  --color-ink: oklch(0.97 0 0); /* ~17:1 — display + body */
+  --color-ink-2: oklch(0.74 0 0); /* ~7:1 — secondary prose */
+  --color-ink-3: oklch(0.62 0 0); /* ~5:1 — labels / meta */
 
-  /* Philippines flag — the one sanctioned gradient, hero only */
-  --color-flag-blue: #0038a8;
-  --color-flag-red: #ce1126;
+  /* Swiss red — the one accent. Display marks, active state, hover, rules. */
+  --color-red: oklch(0.63 0.23 25); /* vivid on dark (large/accents) */
+  --color-red-ink: oklch(0.7 0.2 27); /* red as small text on dark */
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  /* Radius — minimal */
+  --radius-sm: 2px;
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Z-index scale (semantic) */
-  --z-glow: 0;
+  /* Semantic z-scale */
   --z-content: 10;
   --z-nav: 100;
-
-  /* Fluid breakpoints kept from prior identity */
-  --breakpoint-xs: 23.5rem;
+  --z-progress: 110;
+  --z-lightbox: 1000;
 }
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    border-color: var(--color-line);
   }
 
   html {
@@ -67,17 +61,17 @@
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    line-height: 1.6;
+    line-height: 1.65; /* light type on dark wants more air */
   }
 
-  /* Light type on dark needs extra breathing room and balance */
   h1,
   h2,
   h3 {
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1;
+    letter-spacing: -0.035em;
     text-wrap: balance;
     margin: 0;
+    font-weight: 800;
   }
 
   p {
@@ -91,33 +85,37 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-amber);
+    outline: 2px solid var(--color-red);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 1px;
   }
 
   ::selection {
-    background: var(--color-amber);
-    color: var(--color-bg);
+    background: var(--color-red);
+    color: var(--color-ink);
+  }
+}
+
+@layer utilities {
+  /* Swiss running label: small, tracked, used sparingly on header rules. */
+  .label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 }
 
 /* ============================================================
    Motion primitives
    ============================================================ */
-@keyframes orb-drift {
-  to {
-    transform: translate3d(0, 0, 1px) rotate(360deg);
-  }
-}
-
 @keyframes caret-blink {
   50% {
     opacity: 0;
   }
 }
 
-/* Gentle scroll-cue nudge. Smooth sine travel, no bounce/elastic. */
+/* Gentle scroll-cue nudge. Smooth sine travel, no bounce. */
 @keyframes nudge {
   0%,
   100% {
@@ -132,7 +130,7 @@
    Without JS (or with reduced motion) content stays fully visible. */
 [data-reveal="hidden"] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(18px);
 }
 
 [data-reveal] {

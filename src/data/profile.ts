@@ -5,7 +5,12 @@ export const profile = {
   name: 'Kim Roland Berame',
   role: 'Software Engineer',
   location: 'Philippines',
+  city: 'Cebu, Philippines',
   resumeUrl: `${import.meta.env.BASE_URL}KIM_ROLAND_BERAME-RESUME.pdf`,
+  education: {
+    degree: 'B.S. Information Technology',
+    school: 'University of San Jose – Recoletos',
+  },
   /** Multilingual greetings for the typewriter. Filipino first. */
   greetings: [
     'Kumusta?', // Filipino
@@ -19,6 +24,13 @@ export const profile = {
     'שלום', // Hebrew
     'Привет', // Russian
     'สวัสดี', // Thai
+  ],
+  /** Cycled in the hero role line, as "> {phrase}". Self-contained verb phrases. */
+  roles: [
+    'building full-stack systems, end to end',
+    'designing APIs in NestJS and PostgreSQL',
+    'shipping iOS apps in React Native',
+    'wiring CI/CD and cloud delivery on Azure',
   ],
   intro:
     "I'm a software engineer who ships full-stack systems end to end, from system design and API architecture to frontend integration and cloud deployment. I work mainly in TypeScript, NestJS, PostgreSQL, and React. Currently building at Griffin31.",

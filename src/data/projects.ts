@@ -10,21 +10,21 @@ import machinaHistory from '@/assets/machina/5.png';
 export const projects: Project[] = [
   {
     id: 'machina',
-    title: 'MACHINA',
-    kind: 'iOS App — Motorcycle Maintenance Tracker',
+    title: 'MACHINA: Know Your Ride',
+    kind: 'iOS App - Motorcycle Maintenance Tracker',
     period: '2026 – Present',
     status: 'Production',
     description:
-      "Offline-first iOS app that tracks motorcycle service intervals and history per bike — what's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities.",
+      "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities.",
     techStack: [
-      { label: 'TypeScript', color: '#3079c6' },
-      { label: 'React Native', color: '#61dafb' },
-      { label: 'Expo', color: '#e5e5e5' },
-      { label: 'Expo Router', color: '#a78bfa' },
-      { label: 'SQLite', color: '#0f80cc' },
-      { label: 'Drizzle ORM', color: '#c5f74f' },
-      { label: 'Zustand', color: '#d98c5f' },
-      { label: 'Reanimated', color: '#fa7d7d' },
+      { label: 'TypeScript' },
+      { label: 'React Native' },
+      { label: 'Expo' },
+      { label: 'Expo Router' },
+      { label: 'SQLite' },
+      { label: 'Drizzle ORM' },
+      { label: 'Zustand' },
+      { label: 'Reanimated' },
     ],
     links: [
       {
@@ -38,6 +38,31 @@ export const projects: Project[] = [
       { src: machinaHistory, alt: 'MACHINA service history list with logged maintenance and costs' },
     ],
     featured: true,
+    caseStudy: {
+      sections: [
+        {
+          label: 'The problem',
+          body: "Riders carry service intervals in their heads or scatter them across receipts and notes. It's easy to lose track of what's due, what's already overdue, and what the last job cost, especially across more than one bike.",
+        },
+        {
+          label: 'What I built',
+          body: "An offline-first iOS app that tracks service intervals and full maintenance history per motorcycle. The dashboard reads like an instrument cluster: what's due, what's overdue, and what you last paid, at a glance. Multi-bike, no account, every record stored on the device.",
+        },
+        {
+          label: 'Key decisions',
+          body: [
+            'No account, fully on-device. Maintenance data is personal and a garage often has no signal, so the app never depends on a network. SQLite through Drizzle ORM is the single source of truth, with a typed schema and migrations.',
+            'React Native on Expo for a fast path to the App Store, with Expo Router for navigation and EAS for builds and submission.',
+            'Zustand keeps UI state small and predictable; Reanimated drives the gauge and transition motion so the instrument-cluster feel stays smooth.',
+          ],
+        },
+        {
+          label: 'Outcome',
+          body: 'Shipped solo and live on the App Store since June 2026, where it peaked at #3 in the Utilities category.',
+        },
+      ],
+      stat: { value: '#3', label: 'App Store · Utilities' },
+    },
   },
   {
     id: 'trimly',
@@ -48,12 +73,12 @@ export const projects: Project[] = [
     description:
       'A URL shortener and link manager: shorten long links, organize them, and track click metrics with free link analytics. Built on a NestJS backend with MongoDB and Redis to keep high-volume link generation and lookups fast.',
     techStack: [
-      { label: 'TypeScript', color: '#3079c6' },
-      { label: 'NestJS', color: '#ea2845' },
-      { label: 'React', color: '#61dafb' },
-      { label: 'Tailwind CSS', color: '#16becb' },
-      { label: 'MongoDB', color: '#13aa52' },
-      { label: 'Redis', color: '#dc382d' },
+      { label: 'TypeScript' },
+      { label: 'NestJS' },
+      { label: 'React' },
+      { label: 'Tailwind CSS' },
+      { label: 'MongoDB' },
+      { label: 'Redis' },
     ],
     links: [{ label: 'Visit trimmly.xyz', href: 'https://www.trimmly.xyz', icon: FiExternalLink }],
     featured: true,
@@ -67,14 +92,14 @@ export const projects: Project[] = [
     description:
       'Recycling engagement platform for the University of San Jose – Recoletos. A semi-smart trashcan identifies and counts plastic bottles, awarding points redeemable for meals, supplies, and event tickets. The companion dashboard lets administrators manage accounts and read recycling activity at a glance, pairing technology with behavioral nudges to build a sustainable campus habit.',
     techStack: [
-      { label: 'Flutter', color: '#5fc9f8' },
-      { label: 'Dart', color: '#04599c' },
-      { label: 'TypeScript', color: '#3079c6' },
-      { label: 'Remix', color: '#888888' },
-      { label: 'React', color: '#61dafb' },
-      { label: 'Tailwind CSS', color: '#16becb' },
-      { label: 'Firebase', color: '#dd2c00' },
-      { label: 'Firestore', color: '#ff9100' },
+      { label: 'Flutter' },
+      { label: 'Dart' },
+      { label: 'TypeScript' },
+      { label: 'Remix' },
+      { label: 'React' },
+      { label: 'Tailwind CSS' },
+      { label: 'Firebase' },
+      { label: 'Firestore' },
     ],
     links: [
       { label: 'Mobile source', href: 'https://github.com/kimrolx/EcoPoints-Mobile', icon: FaGithub },

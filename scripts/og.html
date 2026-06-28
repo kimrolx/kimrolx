@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; }
+      body {
+        background: #151515;
+        color: #f7f7f7;
+        font-family: "Schibsted Grotesk", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px;
+        position: relative;
+      }
+      /* top rule + red tick */
+      .rule {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+      }
+      .tick { width: 14px; height: 14px; background: #ec3b27; }
+      .label {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.62);
+      }
+      .name {
+        font-size: 150px;
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
+      .dot { color: #ec3b27; }
+      .foot {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .role {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .dash { width: 40px; height: 2px; background: #ec3b27; }
+      .meta {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.62);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rule">
+      <span class="tick"></span>
+      <span class="label">Software Engineer</span>
+    </div>
+
+    <div class="name">Kim Roland<br />Berame<span class="dot">.</span></div>
+
+    <div class="foot">
+      <div class="role">
+        <span class="dash"></span>
+        <span>TypeScript · NestJS · PostgreSQL · React</span>
+      </div>
+      <div class="meta">kimrolx.github.io</div>
+    </div>
+  </body>
+</html>
