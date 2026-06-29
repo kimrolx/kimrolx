@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useLenis } from "lenis/react";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { WipeProvider } from "@/components/WipeProvider";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { TopBar } from "@/components/TopBar";
 import { Home } from "@/pages/Home";
@@ -21,19 +22,21 @@ function ScrollToTop() {
 function App() {
   return (
     <SmoothScroll>
-      <ScrollProgress />
-      <ScrollToTop />
-      <a
-        href="#home"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
-      >
-        Skip to content
-      </a>
-      <TopBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/now" element={<Now />} />
-      </Routes>
+      <WipeProvider>
+        <ScrollProgress />
+        <ScrollToTop />
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
+        >
+          Skip to content
+        </a>
+        <TopBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/now" element={<Now />} />
+        </Routes>
+      </WipeProvider>
     </SmoothScroll>
   );
 }
