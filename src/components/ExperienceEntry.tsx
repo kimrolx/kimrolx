@@ -12,7 +12,7 @@ export function ExperienceEntry({ experience }: { experience: Experience }) {
             <img
               src={experience.logo}
               alt={`${experience.company} logo`}
-              className="h-6 w-6 object-contain"
+              className="h-full w-full object-cover"
             />
           </span>
           <span className="flex flex-col">

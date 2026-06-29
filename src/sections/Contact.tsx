@@ -1,4 +1,5 @@
-import { FiArrowRight, FiDownload } from "react-icons/fi";
+import { FiArrowRight, FiArrowUpRight, FiDownload } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { ButtonLink } from "@/components/Button";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -42,11 +43,23 @@ export function Contact() {
         </div>
       </Reveal>
 
-      <footer className="flex flex-col gap-1 border-t border-line pt-6 text-sm text-ink-3">
-        <span>
-          © {year} {profile.name} · {profile.city}
-        </span>
-        <span>Built with React, TypeScript, Tailwind, and Motion.</span>
+      <footer className="flex flex-col gap-4 border-t border-line pt-6 text-sm text-ink-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-1">
+          <span>
+            © {year} {profile.name} · {profile.city}
+          </span>
+          <span>Built with React, TypeScript, Tailwind, and Motion.</span>
+        </div>
+        <Link
+          to="/now"
+          className="group inline-flex items-center gap-1.5 self-start text-ink-2 transition-colors hover:text-ink sm:self-auto"
+        >
+          What I&apos;m up to now
+          <FiArrowUpRight
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </Link>
       </footer>
     </Section>
   );

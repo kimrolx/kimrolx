@@ -15,7 +15,7 @@ export const projects: Project[] = [
     period: '2026 – Present',
     status: 'Production',
     description:
-      "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities.",
+      "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities. Android-support in active development.",
     techStack: [
       { label: 'TypeScript' },
       { label: 'React Native' },
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     id: 'trimly',
     title: 'Trimly',
     kind: 'URL Shortener & Link Management Platform',
-    period: '2024 – Present',
+    period: '2026 – Present',
     status: 'Production',
     description:
       'A URL shortener and link manager: shorten long links, organize them, and track click metrics with free link analytics. Built on a NestJS backend with MongoDB and Redis to keep high-volume link generation and lookups fast.',
