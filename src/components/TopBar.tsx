@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { WipeLink } from "@/components/WipeLink";
 import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/utils";
@@ -25,7 +26,7 @@ export function TopBar() {
       style={{ zIndex: "var(--z-nav)" }}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link
+        <WipeLink
           to="/"
           aria-label="Back to top"
           onClick={() => {
@@ -34,14 +35,14 @@ export function TopBar() {
           className="shrink-0 whitespace-nowrap text-base font-extrabold tracking-tight text-ink transition-colors hover:text-red-ink"
         >
           Kim Berame<span className="text-red">.</span>
-        </Link>
+        </WipeLink>
 
         <ul className="flex items-center gap-5 lg:gap-8">
           {SECTIONS.map((section) => {
             const current = isHome && active === section.id;
             return (
               <li key={section.id} className="hidden sm:block">
-                <Link
+                <WipeLink
                   to={`/#${section.id}`}
                   aria-current={current ? "true" : undefined}
                   className={cn(
@@ -57,13 +58,13 @@ export function TopBar() {
                     )}
                   />
                   {section.label}
-                </Link>
+                </WipeLink>
               </li>
             );
           })}
 
           <li>
-            <Link
+            <WipeLink
               to="/now"
               aria-current={pathname === "/now" ? "true" : undefined}
               className={cn(
@@ -79,7 +80,7 @@ export function TopBar() {
                 )}
               />
               Now
-            </Link>
+            </WipeLink>
           </li>
         </ul>
       </nav>

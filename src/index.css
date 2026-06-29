@@ -40,6 +40,7 @@
   --z-content: 10;
   --z-nav: 100;
   --z-progress: 110;
+  --z-transition: 500;
   --z-lightbox: 1000;
 }
 

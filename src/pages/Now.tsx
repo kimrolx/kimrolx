@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FiArrowLeft, FiImage } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { WipeLink } from "@/components/WipeLink";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { SheetHeading } from "@/components/SheetHeading";
@@ -134,13 +134,13 @@ export function Now() {
         </div>
 
         <div className="border-t border-line pt-6">
-          <Link
+          <WipeLink
             to="/"
             className="label inline-flex items-center gap-2 text-ink-3 transition-colors hover:text-ink"
           >
             <FiArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
             Back home
-          </Link>
+          </WipeLink>
         </div>
       </Section>
     </main>
