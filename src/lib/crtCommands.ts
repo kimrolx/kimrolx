@@ -161,7 +161,11 @@ export function runCommand(raw: string): CommandResult {
   const name = (parts[0] ?? "").toLowerCase();
   const args = parts.slice(1);
   if (name === "") return { lines: [] };
-  const handler = commands[name];
+  // Own-property check so inherited Object.prototype members (toString,
+  // constructor, __proto__, ...) can't slip past as fake commands.
+  const handler = Object.prototype.hasOwnProperty.call(commands, name)
+    ? commands[name]
+    : undefined;
   if (!handler) {
     return { lines: [`command not found: ${name}. type 'help' for a list.`] };
   }
