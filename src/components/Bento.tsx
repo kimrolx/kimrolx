@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
-import { profile } from "@/data/profile";
-import { skillGroups } from "@/data/skills";
-import { experiences } from "@/data/experience";
-import { cn } from "@/lib/utils";
-import { SkillGroup } from "./SkillGroup";
+import type { ReactNode } from 'react';
+import { profile } from '@/data/profile';
+import { skillGroups } from '@/data/skills';
+import { experiences } from '@/data/experience';
+import { cn } from '@/lib/utils';
+import { SkillGroup } from './SkillGroup';
 
 type TileProps = {
   label: string;
@@ -18,7 +18,7 @@ function Tile({ label, children, className, accent }: TileProps) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-5 rounded-sm border border-line bg-bg p-6 transition-colors duration-200 hover:border-line-2 sm:p-7",
+        'flex flex-col gap-5 rounded-sm border border-line bg-bg p-6 transition-colors duration-200 sm:p-7',
         className,
       )}
     >
@@ -40,7 +40,7 @@ const current = experiences[0];
  */
 export function Bento() {
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       <Tile label="Profile" className="sm:col-span-2 lg:col-span-2">
         <div className="flex max-w-prose flex-col gap-4 text-ink-2 sm:text-lg">
           {profile.about.map((paragraph) => (
@@ -59,7 +59,7 @@ export function Bento() {
 
       <Tile label="Currently" className="sm:col-span-2 lg:col-span-2">
         <div className="flex items-center gap-4">
-          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-sm border border-line bg-surface">
+          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-sm border bg-surface">
             <img src={current.logo} alt={`${current.company} logo`} className="h-7 w-7 object-contain" />
           </span>
           <div className="flex flex-col">
@@ -70,8 +70,7 @@ export function Bento() {
           </div>
         </div>
         <p className="mt-auto max-w-prose text-ink-2">
-          Owning features end to end, from system design and APIs to the React frontend and cloud
-          delivery.
+          Owning features end to end, from system design and APIs to the React frontend and cloud delivery.
         </p>
       </Tile>
 

@@ -12,10 +12,11 @@ export const projects: Project[] = [
     id: 'machina',
     title: 'MACHINA: Know Your Ride',
     kind: 'iOS App - Motorcycle Maintenance Tracker',
+    version: '1.2.0 released on June 29, 2026',
     period: '2026 – Present',
     status: 'Production',
     description:
-      "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Instrument-cluster aesthetic: monospace, signal-orange on near-black. Live on the App Store since June 2026, peaked #3 in Utilities. Android-support in active development.",
+      "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Live on the App Store since June 2026, peaked #3 in Utilities. Android-support in active development.",
     techStack: [
       { label: 'TypeScript' },
       { label: 'React Native' },

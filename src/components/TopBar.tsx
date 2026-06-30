@@ -3,6 +3,8 @@ import { WipeLink } from "@/components/WipeLink";
 import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/utils";
+import { useEasterEgg } from "@/hooks/useEasterEgg";
+import { useTapSequence } from "@/hooks/useTapSequence";
 
 const SECTIONS = [
   { id: "experience", label: "Experience" },
@@ -20,6 +22,9 @@ export function TopBar() {
   // Only track section scroll-spy on the home page.
   const active = useActiveSection(isHome ? SECTION_IDS : []);
 
+  const { toggleCrt } = useEasterEgg();
+  const onDotTap = useTapSequence(toggleCrt, { count: 5, windowMs: 1500 });
+
   return (
     <header
       className="sticky top-0 border-b border-line bg-bg/85 backdrop-blur-md"
@@ -34,7 +39,18 @@ export function TopBar() {
           }}
           className="shrink-0 whitespace-nowrap text-base font-extrabold tracking-tight text-ink transition-colors hover:text-red-ink"
         >
-          Kim Berame<span className="text-red">.</span>
+          Kim Berame
+          <span
+            className="text-red"
+            style={{ cursor: "default" }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onDotTap();
+            }}
+          >
+            .
+          </span>
         </WipeLink>
 
         <ul className="flex items-center gap-5 lg:gap-8">

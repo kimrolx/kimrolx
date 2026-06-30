@@ -1,11 +1,11 @@
-import type { Project } from "@/types";
-import { cn } from "@/lib/utils";
-import { AppStoreBadge } from "./AppStoreBadge";
-import { ButtonLink } from "./Button";
-import { CaseStudy } from "./CaseStudy";
-import { ProjectMedia } from "./ProjectMedia";
-import { StatusPill } from "./StatusPill";
-import { TechList } from "./TechTag";
+import type { Project } from '@/types';
+import { cn } from '@/lib/utils';
+import { AppStoreBadge } from './AppStoreBadge';
+import { ButtonLink } from './Button';
+import { CaseStudy } from './CaseStudy';
+import { ProjectMedia } from './ProjectMedia';
+import { StatusPill } from './StatusPill';
+import { TechList } from './TechTag';
 
 type ProjectCardProps = {
   project: Project;
@@ -19,9 +19,7 @@ export function ProjectCard({ project, reversed }: ProjectCardProps) {
       {/* Title block */}
       <div className="flex flex-col gap-4 border-t border-line-2 pt-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-          <h3 className="text-[clamp(2rem,5vw,3.25rem)] font-extrabold tracking-[-0.04em]">
-            {project.title}
-          </h3>
+          <h3 className="text-[clamp(2rem,5vw,3.25rem)] font-extrabold tracking-[-0.04em]">{project.title}</h3>
           <div className="flex items-center gap-4">
             <StatusPill status={project.status} />
             <span className="label text-ink-3">{project.period}</span>
@@ -32,17 +30,25 @@ export function ProjectCard({ project, reversed }: ProjectCardProps) {
 
       {/* Media + detail */}
       <div className="grid items-start gap-8 md:grid-cols-2 md:gap-12">
-        <div className={cn("min-w-0", reversed && "md:order-2")}>
+        <div className={cn('min-w-0', reversed && 'md:order-2')}>
           <ProjectMedia project={project} />
         </div>
 
-        <div className={cn("flex min-w-0 flex-col items-start gap-6", reversed && "md:order-1")}>
+        <div className={cn('flex min-w-0 flex-col items-start gap-6', reversed && 'md:order-1')}>
           <p className="max-w-prose text-ink-2 sm:text-lg">{project.description}</p>
+
+          {project.version && (
+            <div className="flex flex-col gap-1">
+              <span className="label text-ink-3">Version</span>
+              <p className="text-sm text-ink-2">{project.version}</p>
+            </div>
+          )}
+
           <TechList items={project.techStack} />
 
           <div className="mt-1 flex flex-wrap items-center gap-3">
             {project.links.map(({ label, href, icon: Icon }) =>
-              href.includes("apps.apple.com") ? (
+              href.includes('apps.apple.com') ? (
                 <AppStoreBadge key={label} href={href} />
               ) : (
                 <ButtonLink
@@ -50,7 +56,7 @@ export function ProjectCard({ project, reversed }: ProjectCardProps) {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant={project.featured ? "primary" : "ghost"}
+                  variant={project.featured ? 'primary' : 'ghost'}
                 >
                   <Icon aria-hidden="true" className="h-4 w-4" />
                   {label}

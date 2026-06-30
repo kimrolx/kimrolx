@@ -30,6 +30,8 @@ export type Project = {
   title: string;
   /** One-line role/what-it-is, shown in mono. */
   kind: string;
+  /** Optional compact release/version note for shipped apps. */
+  version?: string;
   period: string;
   status: ProjectStatus;
   description: string;

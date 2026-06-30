@@ -1,10 +1,10 @@
-import { FiArrowRight, FiArrowUpRight, FiDownload } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import { ButtonLink } from "@/components/Button";
-import { Reveal } from "@/components/Reveal";
-import { Section } from "@/components/Section";
-import { SocialLinks } from "@/components/SocialLinks";
-import { profile } from "@/data/profile";
+import { FiArrowRight, FiArrowUpRight, FiDownload } from 'react-icons/fi';
+import { ButtonLink } from '@/components/Button';
+import { WipeLink } from '@/components/WipeLink';
+import { Reveal } from '@/components/Reveal';
+import { Section } from '@/components/Section';
+import { SocialLinks } from '@/components/SocialLinks';
+import { profile } from '@/data/profile';
 
 export function Contact() {
   const year = new Date().getFullYear();
@@ -22,9 +22,9 @@ export function Contact() {
             Let&apos;s build something.
           </h2>
           <p className="max-w-prose text-ink-2 sm:text-lg">
-            Whether you&apos;re a private client with a project in mind, a team looking for an
-            engineer, or someone with a side build to get off the ground, I&apos;d like to hear
-            about it. Email reaches me fastest; my code lives on GitHub.
+            Whether you&apos;re someone with a project in mind, a team looking for an engineer, or just want something
+            to get off the ground, I&apos;d be happy to hear about it. Email reaches me fastest; my code lives on
+            GitHub.
           </p>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="mailto:beramekimrol@gmail.com">
@@ -49,8 +49,11 @@ export function Contact() {
             © {year} {profile.name} · {profile.city}
           </span>
           <span>Built with React, TypeScript, Tailwind, and Motion.</span>
+          <span aria-hidden="true" className="select-none font-mono text-[0.7rem] opacity-30">
+            {/* boot sequence */} ↑↑↓↓←→←→KRB
+          </span>
         </div>
-        <Link
+        <WipeLink
           to="/now"
           className="group inline-flex items-center gap-1.5 self-start text-ink-2 transition-colors hover:text-ink sm:self-auto"
         >
@@ -59,7 +62,7 @@ export function Contact() {
             aria-hidden="true"
             className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
-        </Link>
+        </WipeLink>
       </footer>
     </Section>
   );

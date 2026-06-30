@@ -1,18 +1,18 @@
-import { FiArrowDown, FiArrowRight, FiDownload } from "react-icons/fi";
-import { motion, useReducedMotion, type Variants } from "motion/react";
-import { profile } from "@/data/profile";
-import { ButtonLink } from "@/components/Button";
-import { HeroName } from "@/components/HeroName";
-import { SocialLinks } from "@/components/SocialLinks";
-import { RoleLine, TypewriterGreeting } from "@/components/TypewriterGreeting";
+import { FiArrowDown, FiArrowRight, FiDownload } from 'react-icons/fi';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { profile } from '@/data/profile';
+import { ButtonLink } from '@/components/Button';
+import { HeroName } from '@/components/HeroName';
+import { SocialLinks } from '@/components/SocialLinks';
+import { RoleLine, TypewriterGreeting } from '@/components/TypewriterGreeting';
 
 const SPECS: { label: string; value: string; status?: boolean }[] = [
-  { label: "Discipline", value: "Full-stack engineering" },
-  { label: "Stack", value: "TypeScript · NestJS · PostgreSQL · React" },
-  { label: "Delivery", value: "Docker · Azure · CI/CD" },
-  { label: "Currently", value: "Building at Griffin31" },
-  { label: "Based in", value: profile.city },
-  { label: "Status", value: "Available for work", status: true },
+  { label: 'Discipline', value: 'Full-stack engineering' },
+  { label: 'Stack', value: 'TypeScript · NestJS · PostgreSQL · React' },
+  { label: 'Delivery', value: 'Docker · Azure · CI/CD · GitHub · Cloudflare' },
+  { label: 'Currently', value: 'Building at Griffin31' },
+  { label: 'Based in', value: profile.city },
+  { label: 'Status', value: 'Available for work', status: true },
 ];
 
 export function Hero() {
@@ -34,12 +34,7 @@ export function Hero() {
       <div className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center py-28">
         <div className="grid items-end gap-14 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
           {/* Identity */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="flex flex-col items-start"
-          >
+          <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col items-start">
             <motion.div variants={item}>
               <TypewriterGreeting />
             </motion.div>
@@ -50,19 +45,14 @@ export function Hero() {
 
             <motion.div variants={item} className="mt-7 flex items-center gap-4">
               <span aria-hidden="true" className="h-px w-10 bg-red" />
-              <p className="text-lg font-semibold tracking-tight text-ink sm:text-xl">
-                {profile.role}
-              </p>
+              <p className="text-lg font-semibold tracking-tight text-ink sm:text-xl">{profile.role}</p>
             </motion.div>
 
             <motion.div variants={item} className="mt-3 text-base sm:text-lg">
               <RoleLine />
             </motion.div>
 
-            <motion.p
-              variants={item}
-              className="mt-6 max-w-prose text-ink-2 sm:text-lg"
-            >
+            <motion.p variants={item} className="mt-6 max-w-prose text-ink-2 sm:text-lg">
               {profile.intro}
             </motion.p>
 
@@ -99,9 +89,7 @@ export function Hero() {
               >
                 <dt className="label text-ink-3">{spec.label}</dt>
                 <dd className="flex items-center gap-2 text-sm text-ink">
-                  {spec.status && (
-                    <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" />
-                  )}
+                  {spec.status && <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" />}
                   <span>{spec.value}</span>
                 </dd>
               </div>
@@ -115,10 +103,7 @@ export function Hero() {
           className="label mt-16 inline-flex items-center gap-2 self-start text-ink-3 transition-colors hover:text-ink"
         >
           Scroll
-          <FiArrowDown
-            aria-hidden="true"
-            className="h-3.5 w-3.5 [animation:nudge_1.8s_ease-in-out_infinite]"
-          />
+          <FiArrowDown aria-hidden="true" className="h-3.5 w-3.5 [animation:nudge_1.8s_ease-in-out_infinite]" />
         </a>
       </div>
     </section>

@@ -33,7 +33,7 @@ export const profile = {
     'wiring CI/CD and cloud delivery on Azure',
   ],
   intro:
-    "I'm a software engineer who ships full-stack systems end to end, from system design and API architecture to frontend integration and cloud deployment. I work mainly in TypeScript, NestJS, PostgreSQL, and React. Currently building at Griffin31.",
+    "I'm a software engineer who ships full-stack systems end to end, from system design and API architecture to frontend integration and cloud deployment. Though these past few weeks, I've been enjoying building apps with generative AI, and I'm excited to see how it will change the way we build software.",
   about: [
     'I take ownership of features from start to finish: designing the system and its APIs, building the React frontend, and deploying to the cloud. My core stack is TypeScript, NestJS, PostgreSQL, and React, with MongoDB and Redis on projects that need them. I hold a B.S. in Information Technology from the University of San Jose – Recoletos.',
     'A lot of my work is in platform reliability and release efficiency. I build and maintain CI/CD pipelines with GitHub Actions, containerize services with Docker, and run cloud delivery on Azure (ACR and ACA), which keeps releases faster, more consistent, and lower on operational overhead.',
