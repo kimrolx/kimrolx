@@ -5,6 +5,7 @@ import { ButtonLink } from '@/components/Button';
 import { HeroName } from '@/components/HeroName';
 import { SocialLinks } from '@/components/SocialLinks';
 import { RoleLine, TypewriterGreeting } from '@/components/TypewriterGreeting';
+import portrait from '@/assets/portrait.jpg';
 
 const SPECS: { label: string; value: string; status?: boolean }[] = [
   { label: 'Discipline', value: 'Full-stack engineering' },
@@ -75,26 +76,54 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Spec list — Swiss ruled, no card */}
-          <motion.dl
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex w-full flex-col"
-          >
-            {SPECS.map((spec) => (
-              <div
-                key={spec.label}
-                className="grid grid-cols-[6rem_1fr] items-baseline gap-4 border-t border-line py-3.5 first:border-line-2"
+          {/* Right column — portrait over the Swiss ruled spec list */}
+          <div className="flex w-full flex-col gap-8">
+            {/* Portrait: hairline frame, grayscale → color on hover, Swiss red corner tick */}
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="group relative w-full max-w-xs self-center"
+            >
+              <motion.div
+                variants={item}
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-line bg-inset transition-colors group-hover:border-line-2"
               >
-                <dt className="label text-ink-3">{spec.label}</dt>
-                <dd className="flex items-center gap-2 text-sm text-ink">
-                  {spec.status && <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" />}
-                  <span>{spec.value}</span>
-                </dd>
-              </div>
-            ))}
-          </motion.dl>
+                <img
+                  src={portrait}
+                  alt={profile.name}
+                  width={1760}
+                  height={2200}
+                  loading="eager"
+                  decoding="async"
+                  className="portrait-photo h-full w-full object-cover"
+                />
+              </motion.div>
+              {/* Swiss-aligned red tick: 6px square flush to the frame's top-left corner */}
+              <span aria-hidden="true" className="absolute left-0 top-0 h-1.5 w-1.5 bg-red" />
+            </motion.div>
+
+            {/* Spec list — Swiss ruled, no card */}
+            <motion.dl
+              initial={reduce ? false : { opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex w-full flex-col"
+            >
+              {SPECS.map((spec) => (
+                <div
+                  key={spec.label}
+                  className="grid grid-cols-[6rem_1fr] items-baseline gap-4 border-t border-line py-3.5 first:border-line-2"
+                >
+                  <dt className="label text-ink-3">{spec.label}</dt>
+                  <dd className="flex items-center gap-2 text-sm text-ink">
+                    {spec.status && <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" />}
+                    <span>{spec.value}</span>
+                  </dd>
+                </div>
+              ))}
+            </motion.dl>
+          </div>
         </div>
 
         <a

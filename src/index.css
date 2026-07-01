@@ -110,6 +110,29 @@
   }
 }
 
+/* Hero portrait: grayscale where hover exists (desktop), full color on hover.
+   Touch/coarse pointers have no hover, so they show full color always. */
+.portrait-photo {
+  filter: none;
+  transition: filter 0.5s var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .portrait-photo {
+    filter: grayscale(1);
+  }
+  .group:hover .portrait-photo,
+  .group:focus-visible .portrait-photo {
+    filter: grayscale(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-photo {
+    transition: none;
+  }
+}
+
 /* ============================================================
    Motion primitives
    ============================================================ */

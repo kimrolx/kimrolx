@@ -1,72 +1,67 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/kimrolx/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
-    <meta
-      name="description"
-      content="Kim Roland Berame — software engineer building full-stack systems in TypeScript, NestJS, PostgreSQL, and React, with CI/CD on Docker and Azure."
-    />
-    <meta name="theme-color" content="#151515" />
-    <link rel="canonical" href="https://kimrolx.github.io/kimrolx/" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Kim Roland Berame" />
-    <meta property="og:title" content="Kim Roland Berame — Software Engineer" />
-    <meta
-      property="og:description"
-      content="Software engineer building full-stack systems in TypeScript, NestJS, PostgreSQL, and React, with CI/CD on Docker and Azure."
-    />
-    <meta property="og:url" content="https://kimrolx.github.io/kimrolx/" />
-    <meta property="og:image" content="https://kimrolx.github.io/kimrolx/og.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Kim Roland Berame — Software Engineer" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/kimrolx/favicon.png" />
+  <link rel="apple-touch-icon" href="/kimrolx/apple-touch-icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description"
+    content="I'm Kim Roland Berame — a software engineer building full-stack systems based in Cebu City, Philippines." />
+  <meta name="theme-color" content="#151515" />
+  <link rel="canonical" href="https://kimrolx.github.io/kimrolx/" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kim Roland Berame — Software Engineer" />
-    <meta
-      name="twitter:description"
-      content="Software engineer building full-stack systems in TypeScript, NestJS, PostgreSQL, and React."
-    />
-    <meta name="twitter:image" content="https://kimrolx.github.io/kimrolx/og.png" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kim Roland Berame" />
+  <meta property="og:title" content="Kim Roland Berame — Software Engineer" />
+  <meta property="og:description"
+    content="I'm Kim Roland Berame — a software engineer building full-stack systems based in Cebu City, Philippines." />
+  <meta property="og:url" content="https://kimrolx.github.io/kimrolx/" />
+  <meta property="og:image" content="https://kimrolx.github.io/kimrolx/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kim Roland Berame — Software Engineer" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kim Roland Berame — Software Engineer" />
+  <meta name="twitter:description"
+    content="I'm Kim Roland Berame — a software engineer building full-stack systems based in Cebu City, Philippines." />
+  <meta name="twitter:image" content="https://kimrolx.github.io/kimrolx/og.png" />
 
-    <title>Kim Roland Berame — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&display=swap" rel="stylesheet" />
 
-    <!-- Restores the real path after the 404.html SPA redirect (GitHub Pages). -->
-    <script>
-      (function () {
-        var l = window.location;
-        if (l.search[1] === "/") {
-          var decoded = l.search
-            .slice(1)
-            .split("&")
-            .map(function (s) {
-              return s.replace(/~and~/g, "&");
-            })
-            .join("?");
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <title>Kim Roland Berame — Software Engineer</title>
+
+  <!-- Restores the real path after the 404.html SPA redirect (GitHub Pages). -->
+  <script>
+    (function () {
+      var l = window.location;
+      if (l.search[1] === "/") {
+        var decoded = l.search
+          .slice(1)
+          .split("&")
+          .map(function (s) {
+            return s.replace(/~and~/g, "&");
+          })
+          .join("?");
+        window.history.replaceState(
+          null,
+          null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
