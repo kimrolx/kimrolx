@@ -2,10 +2,10 @@ import { FaGithub, FaApple } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import type { Project } from '@/types';
 
-import ecoMobile from '@/assets/mobile_cover_image2.png';
-import ecoWeb from '@/assets/web_desktop_cover_image2.png';
-import machinaDashboard from '@/assets/machina/3.png';
-import machinaHistory from '@/assets/machina/5.png';
+import ecoMobile from '@/assets/mobile_cover_image2.webp';
+import ecoWeb from '@/assets/web_desktop_cover_image2.webp';
+import machinaDashboard from '@/assets/machina/3.webp';
+import machinaHistory from '@/assets/machina/5.webp';
 
 export const projects: Project[] = [
   {

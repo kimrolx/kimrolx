@@ -3,11 +3,11 @@
  * nownownow.com. Hand-edited; bump `nowUpdated` whenever this changes.
  */
 
-import buildingMachina from '@/assets/now/building_machina.jpg';
-import freedive from '@/assets/now/freedive.png';
-import gym from '@/assets/now/gym.jpg';
-import griffin31_team from '@/assets/now/griffin31.jpg';
-import hiking from '@/assets/now/hiking.jpg';
+import buildingMachina from '@/assets/now/building_machina.webp';
+import freedive from '@/assets/now/freedive.webp';
+import gym from '@/assets/now/gym.webp';
+import griffin31_team from '@/assets/now/griffin31.webp';
+import hiking from '@/assets/now/hiking.webp';
 
 export type NowImage = {
   /** Real asset path. Leave empty to render a labeled placeholder slot. */

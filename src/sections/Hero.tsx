@@ -5,7 +5,7 @@ import { ButtonLink } from '@/components/Button';
 import { HeroName } from '@/components/HeroName';
 import { SocialLinks } from '@/components/SocialLinks';
 import { RoleLine, TypewriterGreeting } from '@/components/TypewriterGreeting';
-import portrait from '@/assets/portrait.jpg';
+import portrait from '@/assets/portrait.webp';
 
 const SPECS: { label: string; value: string; status?: boolean }[] = [
   { label: 'Discipline', value: 'Full-stack engineering' },
@@ -92,9 +92,10 @@ export function Hero() {
                 <img
                   src={portrait}
                   alt={profile.name}
-                  width={1760}
-                  height={2200}
+                  width={800}
+                  height={1204}
                   loading="eager"
+                  fetchPriority="high"
                   decoding="async"
                   className="portrait-photo h-full w-full object-cover"
                 />
