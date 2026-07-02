@@ -1,9 +1,9 @@
-import { createContext, useCallback, useMemo, useRef, useState, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLenis } from "lenis/react";
-import { motion } from "motion/react";
+import { createContext, useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
+import { motion } from 'motion/react';
 
-type Phase = "idle" | "covering" | "revealing";
+type Phase = 'idle' | 'covering' | 'revealing';
 
 export type WipeContextValue = { wipeNavigate: (to: string) => void };
 
@@ -16,17 +16,17 @@ const LEG_MS = 0.45; // seconds per leg (cover / reveal)
 export function WipeProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const lenis = useLenis();
-  const [phase, setPhase] = useState<Phase>("idle");
+  const [phase, setPhase] = useState<Phase>('idle');
   const pendingTo = useRef<string | null>(null);
 
   const wipeNavigate = useCallback(
     (to: string) => {
-      if (phase !== "idle") return; // guard against double-trigger
+      if (phase !== 'idle') return; // guard against double-trigger
       // Drop focus from the page being covered so keyboard users can't
       // interact with content hidden behind the panel mid-wipe.
       (document.activeElement as HTMLElement | null)?.blur();
       pendingTo.current = to;
-      setPhase("covering");
+      setPhase('covering');
     },
     [phase],
   );
@@ -38,11 +38,11 @@ export function WipeProvider({ children }: { children: ReactNode }) {
     if (lenis) lenis.scrollTo(0, { immediate: true });
     else window.scrollTo(0, 0);
     pendingTo.current = null;
-    setPhase("revealing");
+    setPhase('revealing');
   };
 
-  const covering = phase === "covering";
-  const showPanel = phase !== "idle";
+  const covering = phase === 'covering';
+  const showPanel = phase !== 'idle';
 
   const value = useMemo(() => ({ wipeNavigate }), [wipeNavigate]);
 
@@ -53,17 +53,17 @@ export function WipeProvider({ children }: { children: ReactNode }) {
         <motion.div
           aria-hidden="true"
           className="fixed inset-0 flex items-center justify-center"
-          style={{ zIndex: "var(--z-transition)", backgroundColor: "var(--color-red)" }}
-          initial={{ y: "100%" }}
-          animate={{ y: covering ? "0%" : "-100%" }}
+          style={{ zIndex: 'var(--z-transition)', backgroundColor: 'var(--color-red)' }}
+          initial={{ y: '100%' }}
+          animate={{ y: covering ? '0%' : '-100%' }}
           transition={{ duration: LEG_MS, ease: EASE }}
           onAnimationComplete={() => {
             if (covering) onCovered();
-            else setPhase("idle");
+            else setPhase('idle');
           }}
         >
-          <span className="text-2xl font-extrabold tracking-tight" style={{ color: "var(--color-ink)" }}>
-            Kim Berame<span style={{ color: "var(--color-bg)" }}>.</span>
+          <span className="text-2xl font-extrabold tracking-tight" style={{ color: 'var(--color-ink)' }}>
+            kimrolx<span style={{ color: 'var(--color-bg)' }}>.</span>
           </span>
         </motion.div>
       )}

@@ -110,25 +110,37 @@
   }
 }
 
-/* Hero portrait: grayscale where hover exists (desktop), full color on hover.
-   Touch/coarse pointers have no hover, so they show full color always. */
-.portrait-photo {
-  filter: none;
-  transition: filter 0.5s var(--ease-out-expo);
+/* Hero portrait: always full color. Desktop hover lights up the red frame
+   accent — border turns red and the corner tick grows. Touch/coarse pointers
+   have no hover, so the frame stays in its resting state. */
+.portrait-frame {
+  transition:
+    border-color 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo);
+}
+
+.portrait-tick {
+  transition:
+    width 0.4s var(--ease-out-expo),
+    height 0.4s var(--ease-out-expo);
 }
 
 @media (hover: hover) {
-  .portrait-photo {
-    filter: grayscale(1);
+  .group:hover .portrait-frame,
+  .group:focus-visible .portrait-frame {
+    border-color: var(--color-red);
+    box-shadow: 0 0 0 1px var(--color-red);
   }
-  .group:hover .portrait-photo,
-  .group:focus-visible .portrait-photo {
-    filter: grayscale(0);
+  .group:hover .portrait-tick,
+  .group:focus-visible .portrait-tick {
+    width: 1rem;
+    height: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .portrait-photo {
+  .portrait-frame,
+  .portrait-tick {
     transition: none;
   }
 }

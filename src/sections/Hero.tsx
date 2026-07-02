@@ -78,7 +78,7 @@ export function Hero() {
 
           {/* Right column — portrait over the Swiss ruled spec list */}
           <div className="flex w-full flex-col gap-8">
-            {/* Portrait: hairline frame, grayscale → color on hover, Swiss red corner tick */}
+            {/* Portrait: hairline frame, full color, red frame accent on hover */}
             <motion.div
               variants={container}
               initial="hidden"
@@ -87,7 +87,7 @@ export function Hero() {
             >
               <motion.div
                 variants={item}
-                className="relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-line bg-inset transition-colors group-hover:border-line-2"
+                className="portrait-frame relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-line bg-inset"
               >
                 <img
                   src={portrait}
@@ -100,8 +100,8 @@ export function Hero() {
                   className="portrait-photo h-full w-full object-cover"
                 />
               </motion.div>
-              {/* Swiss-aligned red tick: 6px square flush to the frame's top-left corner */}
-              <span aria-hidden="true" className="absolute left-0 top-0 h-1.5 w-1.5 bg-red" />
+              {/* Swiss-aligned red tick: 6px square flush to the frame's top-left corner, grows on hover */}
+              <span aria-hidden="true" className="portrait-tick absolute left-0 top-0 h-1.5 w-1.5 bg-red" />
             </motion.div>
 
             {/* Spec list — Swiss ruled, no card */}

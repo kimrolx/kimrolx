@@ -7,6 +7,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { TopBar } from "@/components/TopBar";
 import { Home } from "@/pages/Home";
 import { Now } from "@/pages/Now";
+import { Gear } from "@/pages/Gear";
 import { EasterEggProvider } from "@/context/EasterEggProvider";
 import { useEasterEgg } from "@/hooks/useEasterEgg";
 import { useKonami } from "@/hooks/useKonami";
@@ -57,6 +58,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/now" element={<Now />} />
+            <Route path="/gear" element={<Gear />} />
           </Routes>
           <CrtTerminal />
           <CrtExitButton />
