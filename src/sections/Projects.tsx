@@ -9,14 +9,14 @@ export function Projects() {
   const count = projects.length;
 
   return (
-    <Section id="projects" className="flex flex-col gap-16 sm:gap-20">
+    <Section id="projects" className="flex flex-col gap-12 sm:gap-16">
       <SheetHeading
         title="Selected work"
         meta={`${count} projects`}
         description="Production builds, university work, and the things I keep tending."
       />
 
-      <div className="flex flex-col gap-20 sm:gap-28">
+      <div className="flex flex-col gap-14 sm:gap-20">
         {projects.map((project, i) => (
           <Reveal key={project.id}>
             <ProjectCard project={project} reversed={i % 2 === 1} />
@@ -24,7 +24,7 @@ export function Projects() {
         ))}
       </div>
 
-      <Reveal className="mt-24 sm:mt-28">
+      <Reveal className="mt-16 sm:mt-20">
         <Archive />
       </Reveal>
     </Section>

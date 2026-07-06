@@ -10,14 +10,14 @@ export function Contact() {
   const year = new Date().getFullYear();
 
   return (
-    <Section id="contact" className="flex flex-col gap-16">
-      <Reveal className="flex flex-col gap-10">
+    <Section id="contact" className="flex flex-col gap-12">
+      <Reveal className="flex flex-col gap-8">
         <div className="flex items-center gap-3 border-t border-line-2 pt-3">
           <span aria-hidden="true" className="h-2 w-2 bg-red" />
           <span className="label text-ink-3">Contact</span>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
           <h2 className="max-w-[14ch] text-[clamp(2.75rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.04em]">
             Let&apos;s build something.
           </h2>

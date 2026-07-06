@@ -56,7 +56,7 @@ export function CaseStudy({ data, title }: { data: CaseStudyData; title: string 
 
               {data.stat && (
                 <div className="mb-8 flex items-baseline gap-4">
-                  <span className="text-[clamp(3rem,8vw,5rem)] font-black leading-none tracking-[-0.04em] text-red">
+                  <span className="text-[clamp(2.25rem,6vw,3.75rem)] font-black leading-none tracking-[-0.04em] text-red">
                     {data.stat.value}
                   </span>
                   <span className="label max-w-[10ch] text-ink-3">{data.stat.label}</span>

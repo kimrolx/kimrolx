@@ -15,19 +15,19 @@ colors:
 typography:
   display:
     fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 11vw, 6rem)"
+    fontSize: "clamp(2.5rem, 8vw, 4.5rem)"
     fontWeight: 900
     lineHeight: 0.9
     letterSpacing: "-0.04em"
   headline:
     fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 6vw, 3.75rem)"
+    fontSize: "clamp(1.75rem, 4.5vw, 2.75rem)"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.04em"
   title:
     fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(1.5rem, 3vw, 2rem)"
+    fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)"
     fontWeight: 800
     lineHeight: 1.05
     letterSpacing: "-0.035em"
@@ -51,7 +51,7 @@ spacing:
   sm: "8px"
   md: "16px"
   lg: "40px"
-  section: "160px"
+  section: "112px"
 components:
   button-primary:
     backgroundColor: "{colors.ink}"
@@ -116,16 +116,16 @@ A near-black achromatic field where white ink and one Swiss red do all the work.
 **Character:** A contemporary neo-grotesque with a touch of mechanical precision — neutral enough to be authoritative, distinct enough to avoid the Helvetica/Inter monoculture. Hierarchy is carried entirely by weight (400 body → 900 display) and a fluid modular scale.
 
 ### Hierarchy
-- **Display / H1** (900, `clamp(3rem, 11vw, 6rem)`, 0.9, `-0.04em`): The hero name and the Contact headline. Ceiling 6rem.
-- **Headline / H2** (800, `clamp(2.25rem, 6vw, 3.75rem)`, `-0.04em`): Section titles.
-- **Title / H3** (800, `clamp(1.5rem, 3vw, 2rem)`): Project and role titles.
+- **Display / H1** (900, `clamp(2.5rem, 8vw, 4.5rem)`, 0.9, `-0.04em`): The hero name and the Contact headline. Ceiling 4.5rem.
+- **Headline / H2** (800, `clamp(1.75rem, 4.5vw, 2.75rem)`, `-0.04em`): Section titles.
+- **Title / H3** (800, `clamp(1.25rem, 2.5vw, 1.75rem)`): Project and role titles.
 - **Body** (400, `1rem`, 1.65): Prose. Measure capped at `max-w-prose` (~65ch).
 - **Label** (`.label`, 600, `0.6875rem`, `0.14em`, uppercase): Spec labels, meta, nav. Used sparingly on header rules and ruled lists, never as a kicker above every heading.
 
 ### Named Rules
 **One Voice.** Exactly one typeface. Weight and scale carry every level; there is no second family and no monospace.
 
-**The No-Shout Rule.** Display tops out at 6rem; letter-spacing never tighter than `-0.04em`.
+**The No-Shout Rule.** Display tops out at 4.5rem; letter-spacing never tighter than `-0.04em`. The sheet reads compact and data-dense — type steps and section rhythm are deliberately restrained, never large-format.
 
 ## 4. Elevation
 

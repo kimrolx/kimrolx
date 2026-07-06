@@ -5,7 +5,7 @@ import { SheetHeading } from "@/components/SheetHeading";
 
 export function About() {
   return (
-    <Section id="about" className="flex flex-col gap-16">
+    <Section id="about" className="flex flex-col gap-12">
       <SheetHeading title="About" />
       <Reveal>
         <Bento />

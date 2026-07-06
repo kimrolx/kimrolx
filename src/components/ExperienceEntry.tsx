@@ -24,7 +24,7 @@ export function ExperienceEntry({ experience }: { experience: Experience }) {
 
       {/* Content column */}
       <div className="flex flex-col gap-6">
-        <h3 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{experience.role}</h3>
+        <h3 className="text-xl font-extrabold tracking-tight sm:text-2xl">{experience.role}</h3>
 
         <ul className="flex max-w-prose flex-col gap-3">
           {experience.highlights.map((point) => (

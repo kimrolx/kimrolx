@@ -32,32 +32,32 @@ export function Hero() {
 
   return (
     <section id="home" className="relative px-5 sm:px-8">
-      <div className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center py-28">
-        <div className="grid items-end gap-14 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
+      <div className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center py-20">
+        <div className="grid items-end gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
           {/* Identity */}
           <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col items-start">
             <motion.div variants={item}>
               <TypewriterGreeting />
             </motion.div>
 
-            <motion.div variants={item} className="mt-6">
+            <motion.div variants={item} className="mt-5">
               <HeroName />
             </motion.div>
 
-            <motion.div variants={item} className="mt-7 flex items-center gap-4">
+            <motion.div variants={item} className="mt-6 flex items-center gap-4">
               <span aria-hidden="true" className="h-px w-10 bg-red" />
-              <p className="text-lg font-semibold tracking-tight text-ink sm:text-xl">{profile.role}</p>
+              <p className="text-base font-semibold tracking-tight text-ink sm:text-lg">{profile.role}</p>
             </motion.div>
 
-            <motion.div variants={item} className="mt-3 text-base sm:text-lg">
+            <motion.div variants={item} className="mt-3 text-sm sm:text-base">
               <RoleLine />
             </motion.div>
 
-            <motion.p variants={item} className="mt-6 max-w-prose text-ink-2 sm:text-lg">
+            <motion.p variants={item} className="mt-5 max-w-prose text-ink-2">
               {profile.intro}
             </motion.p>
 
-            <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
+            <motion.div variants={item} className="mt-7 flex flex-wrap items-center gap-3">
               <ButtonLink href="#projects">
                 View work
                 <FiArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -71,19 +71,19 @@ export function Hero() {
               </ButtonLink>
             </motion.div>
 
-            <motion.div variants={item} className="mt-8">
+            <motion.div variants={item} className="mt-6">
               <SocialLinks />
             </motion.div>
           </motion.div>
 
           {/* Right column — portrait over the Swiss ruled spec list */}
-          <div className="flex w-full flex-col gap-8">
+          <div className="flex w-full flex-col gap-6">
             {/* Portrait: hairline frame, full color, red frame accent on hover */}
             <motion.div
               variants={container}
               initial="hidden"
               animate="show"
-              className="group relative w-full max-w-xs self-center"
+              className="group relative w-full max-w-64 self-start"
             >
               <motion.div
                 variants={item}
@@ -114,7 +114,7 @@ export function Hero() {
               {SPECS.map((spec) => (
                 <div
                   key={spec.label}
-                  className="grid grid-cols-[6rem_1fr] items-baseline gap-4 border-t border-line py-3.5 first:border-line-2"
+                  className="grid grid-cols-[6rem_1fr] items-baseline gap-4 border-t border-line py-2.5 first:border-line-2"
                 >
                   <dt className="label text-ink-3">{spec.label}</dt>
                   <dd className="flex items-center gap-2 text-sm text-ink">
@@ -130,7 +130,7 @@ export function Hero() {
         <a
           href="#experience"
           aria-label="Scroll to experience"
-          className="label mt-16 inline-flex items-center gap-2 self-start text-ink-3 transition-colors hover:text-ink"
+          className="label mt-12 inline-flex items-center gap-2 self-start text-ink-3 transition-colors hover:text-ink"
         >
           Scroll
           <FiArrowDown aria-hidden="true" className="h-3.5 w-3.5 [animation:nudge_1.8s_ease-in-out_infinite]" />

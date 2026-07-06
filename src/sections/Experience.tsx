@@ -8,7 +8,7 @@ export function Experience() {
   const count = experiences.length;
 
   return (
-    <Section id="experience" className="flex flex-col gap-16">
+    <Section id="experience" className="flex flex-col gap-12">
       <SheetHeading
         title="Experience"
         meta={`${count} role${count === 1 ? "" : "s"}`}
@@ -16,7 +16,7 @@ export function Experience() {
       />
 
       <Reveal>
-        <ol className="flex flex-col gap-12">
+        <ol className="flex flex-col gap-10">
           {experiences.map((experience) => (
             <ExperienceEntry key={experience.id} experience={experience} />
           ))}

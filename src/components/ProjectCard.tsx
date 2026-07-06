@@ -19,7 +19,7 @@ export function ProjectCard({ project, reversed }: ProjectCardProps) {
       {/* Title block */}
       <div className="flex flex-col gap-4 border-t border-line-2 pt-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-          <h3 className="text-[clamp(2rem,5vw,3.25rem)] font-extrabold tracking-[-0.04em]">{project.title}</h3>
+          <h3 className="text-[clamp(1.5rem,3.5vw,2.375rem)] font-extrabold tracking-[-0.04em]">{project.title}</h3>
           <div className="flex items-center gap-4">
             <StatusPill status={project.status} />
             <span className="label text-ink-3">{project.period}</span>

@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { WipeProvider } from "@/components/WipeProvider";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { TopBar } from "@/components/TopBar";
+import { LeftRail } from "@/components/LeftRail";
 import { Home } from "@/pages/Home";
 import { Now } from "@/pages/Now";
 import { Gear } from "@/pages/Gear";
@@ -55,11 +56,14 @@ function App() {
             Skip to content
           </a>
           <TopBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/now" element={<Now />} />
-            <Route path="/gear" element={<Gear />} />
-          </Routes>
+          <LeftRail />
+          <div className="lg:pl-44">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/now" element={<Now />} />
+              <Route path="/gear" element={<Gear />} />
+            </Routes>
+          </div>
           <CrtTerminal />
           <CrtExitButton />
           <CrtAchievementToast />
