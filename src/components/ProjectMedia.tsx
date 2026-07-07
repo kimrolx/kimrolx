@@ -33,7 +33,7 @@ export function ProjectMedia({ project }: { project: Project }) {
               type="button"
               onClick={() => setActive(image)}
               aria-label={`Preview: ${image.alt}`}
-              className="group relative block overflow-hidden rounded-sm border border-line bg-inset transition-colors hover:border-line-2 focus-visible:border-red"
+              className="group relative block cursor-pointer overflow-hidden rounded-sm border border-line bg-inset transition-colors hover:border-line-2 focus-visible:border-red"
             >
               <img
                 src={image.src}

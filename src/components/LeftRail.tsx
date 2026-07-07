@@ -27,13 +27,6 @@ const ITEMS: Item[] = [
 
 const SECTION_IDS = ['home', ...ITEMS.filter((i) => i.section).map((i) => i.section!)];
 
-/**
- * Desktop navigation (lg+): a fixed left-margin index in the Swiss specimen
- * register. Vertical wordmark up top, a numbered 01–06 index in the middle
- * (red tick marks the in-view destination, labels reveal on hover/focus), and
- * a running-folio readout at the foot that names wherever you currently are.
- * The mobile/tablet nav stays in <TopBar>, so this is hidden below lg.
- */
 export function LeftRail() {
   const { pathname } = useLocation();
   const lenis = useLenis();
@@ -43,13 +36,12 @@ export function LeftRail() {
   const { toggleCrt } = useEasterEgg();
   const onDotTap = useTapSequence(toggleCrt, { count: 5, windowMs: 1500 });
 
-  const isActive = (item: Item) =>
-    isHome ? item.section === active : item.route === pathname;
+  const isActive = (item: Item) => (isHome ? item.section === active : item.route === pathname);
 
   // The running folio: whatever destination we're currently sitting in.
   const current = isHome
-    ? ITEMS.find((i) => i.section === active) ?? null
-    : ITEMS.find((i) => i.route === pathname) ?? null;
+    ? (ITEMS.find((i) => i.section === active) ?? null)
+    : (ITEMS.find((i) => i.route === pathname) ?? null);
 
   return (
     <header
@@ -140,9 +132,7 @@ export function LeftRail() {
           {current ? (
             <span key={current.n} className="folio-swap flex items-baseline gap-2">
               <span className="label text-red-ink">{current.n}</span>
-              <span className="text-sm font-bold tracking-wide text-ink-2">
-                {current.label}
-              </span>
+              <span className="text-sm font-bold tracking-wide text-ink-2">{current.label}</span>
             </span>
           ) : (
             <span className="label text-ink-3">Index</span>
