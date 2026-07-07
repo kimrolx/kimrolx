@@ -78,7 +78,7 @@ export function HeroName() {
   // Plain bold name for reduced motion / touch.
   if (reduce) {
     return (
-      <h1 className="text-[clamp(2.5rem,8vw,4.5rem)] font-black leading-[0.9] tracking-[-0.04em]">
+      <h1 className="text-[clamp(3.5rem,12vw,5.5rem)] font-black leading-[0.9] tracking-[-0.04em]">
         <span className="block">Kim Roland</span>
         <span className="block">
           Berame<span className="text-red">.</span>
@@ -92,7 +92,7 @@ export function HeroName() {
       <div ref={sceneRef} className="relative [transform-style:preserve-3d]">
         <h1
           aria-label="Kim Roland Berame"
-          className="text-[clamp(2.5rem,8vw,4.5rem)] font-black leading-[0.9] tracking-[-0.04em] [text-shadow:0_18px_40px_rgba(0,0,0,0.55)]"
+          className="text-[clamp(3.5rem,12vw,5.5rem)] font-black leading-[0.9] tracking-[-0.04em] [text-shadow:0_18px_40px_rgba(0,0,0,0.55)]"
         >
           {lines}
         </h1>
@@ -101,7 +101,7 @@ export function HeroName() {
         <span
           ref={glareRef}
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 select-none text-[clamp(2.5rem,8vw,4.5rem)] font-black leading-[0.9] tracking-[-0.04em] opacity-0 transition-opacity duration-200 [-webkit-background-clip:text] [background-clip:text] [mix-blend-mode:screen]"
+          className="pointer-events-none absolute inset-0 select-none text-[clamp(3.5rem,12vw,5.5rem)] font-black leading-[0.9] tracking-[-0.04em] opacity-0 transition-opacity duration-200 [-webkit-background-clip:text] [background-clip:text] [mix-blend-mode:screen]"
           style={{
             color: "transparent",
             backgroundImage:

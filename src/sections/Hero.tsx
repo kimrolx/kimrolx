@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { FiArrowDown, FiArrowRight, FiDownload } from 'react-icons/fi';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { profile } from '@/data/profile';
 import { ButtonLink } from '@/components/Button';
 import { HeroName } from '@/components/HeroName';
+import { Lightbox } from '@/components/Lightbox';
 import { SocialLinks } from '@/components/SocialLinks';
 import { RoleLine, TypewriterGreeting } from '@/components/TypewriterGreeting';
 import portrait from '@/assets/portrait.webp';
@@ -18,6 +20,7 @@ const SPECS: { label: string; value: string; status?: boolean }[] = [
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const [preview, setPreview] = useState(false);
 
   const container: Variants = {
     hidden: {},
@@ -83,11 +86,21 @@ export function Hero() {
               variants={container}
               initial="hidden"
               animate="show"
-              className="group relative w-full max-w-64 self-start"
+              className="group relative w-full max-w-xs self-center"
             >
               <motion.div
                 variants={item}
-                className="portrait-frame relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-line bg-inset"
+                role="button"
+                tabIndex={0}
+                aria-label={`View portrait of ${profile.name} full screen`}
+                onClick={() => setPreview(true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setPreview(true);
+                  }
+                }}
+                className="portrait-frame relative aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-sm border border-line bg-inset outline-none focus-visible:border-red"
               >
                 <img
                   src={portrait}
@@ -136,6 +149,11 @@ export function Hero() {
           <FiArrowDown aria-hidden="true" className="h-3.5 w-3.5 [animation:nudge_1.8s_ease-in-out_infinite]" />
         </a>
       </div>
+
+      <Lightbox
+        image={preview ? { src: portrait, alt: profile.name } : null}
+        onClose={() => setPreview(false)}
+      />
     </section>
   );
 }

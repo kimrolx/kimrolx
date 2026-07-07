@@ -18,7 +18,7 @@ export function Contact() {
         </div>
 
         <div className="flex flex-col gap-6">
-          <h2 className="max-w-[14ch] text-[clamp(2.75rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.04em]">
+          <h2 className="max-w-[14ch] text-[clamp(2.75rem,9.5vw,6rem)] font-black leading-[0.92] tracking-[-0.04em]">
             Let&apos;s build something.
           </h2>
           <p className="max-w-prose text-ink-2 sm:text-lg">
