@@ -1,4 +1,4 @@
-import type { CaseStudy as CaseStudyData } from "@/types";
+import type { CaseStudy as CaseStudyData } from '@/types';
 
 export function CaseStudyContent({ data, title }: { data: CaseStudyData; title: string }) {
   return (
@@ -10,7 +10,7 @@ export function CaseStudyContent({ data, title }: { data: CaseStudyData; title: 
           <span className="text-[clamp(2.25rem,6vw,3.75rem)] font-black leading-none tracking-[-0.04em] text-red">
             {data.stat.value}
           </span>
-          <span className="label max-w-[10ch] text-ink-3">{data.stat.label}</span>
+          <span className="label max-w-[15rem] text-ink-3">{data.stat.label}</span>
         </div>
       )}
 
