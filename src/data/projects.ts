@@ -62,7 +62,7 @@ export const projects: Project[] = [
           body: 'Shipped solo and live on the App Store since June 2026, where it peaked at #3 in the Utilities category.',
         },
       ],
-      stat: { value: '#3', label: 'App Store · Utilities' },
+      stat: { value: '#3', label: 'App Store · Utilities Category' },
     },
   },
   {
