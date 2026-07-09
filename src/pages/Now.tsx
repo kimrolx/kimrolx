@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { FiArrowLeft, FiImage } from "react-icons/fi";
+import { useSEO } from "@/hooks/useSEO";
+import { ROUTES } from "@/config/seo";
 import { WipeLink } from "@/components/WipeLink";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -100,13 +101,7 @@ function Entry({ entry }: { entry: NowEntry }) {
 }
 
 export function Now() {
-  useEffect(() => {
-    const previous = document.title;
-    document.title = "Now — Kim Roland Berame";
-    return () => {
-      document.title = previous;
-    };
-  }, []);
+  useSEO(ROUTES['/now']);
 
   return (
     <main className="relative" style={{ zIndex: "var(--z-content)" }}>
