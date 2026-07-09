@@ -6,8 +6,11 @@ import { Experience } from "@/sections/Experience";
 import { Projects } from "@/sections/Projects";
 import { About } from "@/sections/About";
 import { Contact } from "@/sections/Contact";
+import { useSEO } from "@/hooks/useSEO";
+import { ROUTES } from "@/config/seo";
 
 export function Home() {
+  useSEO(ROUTES['/']);
   const { hash } = useLocation();
   const lenis = useLenis();
 

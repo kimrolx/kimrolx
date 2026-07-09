@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { FiArrowLeft } from "react-icons/fi";
+import { useSEO } from "@/hooks/useSEO";
+import { ROUTES } from "@/config/seo";
 import { WipeLink } from "@/components/WipeLink";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -15,13 +16,7 @@ const updatedLabel = new Date(gearUpdated).toLocaleDateString("en-US", {
 });
 
 export function Gear() {
-  useEffect(() => {
-    const previous = document.title;
-    document.title = "Gear — Kim Roland Berame";
-    return () => {
-      document.title = previous;
-    };
-  }, []);
+  useSEO(ROUTES['/gear']);
 
   return (
     <main className="relative" style={{ zIndex: "var(--z-content)" }}>
