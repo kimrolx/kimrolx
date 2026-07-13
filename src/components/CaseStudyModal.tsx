@@ -69,7 +69,7 @@ export function CaseStudyModal({ project, onClose }: { project: Project | null; 
         type="button"
         aria-label="Close case study"
         onClick={close}
-        className="fixed right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-line-2 bg-surface/80 text-ink backdrop-blur transition-colors hover:border-red hover:text-red-ink sm:right-6 sm:top-6"
+        className="fixed right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-line-2 bg-surface/80 text-ink backdrop-blur transition-colors hover:border-red hover:text-red-ink sm:right-6 sm:top-6"
       >
         <FiX className="h-5 w-5" />
       </button>
@@ -83,7 +83,7 @@ export function CaseStudyModal({ project, onClose }: { project: Project | null; 
         ].join(" ")}
       >
         <div data-lenis-prevent className="overflow-y-auto overscroll-contain p-6 sm:p-10">
-          <h3 className="mb-8 text-[clamp(1.5rem,3.5vw,2.375rem)] font-extrabold tracking-[-0.04em]">
+          <h3 className="mb-8 pr-12 text-[clamp(1.5rem,3.5vw,2.375rem)] font-extrabold tracking-[-0.04em] sm:pr-0">
             {project.title}
           </h3>
           <CaseStudyContent data={project.caseStudy} title={project.title} />
