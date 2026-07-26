@@ -36,6 +36,12 @@ export const ROUTES = {
       'The gear Kim Roland Berame carries and the battlestation he builds on — a working inventory of daily-carry tech, desk setup, and PC build.',
     path: '/gear',
   },
+  '/skills': {
+    title: 'Skills',
+    description:
+      'The stack Kim Roland Berame builds with — languages, frontend, backend, data, and cloud, mapped as an interactive skill constellation from a single core outward.',
+    path: '/skills',
+  },
 } satisfies Record<string, RouteMeta>;
 
 export type ResolvedMeta = {

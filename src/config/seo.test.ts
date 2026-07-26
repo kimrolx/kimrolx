@@ -19,6 +19,17 @@ test('gear route present with a non-empty description', () => {
   assert.ok(ROUTES['/gear'].description.length > 20);
 });
 
+test('skills route present with a non-empty description', () => {
+  assert.equal(ROUTES['/skills'].title, 'Skills');
+  assert.ok(ROUTES['/skills'].description.length > 20);
+});
+
+test('skills subpage resolves with site-name suffix and path canonical', () => {
+  const m = resolveMeta(ROUTES['/skills']);
+  assert.equal(m.fullTitle, 'Skills — Kim Roland Berame');
+  assert.equal(m.canonical, 'https://kimrolx.com/skills');
+});
+
 test('SITE_URL has no trailing slash', () => {
   assert.equal(SITE_URL.endsWith('/'), false);
 });

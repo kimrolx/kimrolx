@@ -21,6 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **No `tailwind.config`.** Tailwind v4 config lives only in `src/index.css` `@theme`. Do not add a config file.
 - **Assets go in `src/assets/`, imported.** Use `.webp`, reference via `import` so Vite bundles/hashes them. Don't drop files in `public/` and hardcode paths.
 - **Don't hand-edit `index.html` head meta for per-route SEO.** Title/description/canonical/OG flow from `seo.ts`; editing `index.html` directly breaks prerender sync.
+- **No code comments unless absolutely necessary.** Good code reads clearly through naming and structure. Add a comment only for genuinely non-obvious intent (a workaround, a subtle constraint, a "why not the obvious thing"), never to restate what the code already says.
 
 ## Commands
 
