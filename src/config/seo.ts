@@ -6,8 +6,8 @@
  */
 
 export const SITE_NAME = 'Kim Roland Berame';
-export const SITE_URL = 'https://kimrolx.com';
-export const OG_IMAGE = 'https://kimrolx.com/og.png';
+export const SITE_URL = 'https://www.kimrolx.com';
+export const OG_IMAGE = 'https://www.kimrolx.com/og.png';
 
 export type RouteMeta = {
   /** Page title without the site-name/role suffix, e.g. "Gear". */
