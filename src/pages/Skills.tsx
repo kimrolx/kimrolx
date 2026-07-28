@@ -2,7 +2,6 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { useSEO } from '@/hooks/useSEO';
 import { ROUTES } from '@/config/seo';
 import { WipeLink } from '@/components/WipeLink';
-import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 import { SheetHeading } from '@/components/SheetHeading';
 import { SkillTree } from '@/components/SkillTree';
@@ -22,9 +21,7 @@ export function Skills() {
       {/* Constellation — centred, capped width so it stays proportional and
           doesn't overwhelm. (Mobile fallback inside stays constrained + readable.) */}
       <div className="mx-auto w-full max-w-6xl px-4 pb-20 sm:px-8">
-        <Reveal>
-          <SkillTree />
-        </Reveal>
+        <SkillTree />
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8">
