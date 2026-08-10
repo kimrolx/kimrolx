@@ -6,8 +6,8 @@
  */
 
 export const SITE_NAME = 'Kim Roland Berame';
-export const SITE_URL = 'https://kimrolx.com';
-export const OG_IMAGE = 'https://kimrolx.com/og.png';
+export const SITE_URL = 'https://www.kimrolx.com';
+export const OG_IMAGE = 'https://www.kimrolx.com/og.png';
 
 export type RouteMeta = {
   /** Page title without the site-name/role suffix, e.g. "Gear". */
@@ -35,6 +35,12 @@ export const ROUTES = {
     description:
       'The gear Kim Roland Berame carries and the battlestation he builds on — a working inventory of daily-carry tech, desk setup, and PC build.',
     path: '/gear',
+  },
+  '/skills': {
+    title: 'Skills',
+    description:
+      'The stack Kim Roland Berame builds with — languages, frontend, backend, data, and cloud, mapped as an interactive skill constellation from a single core outward.',
+    path: '/skills',
   },
 } satisfies Record<string, RouteMeta>;
 

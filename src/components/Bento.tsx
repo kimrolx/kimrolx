@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react';
 import { profile } from '@/data/profile';
-import { skillGroups } from '@/data/skills';
 import { experiences } from '@/data/experience';
 import { cn } from '@/lib/utils';
-import { SkillGroup } from './SkillGroup';
+import { WipeLink } from './WipeLink';
 
 type TileProps = {
   label: string;
@@ -50,10 +49,17 @@ export function Bento() {
       </Tile>
 
       <Tile label="Toolkit" className="sm:col-span-2 lg:col-span-2">
-        <div className="-mt-1 flex flex-col">
-          {skillGroups.map((group) => (
-            <SkillGroup key={group.category} {...group} />
-          ))}
+        <div className="flex max-w-prose flex-col gap-4">
+          <p className="text-ink-2 sm:text-lg">
+            Languages, frameworks, data, and cloud — the full stack rendered as a
+            live skill tree.
+          </p>
+          <WipeLink
+            to="/skills"
+            className="label mt-auto inline-flex items-center gap-2 text-ink transition-colors hover:text-red-ink"
+          >
+            Explore the skill tree →
+          </WipeLink>
         </div>
       </Tile>
 

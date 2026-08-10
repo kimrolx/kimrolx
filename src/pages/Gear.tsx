@@ -1,25 +1,25 @@
-import { FiArrowLeft } from "react-icons/fi";
-import { useSEO } from "@/hooks/useSEO";
-import { ROUTES } from "@/config/seo";
-import { WipeLink } from "@/components/WipeLink";
-import { Reveal } from "@/components/Reveal";
-import { Section } from "@/components/Section";
-import { SheetHeading } from "@/components/SheetHeading";
-import { GearScene } from "@/components/GearScene";
-import { GearMat } from "@/components/GearMat";
-import { GearGrid } from "@/components/GearGrid";
-import { gearIntro, gearUpdated } from "@/data/gearItems";
+import { FiArrowLeft } from 'react-icons/fi';
+import { useSEO } from '@/hooks/useSEO';
+import { ROUTES } from '@/config/seo';
+import { WipeLink } from '@/components/WipeLink';
+import { Reveal } from '@/components/Reveal';
+import { Section } from '@/components/Section';
+import { SheetHeading } from '@/components/SheetHeading';
+import { GearScene } from '@/components/GearScene';
+import { GearMat } from '@/components/GearMat';
+import { GearGrid } from '@/components/GearGrid';
+import { gearIntro, gearUpdated } from '@/data/gearItems';
 
-const updatedLabel = new Date(gearUpdated).toLocaleDateString("en-US", {
-  month: "long",
-  year: "numeric",
+const updatedLabel = new Date(gearUpdated).toLocaleDateString('en-US', {
+  month: 'long',
+  year: 'numeric',
 });
 
 export function Gear() {
   useSEO(ROUTES['/gear']);
 
   return (
-    <main className="relative" style={{ zIndex: "var(--z-content)" }}>
+    <main className="relative" style={{ zIndex: 'var(--z-content)' }}>
       <Section id="gear" className="flex flex-col gap-16">
         <SheetHeading title="Gear" meta={`Updated ${updatedLabel}`} description={gearIntro} />
 
@@ -37,12 +37,9 @@ export function Gear() {
         <GearGrid />
 
         <div className="border-t border-line pt-6">
-          <WipeLink
-            to="/"
-            className="label inline-flex items-center gap-2 text-ink-3 transition-colors hover:text-ink"
-          >
+          <WipeLink to="/" className="label inline-flex items-center gap-2 text-ink-3 transition-colors hover:text-ink">
             <FiArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
-            Back home
+            Home
           </WipeLink>
         </div>
       </Section>

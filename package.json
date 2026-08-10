@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build && tsx scripts/prerender.ts",
-    "test": "tsx --test src/config/seo.test.ts scripts/prerender.test.ts",
+    "test": "tsx --test src/config/seo.test.ts scripts/prerender.test.ts src/lib/skillTreeLayout.test.ts src/lib/skillTreeAnim.test.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -9,6 +9,7 @@ import { LeftRail } from "@/components/LeftRail";
 import { Home } from "@/pages/Home";
 import { Now } from "@/pages/Now";
 import { Gear } from "@/pages/Gear";
+import { Skills } from "@/pages/Skills";
 import { EasterEggProvider } from "@/context/EasterEggProvider";
 import { useEasterEgg } from "@/hooks/useEasterEgg";
 import { useKonami } from "@/hooks/useKonami";
@@ -62,6 +63,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/now" element={<Now />} />
               <Route path="/gear" element={<Gear />} />
+              <Route path="/skills" element={<Skills />} />
             </Routes>
           </div>
           <CrtTerminal />

@@ -26,7 +26,10 @@ export function TopBar() {
   const onDotTap = useTapSequence(toggleCrt, { count: 5, windowMs: 1500 });
 
   return (
-    <header className="sticky top-0 border-b border-line bg-bg/85 backdrop-blur-md lg:hidden" style={{ zIndex: 'var(--z-nav)' }}>
+    <header
+      className="sticky top-0 border-b border-line bg-bg/85 backdrop-blur-md lg:hidden"
+      style={{ zIndex: 'var(--z-nav)' }}
+    >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <WipeLink
           to="/"
