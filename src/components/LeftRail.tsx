@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useLenis } from 'lenis/react';
 import { WipeLink } from '@/components/WipeLink';
+import { MusicPlayer } from '@/components/MusicPlayer';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
 import { useTapSequence } from '@/hooks/useTapSequence';
@@ -117,8 +118,11 @@ export function LeftRail() {
         </ul>
       </nav>
 
+      {/* Ambient soundtrack — prev / play-pause / next + scrubbable progress */}
+      <MusicPlayer />
+
       {/* Running folio — names the current location, reads bottom→top */}
-      <div className="flex h-40 shrink-0 items-center justify-center">
+      <div className="flex h-28 shrink-0 items-center justify-center">
         <div
           aria-hidden="true"
           className="flex items-center gap-3 [writing-mode:vertical-rl] [transform:rotate(180deg)]"

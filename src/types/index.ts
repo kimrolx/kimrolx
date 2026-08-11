@@ -67,3 +67,10 @@ export type SocialLink = {
   handle: string;
   icon: IconType;
 };
+
+export type Track = {
+  title: string;
+  artist: string;
+  /** Imported asset URL (Vite-hashed). Leave undefined to render a disabled placeholder. */
+  src?: string;
+};

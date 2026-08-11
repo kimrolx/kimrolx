@@ -6,7 +6,7 @@ export const profile = {
   role: 'Software Engineer',
   location: 'Philippines',
   city: 'Cebu, Philippines',
-  resumeUrl: `${import.meta.env.BASE_URL}KIM_ROLAND_BERAME-RESUME.pdf`,
+  resumeUrl: `${import.meta.env.BASE_URL}KIM_ROLAND_BERAME_RESUME.pdf`,
   education: {
     degree: 'B.S. Information Technology',
     school: 'University of San Jose – Recoletos',

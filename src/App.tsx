@@ -11,6 +11,7 @@ import { Now } from "@/pages/Now";
 import { Gear } from "@/pages/Gear";
 import { Skills } from "@/pages/Skills";
 import { EasterEggProvider } from "@/context/EasterEggProvider";
+import { MusicProvider } from "@/context/MusicProvider";
 import { useEasterEgg } from "@/hooks/useEasterEgg";
 import { useKonami } from "@/hooks/useKonami";
 import { CrtExitButton } from "@/components/CrtExitButton";
@@ -47,28 +48,30 @@ function App() {
     <SmoothScroll>
       <EasterEggProvider>
         <WipeProvider>
-          <KonamiTrigger />
-          <ScrollProgress />
-          <ScrollToTop />
-          <a
-            href="#home"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
-          >
-            Skip to content
-          </a>
-          <TopBar />
-          <LeftRail />
-          <div className="lg:pl-44">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/now" element={<Now />} />
-              <Route path="/gear" element={<Gear />} />
-              <Route path="/skills" element={<Skills />} />
-            </Routes>
-          </div>
-          <CrtTerminal />
-          <CrtExitButton />
-          <CrtAchievementToast />
+          <MusicProvider>
+            <KonamiTrigger />
+            <ScrollProgress />
+            <ScrollToTop />
+            <a
+              href="#home"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:font-medium focus:text-bg"
+            >
+              Skip to content
+            </a>
+            <TopBar />
+            <LeftRail />
+            <div className="lg:pl-44">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/now" element={<Now />} />
+                <Route path="/gear" element={<Gear />} />
+                <Route path="/skills" element={<Skills />} />
+              </Routes>
+            </div>
+            <CrtTerminal />
+            <CrtExitButton />
+            <CrtAchievementToast />
+          </MusicProvider>
         </WipeProvider>
       </EasterEggProvider>
     </SmoothScroll>
