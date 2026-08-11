@@ -56,7 +56,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     const from = 0;
     const start = performance.now();
     const step = (now: number) => {
-      const t = Math.min((now - start) / FADE_MS, 1);
+      const t = Math.min(Math.max((now - start) / FADE_MS, 0), 1);
       el.volume = from + (BACKGROUND_VOLUME - from) * t;
       fadeRef.current = t < 1 ? requestAnimationFrame(step) : null;
     };

@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { GearCard } from "@/components/GearCard";
 import { gearByCategory } from "@/data/gearItems";
 
@@ -31,7 +32,7 @@ const itemVariants = {
  * always rendered, and the accessible fallback for the illustrations above.
  */
 export function GearGrid() {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   return (
     <div className="flex flex-col">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FiArrowDown, FiArrowRight, FiDownload } from 'react-icons/fi';
-import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { profile } from '@/data/profile';
 import { ButtonLink } from '@/components/Button';
 import { HeroName } from '@/components/HeroName';
@@ -19,7 +20,7 @@ const SPECS: { label: string; value: string; status?: boolean }[] = [
 ];
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const [preview, setPreview] = useState(false);
 
   const container: Variants = {

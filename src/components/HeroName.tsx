@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useReducedMotion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Tilt } from "@/components/Tilt";
 
 /** The name, line by line; the last line carries the red period. */
@@ -12,7 +12,7 @@ const LINES = ["Kim Roland", "Berame"];
  * under reduced motion or a coarse pointer.
  */
 export function HeroName() {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const sceneRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLSpanElement>(null);
 

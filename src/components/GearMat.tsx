@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { GearCard } from "@/components/GearCard";
 import { gearById } from "@/data/gearItems";
 
@@ -29,7 +30,7 @@ const SLOTS: Slot[] = [
 
 export function GearMat() {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const active = activeId ? gearById[activeId] : null;
 
   return (

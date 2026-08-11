@@ -1,25 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { JSX } from "react";
 import type { Project } from "@/types";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { CaseStudyModal } from "./CaseStudyModal";
 import { PinnedTrack } from "./PinnedTrack";
 import { ProjectPanel } from "./ProjectPanel";
-
-/** Reactively tracks a min-width media query (Tailwind's `md` = 48rem). */
-function useMinWidth(query: string): boolean {
-  const [matches, setMatches] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(query).matches,
-  );
-  useEffect(() => {
-    const mql = window.matchMedia(query);
-    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-    setMatches(mql.matches);
-    mql.addEventListener("change", onChange);
-    return () => mql.removeEventListener("change", onChange);
-  }, [query]);
-  return matches;
-}
 
 /**
  * Chooses the projects layout: desktop + motion → pinned scroll-jack;
@@ -28,7 +14,7 @@ function useMinWidth(query: string): boolean {
  */
 export function ProjectShowcase({ projects }: { projects: Project[] }) {
   const reduced = usePrefersReducedMotion();
-  const isDesktop = useMinWidth("(min-width: 48rem)");
+  const isDesktop = useMediaQuery("(min-width: 48rem)");
   const [activeCaseStudy, setActiveCaseStudy] = useState<Project | null>(null);
 
   let body: JSX.Element;

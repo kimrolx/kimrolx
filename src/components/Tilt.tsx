@@ -3,9 +3,9 @@ import {
   motion,
   useMotionTemplate,
   useMotionValue,
-  useReducedMotion,
   useSpring,
 } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 type TiltProps = {
   children: ReactNode;
@@ -21,7 +21,7 @@ type TiltProps = {
  * (touch) pointer, where it renders a plain, untransformed block.
  */
 export function Tilt({ children, max = 7, className }: TiltProps) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
 
   const rx = useMotionValue(0);

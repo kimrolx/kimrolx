@@ -5,7 +5,7 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 /** Parse the pathname out of a string `to` (ignores hash/search). */
 function pathOf(to: string): string {
-  return to.split("#")[0].split("?")[0] || "/";
+  return new URL(to, window.location.origin).pathname;
 }
 
 /**

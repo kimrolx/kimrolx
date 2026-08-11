@@ -1,5 +1,6 @@
 import { useMemo, useState, type MouseEvent } from 'react';
-import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { skillGroups } from '@/data/skills';
 import { branchConfigs } from '@/data/skillTree';
 import { skillIcons, FallbackIcon } from '@/data/skillIcons';
@@ -72,7 +73,7 @@ export function SkillTree() {
   const layout = useMemo(() => layoutSkillTree(skillGroups, branchConfigs), []);
   const timings = useMemo(() => skillTreeTimings(layout), [layout]);
   const wipeNavigate = useWipeNavigate();
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   const [hoveredBranch, setHoveredBranch] = useState<string | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);

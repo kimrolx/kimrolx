@@ -1,5 +1,6 @@
 import { useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { GearCard } from "@/components/GearCard";
 import { gearById } from "@/data/gearItems";
 
@@ -119,7 +120,7 @@ const pieceVariants = {
 export function GearScene() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [anchor, setAnchor] = useState<Anchor | null>(null);
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   const activate = (id: string, target: SVGGElement) => {
     const container = containerRef.current;
