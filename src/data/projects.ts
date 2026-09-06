@@ -82,6 +82,10 @@ export const projects: Project[] = [
       { label: 'Redis' },
     ],
     links: [{ label: 'Visit trimmly.xyz', href: 'https://www.trimmly.xyz', icon: FiExternalLink }],
+    demoLink: {
+      href: 'https://trimmly.xyz/oGDqDJaX',
+      note: 'A live link, shortened with Trimly.',
+    },
     featured: true,
   },
   {

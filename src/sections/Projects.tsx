@@ -7,7 +7,7 @@ import { SheetHeading } from "@/components/SheetHeading";
 
 /** A hairline strip that names which projects use a tech, when arriving from
  *  the skill map via `/?stack=<tech>#projects`. Non-invasive: it sits above the
- *  showcase and never touches the pinned track. */
+ *  showcase and never touches the rail. */
 function StackFilter() {
   const [params, setParams] = useSearchParams();
   const stack = params.get("stack");
@@ -44,14 +44,12 @@ function StackFilter() {
 }
 
 export function Projects() {
-  const count = projects.length;
-
   return (
     <section id="projects" className="scroll-mt-20">
       <div className="mx-auto w-full max-w-6xl px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
         <SheetHeading
           title="Selected work"
-          meta={`${count} projects`}
+          meta={`${projects.length} projects`}
           description="Production builds, university work, and the things I keep tending."
         />
         <StackFilter />

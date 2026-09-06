@@ -39,6 +39,8 @@ export type Project = {
   links: ProjectLink[];
   /** Optional screenshot. [mobile, desktop] when both exist. */
   images?: { src: string; alt: string }[];
+  /** A real, live link to feature in the media frame when `images` is empty. */
+  demoLink?: { href: string; note: string };
   /** Marks the flagship project for emphasis. */
   featured?: boolean;
   /** Optional expandable deep-dive, shown under the project. */

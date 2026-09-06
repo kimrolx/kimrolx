@@ -15,10 +15,9 @@ export function Home() {
   const lenis = useLenis();
 
   // Resolve a #section landing (e.g. arriving from /now via /#projects).
-  // Deferred two frames so the freshly-mounted page (incl. the tall pinned
-  // Projects track) has laid out; Lenis is re-measured first so it doesn't
-  // clamp the target against the previous route's shorter scroll limit and
-  // land short of the section.
+  // Deferred two frames so the freshly-mounted page has laid out; Lenis is
+  // re-measured first so it doesn't clamp the target against the previous
+  // route's shorter scroll limit and land short of the section.
   useEffect(() => {
     if (!hash) return;
     let raf = 0;
