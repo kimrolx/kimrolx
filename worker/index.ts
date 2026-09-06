@@ -1,0 +1,202 @@
+type Fetcher = { fetch(request: Request): Promise<Response> };
+type RateLimiter = { limit(options: { key: string }): Promise<{ success: boolean }> };
+
+export interface Env {
+  ASSETS: Fetcher;
+  CONTACT_RATE_LIMIT: RateLimiter;
+  RESEND_API_KEY: string;
+  TURNSTILE_SECRET_KEY?: string;
+  CONTACT_TO: string;
+  CONTACT_FROM: string;
+}
+
+const MAX = { name: 100, email: 200, message: 5000 };
+const MIN_MESSAGE = 10;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const fail = (status: number, error: string) =>
+  new Response(JSON.stringify({ error }), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+function trimmed(value: unknown, max: number): string | null {
+  if (typeof value !== 'string' || value.length > max) return null;
+  const text = value.trim();
+  return text.length > 0 ? text : null;
+}
+
+const TURNSTILE_VERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+async function passesTurnstile(token: unknown, ip: string, secret: string): Promise<boolean> {
+  if (typeof token !== 'string' || token.length === 0) return false;
+
+  const form = new FormData();
+  form.append('secret', secret);
+  form.append('response', token);
+  form.append('remoteip', ip);
+
+  try {
+    const response = await fetch(TURNSTILE_VERIFY, { method: 'POST', body: form });
+    const outcome = (await response.json()) as { success?: boolean };
+    return outcome.success === true;
+  } catch {
+    return false;
+  }
+}
+
+const HTML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => HTML_ESCAPES[char] ?? char);
+
+type Submission = {
+  name: string;
+  email: string;
+  message: string;
+  country: string | null;
+  sentAt: Date;
+};
+
+const stampOf = (sentAt: Date) =>
+  sentAt.toLocaleString('en-PH', { timeZone: 'Asia/Manila', dateStyle: 'medium', timeStyle: 'short' });
+
+function renderHtml({ name, email, message, country, sentAt }: Submission): string {
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const body = escapeHtml(message).replace(/\r?\n/g, '<br />');
+  const origin = ['kimrolx.com', country, stampOf(sentAt)].filter(Boolean).join(' &middot; ');
+
+  return `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </head>
+  <body style="margin:0;padding:24px;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e4e4e7;">
+      <tr>
+        <td style="padding:28px 32px 0;">
+          <table role="presentation" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="width:8px;height:8px;background:#e82a1e;font-size:0;line-height:0;">&nbsp;</td>
+              <td style="padding-left:10px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#71717a;">New message</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:20px 32px 0;">
+          <div style="font-size:24px;font-weight:700;letter-spacing:-0.02em;color:#18181b;">${safeName}</div>
+          <a href="mailto:${safeEmail}" style="font-size:14px;color:#e82a1e;text-decoration:none;">${safeEmail}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:24px 32px;">
+          <div style="border-top:1px solid #e4e4e7;border-bottom:1px solid #e4e4e7;padding:20px 0;font-size:15px;line-height:1.65;color:#27272a;">${body}</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0 32px 28px;font-size:12px;color:#a1a1aa;">
+          ${origin}<br />
+          Reply to this email to answer ${safeName} directly.
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
+}
+
+function renderText({ name, email, message, country, sentAt }: Submission): string {
+  return [
+    'NEW MESSAGE',
+    '',
+    `${name} <${email}>`,
+    '',
+    '----------------------------------------',
+    message,
+    '----------------------------------------',
+    '',
+    ['kimrolx.com', country, stampOf(sentAt)].filter(Boolean).join(' | '),
+    'Reply to this email to answer them directly.',
+  ].join('\n');
+}
+
+async function handleContact(request: Request, env: Env): Promise<Response> {
+  const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
+  const { success } = await env.CONTACT_RATE_LIMIT.limit({ key: ip });
+  if (!success) return fail(429, 'Too many messages just now. Try again in a minute.');
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return fail(400, 'Malformed request.');
+  }
+  if (typeof body !== 'object' || body === null) return fail(400, 'Malformed request.');
+  const form = body as Record<string, unknown>;
+
+  // Honeypot: a hidden field only a bot fills. Accept and drop on the floor.
+  if (typeof form.company === 'string' && form.company.length > 0) {
+    return new Response(null, { status: 204 });
+  }
+
+  // Fails open when the secret is unset so the form keeps working before
+  // Turnstile is configured. The honeypot and rate limit still apply.
+  if (env.TURNSTILE_SECRET_KEY) {
+    const human = await passesTurnstile(form['cf-turnstile-response'], ip, env.TURNSTILE_SECRET_KEY);
+    if (!human) return fail(403, 'Bot check failed. Reload the page and try again.');
+  }
+
+  const name = trimmed(form.name, MAX.name);
+  const email = trimmed(form.email, MAX.email);
+  const message = trimmed(form.message, MAX.message);
+  if (!name || !email || !message) return fail(400, 'Name, email, and message are all required.');
+  if (!EMAIL.test(email)) return fail(400, 'That email address looks off.');
+  if (message.length < MIN_MESSAGE) return fail(400, 'Tell me a little more than that.');
+
+  const submission: Submission = {
+    name,
+    email,
+    message,
+    country: (request as { cf?: { country?: string } }).cf?.country ?? null,
+    sentAt: new Date(),
+  };
+
+  const sent = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: env.CONTACT_FROM,
+      to: [env.CONTACT_TO],
+      reply_to: email,
+      subject: `Portfolio — ${name}`,
+      html: renderHtml(submission),
+      text: renderText(submission),
+    }),
+  });
+
+  if (!sent.ok) return fail(502, 'Could not send that right now. Try again in a moment.');
+  return new Response(null, { status: 204 });
+}
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const { pathname } = new URL(request.url);
+    if (pathname === '/api/contact') {
+      if (request.method !== 'POST') {
+        return new Response(null, { status: 405, headers: { Allow: 'POST' } });
+      }
+      return handleContact(request, env);
+    }
+    return env.ASSETS.fetch(request);
+  },
+};

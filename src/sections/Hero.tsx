@@ -3,7 +3,7 @@ import { FiArrowDown, FiArrowRight, FiDownload } from 'react-icons/fi';
 import { motion, type Variants } from 'motion/react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { profile } from '@/data/profile';
-import { ButtonLink } from '@/components/Button';
+import { ButtonLink } from '@/components/base-components/button';
 import { HeroName } from '@/components/HeroName';
 import { Lightbox } from '@/components/Lightbox';
 import { SocialLinks } from '@/components/SocialLinks';
@@ -66,11 +66,11 @@ export function Hero() {
                 View work
                 <FiArrowRight aria-hidden="true" className="h-4 w-4" />
               </ButtonLink>
-              <ButtonLink href={profile.resumeUrl} variant="ghost" download>
+              <ButtonLink href={profile.resumeUrl} variant="outline" download>
                 <FiDownload aria-hidden="true" className="h-4 w-4" />
                 Download CV
               </ButtonLink>
-              <ButtonLink href="#contact" variant="ghost">
+              <ButtonLink href="#contact" variant="outline">
                 Get in touch
               </ButtonLink>
             </motion.div>

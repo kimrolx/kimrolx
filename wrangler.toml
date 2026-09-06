@@ -1,7 +1,25 @@
 name = "kimrolx"
 compatibility_date = "2026-06-29"
+main = "worker/index.ts"
+
+# Turnstile matches on hostname, and 127.0.0.1 is not the same host as localhost.
+[dev]
+ip = "localhost"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "single-page-application"
 html_handling = "drop-trailing-slash"
+
+[vars]
+CONTACT_TO = "beramekimrol@gmail.com"
+CONTACT_FROM = "Portfolio <onboarding@resend.dev>"
+
+[[ratelimits]]
+name = "CONTACT_RATE_LIMIT"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 3
+  period = 60

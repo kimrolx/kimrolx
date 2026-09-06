@@ -1,22 +1,23 @@
-import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { useLenis } from "lenis/react";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { WipeProvider } from "@/components/WipeProvider";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { TopBar } from "@/components/TopBar";
-import { LeftRail } from "@/components/LeftRail";
-import { Home } from "@/pages/Home";
-import { Now } from "@/pages/Now";
-import { Gear } from "@/pages/Gear";
-import { Skills } from "@/pages/Skills";
-import { EasterEggProvider } from "@/context/EasterEggProvider";
-import { MusicProvider } from "@/context/MusicProvider";
-import { useEasterEgg } from "@/hooks/useEasterEgg";
-import { useKonami } from "@/hooks/useKonami";
-import { CrtExitButton } from "@/components/CrtExitButton";
-import { CrtTerminal } from "@/components/CrtTerminal";
-import { CrtAchievementToast } from "@/components/CrtAchievementToast";
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
+import { SmoothScroll } from '@/components/SmoothScroll';
+import { WipeProvider } from '@/components/WipeProvider';
+import { ScrollProgress } from '@/components/ScrollProgress';
+import { TopBar } from '@/components/TopBar';
+import { LeftRail } from '@/components/LeftRail';
+import { Home } from '@/pages/Home';
+import { Now } from '@/pages/Now';
+import { Gear } from '@/pages/Gear';
+import { Skills } from '@/pages/Skills';
+import { EasterEggProvider } from '@/context/EasterEggProvider';
+import { MusicProvider } from '@/context/MusicProvider';
+import { useEasterEgg } from '@/hooks/useEasterEgg';
+import { useKonami } from '@/hooks/useKonami';
+import { CrtExitButton } from '@/components/CrtExitButton';
+import { CrtTerminal } from '@/components/CrtTerminal';
+import { CrtAchievementToast } from '@/components/CrtAchievementToast';
+import { Toaster } from './components/base-components/toast';
 
 /** Reset to the top on route (path) changes; hash anchors are handled per page. */
 function ScrollToTop() {
@@ -39,8 +40,8 @@ function KonamiTrigger() {
 function App() {
   useEffect(() => {
     console.log(
-      "%c the old machines still boot.  ↑ ↑ ↓ ↓ ← → ← → B A ",
-      "font-family:monospace;color:#7CFFB2;background:#0a0a0a;padding:4px 8px;border-radius:2px;",
+      '%c the old machines still boot.  ↑ ↑ ↓ ↓ ← → ← → B A ',
+      'font-family:monospace;color:#7CFFB2;background:#0a0a0a;padding:4px 8px;border-radius:2px;',
     );
   }, []);
 
@@ -71,6 +72,7 @@ function App() {
             <CrtTerminal />
             <CrtExitButton />
             <CrtAchievementToast />
+            <Toaster />
           </MusicProvider>
         </WipeProvider>
       </EasterEggProvider>

@@ -1,7 +1,7 @@
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { AppStoreBadge } from './AppStoreBadge';
-import { ButtonLink } from './Button';
+import { ButtonLink } from '@/components/base-components/button';
 import { ProjectMedia } from './ProjectMedia';
 import { StatusPill } from './StatusPill';
 import { TechList } from './TechTag';
@@ -65,7 +65,7 @@ export function ProjectPanel({ project, index, variant, snap = false, onOpenCase
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant={project.featured ? 'primary' : 'ghost'}
+                  variant={project.featured ? 'default' : 'outline'}
                 >
                   <Icon aria-hidden="true" className="h-4 w-4" />
                   {label}
