@@ -1,11 +1,18 @@
 type Fetcher = { fetch(request: Request): Promise<Response> };
 type RateLimiter = { limit(options: { key: string }): Promise<{ success: boolean }> };
+type KVStore = {
+  get<T>(key: string, type: 'json'): Promise<T | null>;
+  put(key: string, value: string): Promise<void>;
+};
 
 export interface Env {
   ASSETS: Fetcher;
   CONTACT_RATE_LIMIT: RateLimiter;
+  SIGNALS_CACHE: KVStore;
   RESEND_API_KEY: string;
   TURNSTILE_SECRET_KEY?: string;
+  GITHUB_USER: string;
+  GITHUB_TOKEN?: string;
   CONTACT_TO: string;
   CONTACT_FROM: string;
 }
@@ -127,6 +134,155 @@ function renderText({ name, email, message, country, sentAt }: Submission): stri
   ].join('\n');
 }
 
+export type GithubEvent = {
+  type: string;
+  repo: { name: string };
+  created_at: string;
+};
+
+export type Push = { repo: string; count: number; at: string };
+export type Summary = { pushes: number; repos: number; days: 7 };
+
+const WEEK = 7 * 86_400_000;
+
+// The public events feed omits payload.size and commits[], so a push is the
+// only unit this endpoint can honestly report.
+const pushEvents = (events: GithubEvent[]) => events.filter((event) => event.type === 'PushEvent');
+
+export function foldPushes(events: GithubEvent[]): Push[] {
+  const rows: Push[] = [];
+  for (const event of pushEvents(events)) {
+    const last = rows.at(-1);
+    if (last?.repo === event.repo.name) {
+      last.count += 1;
+      continue;
+    }
+    if (rows.length === 5) break;
+    rows.push({ repo: event.repo.name, count: 1, at: event.created_at });
+  }
+  return rows;
+}
+
+export function summarize(events: GithubEvent[], now: number): Summary | null {
+  const recent = pushEvents(events).filter((event) => now - Date.parse(event.created_at) < WEEK);
+  if (recent.length === 0) return null;
+  return {
+    pushes: recent.length,
+    repos: new Set(recent.map((event) => event.repo.name)).size,
+    days: 7,
+  };
+}
+
+export type Calendar = { total: number; from: string | null; weeks: number[][] };
+
+type CalendarResponse = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions?: number;
+          weeks?: { contributionDays?: { contributionCount?: number; date?: string }[] }[];
+        };
+      };
+    };
+  };
+};
+
+export function shapeCalendar(payload: CalendarResponse): Calendar | null {
+  const calendar = payload?.data?.user?.contributionsCollection?.contributionCalendar;
+  const weeks = calendar?.weeks;
+  if (!Array.isArray(weeks) || weeks.length === 0) return null;
+  const shaped = weeks.map((week) => (week.contributionDays ?? []).map((day) => day.contributionCount ?? 0));
+
+  // GitHub truncates the first week at the start of the window, so it can begin
+  // mid-week. Front-pad it with -1 spacers to keep every row on its weekday.
+  const pad = shaped[0].length < 7 ? 7 - shaped[0].length : 0;
+  if (pad > 0) shaped[0] = [...Array(pad).fill(-1), ...shaped[0]];
+
+  // One anchor date is enough: every cell sits pad-adjusted days after it, so
+  // the client derives the rest by index instead of shipping 365 date strings.
+  const firstDate = weeks[0]?.contributionDays?.[0]?.date;
+  const from = firstDate ? new Date(Date.parse(`${firstDate}T00:00:00Z`) - pad * 86_400_000).toISOString().slice(0, 10) : null;
+
+  return { total: calendar?.totalContributions ?? 0, from, weeks: shaped };
+}
+
+export type Signals = {
+  fetchedAt: string;
+  summary: Summary | null;
+  pushes: Push[];
+  calendar: Calendar | null;
+};
+
+const SIGNALS_KEY = 'signals';
+const SIGNALS_TTL = 300_000;
+
+async function fetchEvents(env: Env): Promise<GithubEvent[] | null> {
+  if (!env.GITHUB_TOKEN) return null;
+  try {
+    const response = await fetch(`https://api.github.com/users/${env.GITHUB_USER}/events/public?per_page=100`, {
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        // GitHub answers 403 to any request without a User-Agent.
+        'User-Agent': 'kimrolx.com',
+      },
+    });
+    if (!response.ok) return null;
+    const events = await response.json();
+    return Array.isArray(events) ? (events as GithubEvent[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+const CALENDAR_QUERY =
+  'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{contributionCount date}}}}}}';
+
+async function fetchCalendar(env: Env): Promise<Calendar | null> {
+  if (!env.GITHUB_TOKEN) return null;
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'kimrolx.com',
+      },
+      body: JSON.stringify({ query: CALENDAR_QUERY, variables: { login: env.GITHUB_USER } }),
+    });
+    if (!response.ok) return null;
+    return shapeCalendar(await response.json());
+  } catch {
+    return null;
+  }
+}
+
+async function handleSignals(env: Env): Promise<Response> {
+  const json = (signals: Signals) =>
+    new Response(JSON.stringify(signals), {
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=120' },
+    });
+
+  const cached = await env.SIGNALS_CACHE.get<Signals>(SIGNALS_KEY, 'json');
+  if (cached && Date.now() - Date.parse(cached.fetchedAt) < SIGNALS_TTL) return json(cached);
+
+  const [events, calendar] = await Promise.all([fetchEvents(env), fetchCalendar(env)]);
+  if (!events) {
+    return json(cached ?? { fetchedAt: new Date().toISOString(), summary: null, pushes: [], calendar: null });
+  }
+
+  const fresh: Signals = {
+    fetchedAt: new Date().toISOString(),
+    summary: summarize(events, Date.now()),
+    pushes: foldPushes(events),
+    calendar,
+  };
+  await env.SIGNALS_CACHE.put(SIGNALS_KEY, JSON.stringify(fresh));
+  return json(fresh);
+}
+
 async function handleContact(request: Request, env: Env): Promise<Response> {
   const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
   const { success } = await env.CONTACT_RATE_LIMIT.limit({ key: ip });
@@ -196,6 +352,12 @@ export default {
         return new Response(null, { status: 405, headers: { Allow: 'POST' } });
       }
       return handleContact(request, env);
+    }
+    if (pathname === '/api/signals') {
+      if (request.method !== 'GET') {
+        return new Response(null, { status: 405, headers: { Allow: 'GET' } });
+      }
+      return handleSignals(env);
     }
     return env.ASSETS.fetch(request);
   },

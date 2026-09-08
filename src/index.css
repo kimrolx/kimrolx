@@ -231,6 +231,18 @@
   }
 }
 
+/* Signals grid: only the busiest days breathe, so the section reads as live
+   without adding a gauge or a counter. drop-shadow, not box-shadow, so the hover ring still lands. */
+@keyframes signal-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 oklch(0.63 0.23 25 / 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 4px oklch(0.63 0.23 25 / 0.9));
+  }
+}
+
 /* Scroll reveal: JS opts elements in by setting data-reveal="hidden".
    Without JS (or with reduced motion) content stays fully visible. */
 [data-reveal="hidden"] {

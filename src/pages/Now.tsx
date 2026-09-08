@@ -5,6 +5,8 @@ import { WipeLink } from '@/components/WipeLink';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 import { SheetHeading } from '@/components/SheetHeading';
+import { NowGroupRow } from '@/components/NowGroupRow';
+import { NowSignals } from '@/components/NowSignals';
 import { cn } from '@/lib/utils';
 import { nowGroups, nowIntro, nowUpdated, type NowEntry, type NowImage } from '@/data/now';
 
@@ -98,17 +100,19 @@ export function Now() {
         <SheetHeading title="Now" meta={`Updated ${updatedLabel}`} description={nowIntro} />
 
         <div className="flex flex-col">
-          {nowGroups.map((group, i) => (
-            <Reveal key={group.label} delay={i * 60}>
-              <div className="grid gap-6 border-t border-line py-12 first:border-line-2 lg:grid-cols-[12rem_1fr] lg:gap-12">
-                <h3 className="label pt-1 text-ink-3">{group.label}</h3>
+          <Reveal>
+            <NowSignals />
+          </Reveal>
 
+          {nowGroups.map((group, i) => (
+            <Reveal key={group.label} delay={(i + 1) * 60}>
+              <NowGroupRow label={group.label}>
                 <ul className="flex flex-col gap-12">
                   {group.entries.map((entry) => (
                     <Entry key={entry.title} entry={entry} />
                   ))}
                 </ul>
-              </div>
+              </NowGroupRow>
             </Reveal>
           ))}
         </div>

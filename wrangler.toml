@@ -13,8 +13,13 @@ not_found_handling = "single-page-application"
 html_handling = "drop-trailing-slash"
 
 [vars]
+GITHUB_USER = "kimrolx"
 CONTACT_TO = "beramekimrol@gmail.com"
 CONTACT_FROM = "Portfolio <onboarding@resend.dev>"
+
+[[kv_namespaces]]
+binding = "SIGNALS_CACHE"
+id = "8a449b3a8f2c4863a433123282b7b9f1"
 
 [[ratelimits]]
 name = "CONTACT_RATE_LIMIT"

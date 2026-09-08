@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { type Env } from './index.ts';
+import worker, { foldPushes, shapeCalendar, summarize, type Env } from './index.ts';
 
 type Sent = { body: Record<string, unknown> } | null;
 
@@ -153,5 +153,243 @@ test('turnstile: a verified token lets the message through', async () => {
   assert.equal(res.status, 204);
   assert.ok(sent.last, 'a verified submission should still send');
   globalThis.fetch = realFetch;
+  restore();
+});
+
+// The public events feed carries no commit count, so these fixtures mirror the
+// real trimmed payload: type, repo, created_at, and nothing else we rely on.
+const pushEvent = (repo: string, at: string) => ({
+  type: 'PushEvent',
+  repo: { name: repo },
+  created_at: at,
+});
+
+const agoIso = (ms: number) => new Date(Date.now() - ms).toISOString();
+const DAY = 86_400_000;
+
+test('foldPushes keeps only push events', () => {
+  const at = agoIso(DAY);
+  const rows = foldPushes([
+    { type: 'WatchEvent', repo: { name: 'kimrolx/haven' }, created_at: at },
+    pushEvent('kimrolx/machina', at),
+  ]);
+  assert.deepEqual(rows, [{ repo: 'kimrolx/machina', count: 1, at }]);
+});
+
+test('foldPushes folds consecutive pushes to the same repo', () => {
+  const newest = agoIso(DAY);
+  const rows = foldPushes([
+    pushEvent('kimrolx/machina', newest),
+    pushEvent('kimrolx/machina', agoIso(2 * DAY)),
+    pushEvent('kimrolx/haven', agoIso(3 * DAY)),
+  ]);
+  assert.deepEqual(rows, [
+    { repo: 'kimrolx/machina', count: 2, at: newest },
+    { repo: 'kimrolx/haven', count: 1, at: rows[1].at },
+  ]);
+});
+
+test('foldPushes caps at five rows', () => {
+  const events = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].map((name, i) =>
+    pushEvent(`kimrolx/${name}`, agoIso((i + 1) * DAY)),
+  );
+  assert.equal(foldPushes(events).length, 5);
+});
+
+test('summarize counts pushes and distinct repos inside the last seven days', () => {
+  const summary = summarize(
+    [
+      pushEvent('kimrolx/machina', agoIso(DAY)),
+      pushEvent('kimrolx/haven', agoIso(2 * DAY)),
+      pushEvent('kimrolx/machina', agoIso(3 * DAY)),
+      pushEvent('kimrolx/old', agoIso(30 * DAY)),
+    ],
+    Date.now(),
+  );
+  assert.deepEqual(summary, { pushes: 3, repos: 2, days: 7 });
+});
+
+test('summarize returns null when the window is empty', () => {
+  assert.equal(summarize([pushEvent('kimrolx/old', agoIso(30 * DAY))], Date.now()), null);
+});
+
+function signalsHarness(
+  options: { cached?: unknown; events?: unknown; calendar?: unknown; ok?: boolean; token?: string | null } = {},
+) {
+  const store = new Map<string, string>();
+  if (options.cached !== undefined) store.set('signals', JSON.stringify(options.cached));
+
+  let calls = 0;
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    calls += 1;
+    if (options.ok === false) return new Response('forbidden', { status: 403 });
+    if (String(input).includes('/graphql')) {
+      return new Response(JSON.stringify(options.calendar ?? {}), { status: 200 });
+    }
+    return new Response(JSON.stringify(options.events ?? []), { status: 200 });
+  }) as typeof globalThis.fetch;
+
+  const env = {
+    ASSETS: { fetch: async () => new Response('the spa', { status: 200 }) },
+    SIGNALS_CACHE: {
+      get: async (key: string) => {
+        const raw = store.get(key);
+        return raw ? JSON.parse(raw) : null;
+      },
+      put: async (key: string, value: string) => void store.set(key, value),
+    },
+    GITHUB_USER: 'kimrolx',
+    GITHUB_TOKEN: options.token === null ? undefined : (options.token ?? 'test-token'),
+  } as unknown as Env;
+
+  return { env, store, calls: () => calls, restore: () => void (globalThis.fetch = realFetch) };
+}
+
+const getSignals = () => new Request('https://kimrolx.com/api/signals');
+
+test('a fresh cache is served without calling GitHub', async () => {
+  const cached = {
+    fetchedAt: new Date().toISOString(),
+    summary: null,
+    pushes: [{ repo: 'kimrolx/haven', count: 2, at: agoIso(DAY) }],
+  };
+  const { env, calls, restore } = signalsHarness({ cached });
+  const res = await worker.fetch(getSignals(), env);
+  assert.deepEqual(await res.json(), cached);
+  assert.equal(calls(), 0);
+  restore();
+});
+
+test('a failing GitHub call serves stale data and leaves the cache alone', async () => {
+  const cached = {
+    fetchedAt: agoIso(DAY),
+    summary: null,
+    pushes: [{ repo: 'kimrolx/haven', count: 2, at: agoIso(DAY) }],
+  };
+  const { env, store, restore } = signalsHarness({ cached, ok: false });
+  const res = await worker.fetch(getSignals(), env);
+  assert.deepEqual(await res.json(), cached);
+  assert.deepEqual(JSON.parse(store.get('signals')!), cached);
+  restore();
+});
+
+test('no token means no GitHub call and an empty payload', async () => {
+  const { env, calls, restore } = signalsHarness({ token: null });
+  const res = await worker.fetch(getSignals(), env);
+  const body = (await res.json()) as { pushes: unknown[]; summary: unknown };
+  assert.deepEqual(body.pushes, []);
+  assert.equal(body.summary, null);
+  assert.equal(calls(), 0);
+  restore();
+});
+
+test('a cold cache shapes and stores the real trimmed GitHub payload', async () => {
+  const events = [pushEvent('kimrolx/machina', agoIso(DAY)), pushEvent('kimrolx/machina', agoIso(2 * DAY))];
+  const { env, store, restore } = signalsHarness({ events });
+  const res = await worker.fetch(getSignals(), env);
+  const body = (await res.json()) as {
+    pushes: { repo: string; count: number; at: string }[];
+    summary: { pushes: number; repos: number };
+  };
+  assert.deepEqual(body.pushes, [{ repo: 'kimrolx/machina', count: 2, at: events[0].created_at }]);
+  assert.deepEqual(body.summary, { pushes: 2, repos: 1, days: 7 });
+  assert.ok(store.has('signals'));
+  restore();
+});
+
+test('signals rejects non-GET methods', async () => {
+  const { env, restore } = signalsHarness();
+  const res = await worker.fetch(new Request('https://kimrolx.com/api/signals', { method: 'POST' }), env);
+  assert.equal(res.status, 405);
+  assert.equal(res.headers.get('Allow'), 'GET');
+  restore();
+});
+
+test('a cold cache plus a failing GitHub call returns an empty payload and writes nothing', async () => {
+  const { env, store, restore } = signalsHarness({ ok: false });
+  const res = await worker.fetch(getSignals(), env);
+  const body = (await res.json()) as { pushes: unknown[]; summary: unknown };
+  assert.deepEqual(body.pushes, []);
+  assert.equal(body.summary, null);
+  assert.equal(store.size, 0);
+  restore();
+});
+
+test('shapeCalendar flattens the GraphQL calendar into weeks of counts', () => {
+  const payload = {
+    data: {
+      user: {
+        contributionsCollection: {
+          contributionCalendar: {
+            totalContributions: 7,
+            weeks: [
+              {
+                contributionDays: [
+                  { contributionCount: 1, date: '2026-01-03' },
+                  { contributionCount: 0, date: '2026-01-04' },
+                ],
+              },
+              { contributionDays: [{ contributionCount: 6, date: '2026-01-05' }] },
+            ],
+          },
+        },
+      },
+    },
+  };
+  assert.deepEqual(shapeCalendar(payload), {
+    total: 7,
+    // first real day is Jan 3 with 5 spacers ahead of it, so the grid starts Dec 29
+    from: '2025-12-29',
+    weeks: [[-1, -1, -1, -1, -1, 1, 0], [6]],
+  });
+});
+
+test('shapeCalendar returns null for a malformed or empty calendar', () => {
+  assert.equal(shapeCalendar({}), null);
+  assert.equal(
+    shapeCalendar({ data: { user: { contributionsCollection: { contributionCalendar: { weeks: [] } } } } }),
+    null,
+  );
+});
+
+test('shapeCalendar leaves a full first week unpadded', () => {
+  const week = (counts: number[]) => ({ contributionDays: counts.map((contributionCount) => ({ contributionCount })) });
+  const payload = {
+    data: {
+      user: {
+        contributionsCollection: {
+          contributionCalendar: { totalContributions: 8, weeks: [week([1, 1, 1, 1, 1, 1, 1]), week([1])] },
+        },
+      },
+    },
+  };
+  assert.deepEqual(shapeCalendar(payload)?.weeks[0], [1, 1, 1, 1, 1, 1, 1]);
+});
+
+test('the calendar rides along in the signals payload', async () => {
+  const week = (counts: number[]) => ({ contributionDays: counts.map((contributionCount) => ({ contributionCount })) });
+  const calendar = {
+    data: {
+      user: {
+        contributionsCollection: {
+          contributionCalendar: { totalContributions: 9, weeks: [week([1, 2, 3, 0, 1, 1, 1]), week([0, 0])] },
+        },
+      },
+    },
+  };
+  const { env, restore } = signalsHarness({ events: [pushEvent('kimrolx/haven', agoIso(DAY))], calendar });
+  const res = await worker.fetch(getSignals(), env);
+  const body = (await res.json()) as { calendar: { total: number; weeks: number[][] } };
+  assert.deepEqual(body.calendar, { total: 9, from: null, weeks: [[1, 2, 3, 0, 1, 1, 1], [0, 0]] });
+  restore();
+});
+
+test('a failing calendar call still returns the push payload', async () => {
+  const { env, restore } = signalsHarness({ events: [pushEvent('kimrolx/haven', agoIso(DAY))], calendar: {} });
+  const res = await worker.fetch(getSignals(), env);
+  const body = (await res.json()) as { calendar: unknown; pushes: unknown[] };
+  assert.equal(body.calendar, null);
+  assert.equal(body.pushes.length, 1);
   restore();
 });
