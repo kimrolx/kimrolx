@@ -115,7 +115,7 @@ export function ProjectMedia({
     <>
       <div
         className={cn(
-          fill && "grid h-full gap-7",
+          fill && "grid h-full gap-3 sm:gap-7",
           images.length > 1 && (fill ? "grid-cols-2" : "grid grid-cols-2 gap-3"),
         )}
       >

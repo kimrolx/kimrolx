@@ -296,20 +296,34 @@
   }
 
   /* Hairline texture drifting behind the media. Sits under the frame's
-     own children, which carry `relative`. */
+     own children, which carry `relative`. The overhang to the right is the
+     travel room the drift translates into. */
   .media-stripes::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: 0 -5rem 0 0;
     background-image: repeating-linear-gradient(
       115deg,
       transparent 0 7px,
       oklch(1 0 0 / 0.045) 7px 8px
     );
-    background-size: 200% 200%;
-    animation: stripe-drift 9s linear infinite;
+    animation: stripe-drift 7s linear infinite;
     mask-image: linear-gradient(to bottom, oklch(0 0 0) 0%, transparent 62%);
     pointer-events: none;
+    will-change: transform;
+  }
+
+  /* A 1px hairline reads on a phone-width card and vanishes on a 900px one,
+     so desktop gets a slightly fatter stripe. The 8px period is fixed —
+     stripe-drift's travel is a multiple of it. */
+  @media (min-width: 48rem) {
+    .media-stripes::before {
+      background-image: repeating-linear-gradient(
+        115deg,
+        transparent 0 6.5px,
+        oklch(1 0 0 / 0.075) 6.5px 8px
+      );
+    }
   }
 }
 
@@ -318,6 +332,15 @@
 .project-rail {
   scroll-snap-type: x proximity;
   scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+/* Touch drags the rail directly, so snapping is committed rather than
+   advisory and each card lands centred. */
+@media (pointer: coarse) {
+  .project-rail {
+    scroll-snap-type: x mandatory;
+  }
 }
 
 .project-rail::-webkit-scrollbar {
@@ -337,12 +360,16 @@
   text-transform: uppercase;
 }
 
+/* Translating the layer, not its background-position, keeps the drift at one
+   speed on a 320px card and a 900px one. 70.62px horizontal is exactly eight
+   8px stripe periods along the 115deg axis (8 * 8 / sin 115deg), so the loop
+   restarts on a stripe and never seams. */
 @keyframes stripe-drift {
   from {
-    background-position: 0 0;
+    transform: translate3d(0, 0, 0);
   }
   to {
-    background-position: 200% 0;
+    transform: translate3d(-70.62px, 0, 0);
   }
 }
 

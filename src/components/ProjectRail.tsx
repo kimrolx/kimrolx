@@ -124,14 +124,13 @@ export function ProjectRail({
         aria-label="Projects"
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className={`project-rail flex gap-10 overflow-x-auto pb-8 ${RAIL_GUTTER}`}
+        className={`project-rail flex gap-5 overflow-x-auto pb-8 sm:gap-10 ${RAIL_GUTTER}`}
       >
         {projects.map((project, i) => (
           <ProjectPanel
             key={project.id}
             project={project}
             index={i}
-            variant="rail"
             active={i === index}
             onOpenCaseStudy={onOpenCaseStudy}
           />
