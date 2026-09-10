@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import type { Project } from "@/types";
 import { projects } from "@/data/projects";
 import { Archive } from "@/components/Archive";
-import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { CaseStudyModal } from "@/components/CaseStudyModal";
+import { ProjectRail } from "@/components/ProjectRail";
 import { Reveal } from "@/components/Reveal";
 import { SheetHeading } from "@/components/SheetHeading";
 
@@ -14,7 +17,7 @@ function StackFilter() {
   if (!stack) return null;
 
   const matches = projects.filter((p) =>
-    p.techStack.some((t) => t.label.toLowerCase() === stack.toLowerCase()),
+    p.techStack.some((tech) => tech.toLowerCase() === stack.toLowerCase()),
   );
 
   const clear = () => {
@@ -44,6 +47,8 @@ function StackFilter() {
 }
 
 export function Projects() {
+  const [caseStudy, setCaseStudy] = useState<Project | null>(null);
+
   return (
     <section id="projects" className="scroll-mt-20">
       <div className="mx-auto w-full max-w-6xl px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
@@ -55,7 +60,8 @@ export function Projects() {
         <StackFilter />
       </div>
 
-      <ProjectShowcase projects={projects} />
+      <ProjectRail projects={projects} onOpenCaseStudy={setCaseStudy} />
+      <CaseStudyModal project={caseStudy} onClose={() => setCaseStudy(null)} />
 
       <div className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8 sm:pb-20 lg:pb-28">
         <Reveal className="mt-16 sm:mt-20">

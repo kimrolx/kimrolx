@@ -6,7 +6,6 @@ const BACKGROUND_VOLUME = 0.05;
 const FADE_MS = 2500;
 
 export type MusicValue = {
-  /** The active track's title/artist, or null when nothing is loaded. */
   title: string;
   artist: string;
   isPlaying: boolean;
@@ -22,8 +21,6 @@ export type MusicValue = {
 // eslint-disable-next-line react-refresh/only-export-components
 export const MusicContext = createContext<MusicValue | null>(null);
 
-const playable = tracks.filter((t) => t.src);
-
 export function MusicProvider({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fadeRef = useRef<number | null>(null);
@@ -32,8 +29,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const ready = playable.length > 0;
-  const current = playable[index];
+  const current = tracks[index];
 
   const cancelFade = useCallback(() => {
     if (fadeRef.current != null) {
@@ -53,11 +49,10 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     el.volume = 0;
-    const from = 0;
     const start = performance.now();
     const step = (now: number) => {
       const t = Math.min(Math.max((now - start) / FADE_MS, 0), 1);
-      el.volume = from + (BACKGROUND_VOLUME - from) * t;
+      el.volume = BACKGROUND_VOLUME * t;
       fadeRef.current = t < 1 ? requestAnimationFrame(step) : null;
     };
     fadeRef.current = requestAnimationFrame(step);
@@ -65,7 +60,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
 
   const play = useCallback(() => {
     const el = audioRef.current;
-    if (!el || !ready) return;
+    if (!el) return;
     el.volume = BACKGROUND_VOLUME;
     el.play()
       .then(() => {
@@ -73,7 +68,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
         fadeIn();
       })
       .catch(() => setIsPlaying(false));
-  }, [ready, fadeIn]);
+  }, [fadeIn]);
 
   const pause = useCallback(() => {
     cancelFade();
@@ -86,15 +81,8 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     else play();
   }, [isPlaying, play, pause]);
 
-  const next = useCallback(() => {
-    if (!ready) return;
-    setIndex((i) => (i + 1) % playable.length);
-  }, [ready]);
-
-  const prev = useCallback(() => {
-    if (!ready) return;
-    setIndex((i) => (i - 1 + playable.length) % playable.length);
-  }, [ready]);
+  const next = useCallback(() => setIndex((i) => (i + 1) % tracks.length), []);
+  const prev = useCallback(() => setIndex((i) => (i - 1 + tracks.length) % tracks.length), []);
 
   const seek = useCallback((seconds: number) => {
     const el = audioRef.current;
@@ -106,7 +94,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   // Load the current track's source; resume playback if we were already playing.
   useEffect(() => {
     const el = audioRef.current;
-    if (!el || !current?.src) return;
+    if (!el) return;
     el.src = current.src;
     el.load();
     setCurrentTime(0);
@@ -119,13 +107,12 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     }
     // isPlaying intentionally omitted: we only want this on track change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, current?.src]);
+  }, [current.src]);
 
   useEffect(() => cancelFade, [cancelFade]);
 
   // Start on the visitor's first interaction (pointerdown also covers touch).
   useEffect(() => {
-    if (!ready) return;
     let armed = true;
     const start = () => {
       if (!armed) return;
@@ -140,13 +127,13 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     window.addEventListener('pointerdown', start);
     window.addEventListener('keydown', start);
     return remove;
-  }, [ready, play]);
+  }, [play]);
 
   return (
     <MusicContext.Provider
       value={{
-        title: current?.title ?? '',
-        artist: current?.artist ?? '',
+        title: current.title,
+        artist: current.artist,
         isPlaying,
         currentTime,
         duration,

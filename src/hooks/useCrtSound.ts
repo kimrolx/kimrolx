@@ -1,29 +1,16 @@
 import { useCallback, useRef } from 'react';
 
-type AudioCtor = typeof AudioContext;
-
-function getCtor(): AudioCtor | null {
-  if (typeof window === 'undefined') return null;
-  return window.AudioContext ?? (window as unknown as { webkitAudioContext?: AudioCtor }).webkitAudioContext ?? null;
-}
-
 export function useCrtSound() {
   const ctxRef = useRef<AudioContext | null>(null);
 
-  const getCtx = useCallback((): AudioContext | null => {
-    if (ctxRef.current) {
-      if (ctxRef.current.state === 'suspended') void ctxRef.current.resume();
-      return ctxRef.current;
-    }
-    const Ctor = getCtor();
-    if (!Ctor) return null;
-    ctxRef.current = new Ctor();
+  const getCtx = useCallback((): AudioContext => {
+    if (!ctxRef.current) ctxRef.current = new AudioContext();
+    else if (ctxRef.current.state === 'suspended') void ctxRef.current.resume();
     return ctxRef.current;
   }, []);
 
   const boot = useCallback(() => {
     const ac = getCtx();
-    if (!ac) return;
     const now = ac.currentTime;
 
     // rising chirp
@@ -54,7 +41,6 @@ export function useCrtSound() {
 
   const blip = useCallback(() => {
     const ac = getCtx();
-    if (!ac) return;
     const now = ac.currentTime;
     const osc = ac.createOscillator();
     const g = ac.createGain();

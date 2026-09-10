@@ -15,7 +15,6 @@ export type EasterEggValue = {
 export const EasterEggContext = createContext<EasterEggValue | null>(null);
 
 function readMode(): boolean {
-  if (typeof window === "undefined") return false;
   try {
     return window.localStorage.getItem(MODE_KEY) === "1";
   } catch {
@@ -24,7 +23,6 @@ function readMode(): boolean {
 }
 
 function readFinds(): number {
-  if (typeof window === "undefined") return 0;
   try {
     const n = parseInt(window.localStorage.getItem(FINDS_KEY) ?? "", 10);
     return Number.isFinite(n) && n > 0 ? n : 0;

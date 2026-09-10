@@ -163,11 +163,8 @@ export function runCommand(raw: string): CommandResult {
   if (name === "") return { lines: [] };
   // Own-property check so inherited Object.prototype members (toString,
   // constructor, __proto__, ...) can't slip past as fake commands.
-  const handler = Object.prototype.hasOwnProperty.call(commands, name)
-    ? commands[name]
-    : undefined;
-  if (!handler) {
+  if (!Object.hasOwn(commands, name)) {
     return { lines: [`command not found: ${name}. type 'help' for a list.`] };
   }
-  return handler(args);
+  return commands[name](args);
 }

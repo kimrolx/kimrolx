@@ -37,7 +37,7 @@ Run a single test file: `tsx --test src/config/seo.test.ts`
 
 ## Deploy
 
-Deployment is a **manual `wrangler deploy`** (Cloudflare Workers Static Assets), NOT `gh-pages` — the `gh-pages` devDependency is stale and unused. `wrangler.toml` serves `./dist` with `not_found_handling = "single-page-application"`, so every unknown path falls back to the SPA. Always `npm run build` before deploying so the prerendered per-route HTML is fresh.
+Deployment is a **manual `wrangler deploy`** (Cloudflare Workers Static Assets). `wrangler.toml` serves `./dist` with `not_found_handling = "single-page-application"`, so every unknown path falls back to the SPA. Always `npm run build` before deploying so the prerendered per-route HTML is fresh.
 
 ## Architecture
 

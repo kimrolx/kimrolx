@@ -6,27 +6,7 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
 import { useTapSequence } from '@/hooks/useTapSequence';
 import { cn } from '@/lib/utils';
-
-type Item = {
-  n: string;
-  label: string;
-  to: string;
-  /** home-anchor section id (scroll-spy) */
-  section?: string;
-  /** standalone route path */
-  route?: string;
-};
-
-const ITEMS: Item[] = [
-  { n: '01', label: 'Experience', to: '/#experience', section: 'experience' },
-  { n: '02', label: 'Projects', to: '/#projects', section: 'projects' },
-  { n: '03', label: 'About', to: '/#about', section: 'about' },
-  { n: '04', label: 'Contact', to: '/#contact', section: 'contact' },
-  { n: '05', label: 'Gear', to: '/gear', route: '/gear' },
-  { n: '06', label: 'Now', to: '/now', route: '/now' },
-];
-
-const SECTION_IDS = ['home', ...ITEMS.filter((i) => i.section).map((i) => i.section!)];
+import { NAV_ITEMS, SECTION_IDS, type NavItem } from '@/data/nav';
 
 export function LeftRail() {
   const { pathname } = useLocation();
@@ -35,14 +15,12 @@ export function LeftRail() {
   const active = useActiveSection(isHome ? SECTION_IDS : []);
 
   const { toggleCrt } = useEasterEgg();
-  const onDotTap = useTapSequence(toggleCrt, { count: 5, windowMs: 1500 });
+  const onDotTap = useTapSequence(toggleCrt);
 
-  const isActive = (item: Item) => (isHome ? item.section === active : item.route === pathname);
+  const isActive = (item: NavItem) => (isHome ? item.section === active : item.route === pathname);
 
   // The running folio: whatever destination we're currently sitting in.
-  const current = isHome
-    ? (ITEMS.find((i) => i.section === active) ?? null)
-    : (ITEMS.find((i) => i.route === pathname) ?? null);
+  const current = NAV_ITEMS.find(isActive) ?? null;
 
   return (
     <header
@@ -77,7 +55,7 @@ export function LeftRail() {
       {/* Index — numbered 01–06 with a small always-on label, red tick marks active */}
       <nav aria-label="Primary" className="flex flex-1 items-center">
         <ul className="flex w-full flex-col gap-1">
-          {ITEMS.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const on = isActive(item);
             return (
               <li key={item.n}>

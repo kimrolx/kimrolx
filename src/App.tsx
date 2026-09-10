@@ -17,7 +17,6 @@ import { useKonami } from '@/hooks/useKonami';
 import { CrtExitButton } from '@/components/CrtExitButton';
 import { CrtTerminal } from '@/components/CrtTerminal';
 import { CrtAchievementToast } from '@/components/CrtAchievementToast';
-import { Toaster } from './components/base-components/toast';
 
 /** Reset to the top on route (path) changes; hash anchors are handled per page. */
 function ScrollToTop() {
@@ -72,7 +71,6 @@ function App() {
             <CrtTerminal />
             <CrtExitButton />
             <CrtAchievementToast />
-            <Toaster />
           </MusicProvider>
         </WipeProvider>
       </EasterEggProvider>

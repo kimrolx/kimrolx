@@ -18,14 +18,14 @@ export const projects: Project[] = [
     description:
       "Offline-first iOS app that tracks motorcycle service intervals and history per bike. What's due, what's overdue, and what you last paid. Multi-bike, no account, fully on-device. Live on the App Store since June 2026, peaked #3 in Utilities. Android-support in active development.",
     techStack: [
-      { label: 'TypeScript' },
-      { label: 'React Native' },
-      { label: 'Expo' },
-      { label: 'Expo Router' },
-      { label: 'SQLite' },
-      { label: 'Drizzle ORM' },
-      { label: 'Zustand' },
-      { label: 'Reanimated' },
+      'TypeScript',
+      'React Native',
+      'Expo',
+      'Expo Router',
+      'SQLite',
+      'Drizzle ORM',
+      'Zustand',
+      'Reanimated',
     ],
     links: [
       {
@@ -74,12 +74,12 @@ export const projects: Project[] = [
     description:
       'A URL shortener and link manager: shorten long links, organize them, and track click metrics with free link analytics. Built on a NestJS backend with MongoDB and Redis to keep high-volume link generation and lookups fast.',
     techStack: [
-      { label: 'TypeScript' },
-      { label: 'NestJS' },
-      { label: 'React' },
-      { label: 'Tailwind CSS' },
-      { label: 'MongoDB' },
-      { label: 'Redis' },
+      'TypeScript',
+      'NestJS',
+      'React',
+      'Tailwind CSS',
+      'MongoDB',
+      'Redis',
     ],
     links: [{ label: 'Visit trimmly.xyz', href: 'https://www.trimmly.xyz', icon: FiExternalLink }],
     demoLink: {
@@ -97,14 +97,14 @@ export const projects: Project[] = [
     description:
       'Recycling engagement platform for the University of San Jose – Recoletos. A semi-smart trashcan identifies and counts plastic bottles, awarding points redeemable for meals, supplies, and event tickets. The companion dashboard lets administrators manage accounts and read recycling activity at a glance, pairing technology with behavioral nudges to build a sustainable campus habit.',
     techStack: [
-      { label: 'Flutter' },
-      { label: 'Dart' },
-      { label: 'TypeScript' },
-      { label: 'Remix' },
-      { label: 'React' },
-      { label: 'Tailwind CSS' },
-      { label: 'Firebase' },
-      { label: 'Firestore' },
+      'Flutter',
+      'Dart',
+      'TypeScript',
+      'Remix',
+      'React',
+      'Tailwind CSS',
+      'Firebase',
+      'Firestore',
     ],
     links: [
       { label: 'Mobile source', href: 'https://github.com/kimrolx/EcoPoints-Mobile', icon: FaGithub },

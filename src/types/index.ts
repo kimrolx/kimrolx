@@ -1,9 +1,5 @@
 import type { IconType } from "react-icons";
 
-export type Tech = {
-  label: string;
-};
-
 export type ProjectStatus = "In Progress" | "Completed" | "Production";
 
 export type ProjectLink = {
@@ -35,7 +31,7 @@ export type Project = {
   period: string;
   status: ProjectStatus;
   description: string;
-  techStack: Tech[];
+  techStack: string[];
   links: ProjectLink[];
   /** Optional screenshot. [mobile, desktop] when both exist. */
   images?: { src: string; alt: string }[];
@@ -55,7 +51,7 @@ export type Experience = {
   employmentType: string;
   period: string;
   highlights: string[];
-  techStack: Tech[];
+  techStack: string[];
 };
 
 export type SkillGroup = {
@@ -73,6 +69,6 @@ export type SocialLink = {
 export type Track = {
   title: string;
   artist: string;
-  /** Imported asset URL (Vite-hashed). Leave undefined to render a disabled placeholder. */
-  src?: string;
+  /** Imported asset URL (Vite-hashed). */
+  src: string;
 };

@@ -7,63 +7,30 @@ import { Lightbox } from "./Lightbox";
 type ProjectImage = { src: string; alt: string };
 
 /**
- * One screenshot, opened full size on click. `fill` pins it to the card's
- * media band so a row of plates stays even whatever the aspect ratios are;
- * otherwise it flows at its natural height.
+ * One screenshot pinned to the card's media band, so a row of plates stays
+ * even whatever the aspect ratios are. Opens full size on click.
  */
-function Shot({
-  image,
-  fill,
-  onOpen,
-}: {
-  image: ProjectImage;
-  fill: boolean;
-  onOpen: (image: ProjectImage) => void;
-}) {
+function Shot({ image, onOpen }: { image: ProjectImage; onOpen: (image: ProjectImage) => void }) {
   return (
     <button
       type="button"
       onClick={() => onOpen(image)}
       aria-label={`View full screen: ${image.alt}`}
-      className={cn(
-        "group/shot relative block cursor-pointer overflow-hidden rounded-sm border border-line bg-inset transition-colors focus-visible:border-red",
-        fill ? "min-h-0 text-left hover:border-red" : "hover:border-line-2",
-      )}
+      className="group/shot relative block min-h-0 cursor-pointer overflow-hidden rounded-sm border border-line bg-inset text-left transition-colors hover:border-red focus-visible:border-red"
     >
       <img
         src={image.src}
-        alt={fill ? "" : image.alt}
+        alt=""
         loading="lazy"
         decoding="async"
-        className={cn(
-          "h-full w-full object-cover transition-transform duration-500 ease-out group-hover/shot:scale-[1.03]",
-          fill && "absolute inset-0 object-top",
-        )}
+        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/shot:scale-[1.03]"
       />
-      {fill ? (
-        <>
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-bg/85 to-transparent"
-          />
-          <span className="label absolute left-5 right-5 top-5 line-clamp-2 text-ink-2">
-            {image.alt}
-          </span>
-          <FiMaximize2
-            aria-hidden="true"
-            className="absolute bottom-4 right-4 h-8 w-8 rounded-sm border border-line-2 bg-bg/80 p-2 text-ink opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover/shot:opacity-100"
-          />
-        </>
-      ) : (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center bg-bg/0 opacity-0 transition-all duration-300 group-hover/shot:bg-bg/45 group-hover/shot:opacity-100"
-        >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-line-2 bg-bg/80 text-ink backdrop-blur-sm">
-            <FiMaximize2 className="h-4 w-4" />
-          </span>
-        </span>
-      )}
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-bg/85 to-transparent" />
+      <span className="label absolute left-5 right-5 top-5 line-clamp-2 text-ink-2">{image.alt}</span>
+      <FiMaximize2
+        aria-hidden="true"
+        className="absolute bottom-4 right-4 h-8 w-8 rounded-sm border border-line-2 bg-bg/80 p-2 text-ink opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover/shot:opacity-100"
+      />
     </button>
   );
 }
@@ -94,33 +61,20 @@ function DemoLink({ project }: { project: Project }) {
 }
 
 /**
- * The project's visual. `rail` fills the card's media band; `stacked` flows
- * the screenshots inline. A project without images shows its live link —
- * never an empty rectangle, never an invented metric.
+ * The project's visual, filling the card's media band. A project without
+ * images shows its live link — never an empty rectangle, never an invented metric.
  */
-export function ProjectMedia({
-  project,
-  variant = "stacked",
-}: {
-  project: Project;
-  variant?: "rail" | "stacked";
-}) {
+export function ProjectMedia({ project }: { project: Project }) {
   const images = project.images ?? [];
-  const fill = variant === "rail";
   const [active, setActive] = useState<ProjectImage | null>(null);
 
   if (images.length === 0) return <DemoLink project={project} />;
 
   return (
     <>
-      <div
-        className={cn(
-          fill && "grid h-full gap-3 sm:gap-7",
-          images.length > 1 && (fill ? "grid-cols-2" : "grid grid-cols-2 gap-3"),
-        )}
-      >
+      <div className={cn("grid h-full gap-3 sm:gap-7", images.length > 1 && "grid-cols-2")}>
         {images.map((image) => (
-          <Shot key={image.src} image={image} fill={fill} onOpen={setActive} />
+          <Shot key={image.src} image={image} onOpen={setActive} />
         ))}
       </div>
       <Lightbox image={active} onClose={() => setActive(null)} />

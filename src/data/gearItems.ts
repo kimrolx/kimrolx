@@ -23,8 +23,7 @@ import chairImg from '@/assets/gear/battlestation/musso_e600_pro.webp';
 export type GearCategoryId = 'daily-carry' | 'battlestation';
 
 export type GearImage = {
-  /** Real asset path. Leave empty to render a labeled placeholder slot. */
-  src?: string;
+  src: string;
   alt: string;
 };
 
@@ -39,8 +38,8 @@ export type GearItem = {
   spec?: string;
   /** A short, personal note — why it earns its place. Edit freely. */
   note: string;
-  /** Optional buy/reference URL. When set, the card links out in a new tab. */
-  source?: string;
+  /** Buy/reference URL; the card links out in a new tab. */
+  source: string;
   image: GearImage;
 };
 

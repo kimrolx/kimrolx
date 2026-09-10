@@ -6,6 +6,7 @@ import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 import { SheetHeading } from '@/components/SheetHeading';
 import { NowGroupRow } from '@/components/NowGroupRow';
+import { ZoomableImage } from '@/components/Lightbox';
 import { NowSignals } from '@/components/NowSignals';
 import { cn } from '@/lib/utils';
 import { nowGroups, nowIntro, nowUpdated, type NowEntry, type NowImage } from '@/data/now';
@@ -23,7 +24,11 @@ function NowMedia({ image }: { image: NowImage }) {
     <figure className="flex flex-col gap-2">
       <div className={cn('overflow-hidden rounded-sm border border-line bg-surface', ratio)}>
         {image.src ? (
-          <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover" />
+          <ZoomableImage
+            src={image.src}
+            alt={image.alt}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/zoom:scale-[1.03]"
+          />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-ink-3">
             <FiImage aria-hidden="true" className="h-6 w-6" />

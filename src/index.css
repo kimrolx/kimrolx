@@ -43,7 +43,6 @@
   --z-nav: 100;
   --z-progress: 110;
   --z-transition: 500;
-  --z-lightbox: 1000;
   --z-crt: 9000;
   --z-crt-exit: 9100;
   --z-crt-terminal: 8000; /* intentionally below --z-crt: terminal sits under the scanline overlay + exit button */
@@ -552,4 +551,8 @@
   .crt-achieve-pop {
     animation: none;
   }
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
 }

@@ -2,15 +2,7 @@ import { useEffect, useState } from 'react';
 import { NowGroupRow } from '@/components/NowGroupRow';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
-
-type Push = { repo: string; count: number; at: string };
-type Calendar = { total: number; from: string | null; weeks: number[][] };
-type Signals = {
-  fetchedAt: string;
-  summary: { pushes: number; repos: number; days: number } | null;
-  pushes: Push[];
-  calendar: Calendar | null;
-};
+import type { Calendar, Signals } from '../../worker/index';
 
 const relative = new Intl.RelativeTimeFormat('en', { numeric: 'always', style: 'narrow' });
 

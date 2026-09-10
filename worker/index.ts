@@ -217,47 +217,44 @@ export type Signals = {
 const SIGNALS_KEY = 'signals';
 const SIGNALS_TTL = 300_000;
 
-async function fetchEvents(env: Env): Promise<GithubEvent[] | null> {
+type GithubInit = { method?: string; headers?: Record<string, string>; body?: string };
+
+async function github<T>(env: Env, url: string, init: GithubInit, parse: (json: unknown) => T | null): Promise<T | null> {
   if (!env.GITHUB_TOKEN) return null;
   try {
-    const response = await fetch(`https://api.github.com/users/${env.GITHUB_USER}/events/public?per_page=100`, {
-      headers: {
-        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        // GitHub answers 403 to any request without a User-Agent.
-        'User-Agent': 'kimrolx.com',
-      },
+    const response = await fetch(url, {
+      ...init,
+      // GitHub answers 403 to any request without a User-Agent.
+      headers: { Authorization: `Bearer ${env.GITHUB_TOKEN}`, 'User-Agent': 'kimrolx.com', ...init.headers },
     });
-    if (!response.ok) return null;
-    const events = await response.json();
-    return Array.isArray(events) ? (events as GithubEvent[]) : null;
+    return response.ok ? parse(await response.json()) : null;
   } catch {
     return null;
   }
 }
+
+const fetchEvents = (env: Env) =>
+  github(
+    env,
+    `https://api.github.com/users/${env.GITHUB_USER}/events/public?per_page=100`,
+    { headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } },
+    (json) => (Array.isArray(json) ? (json as GithubEvent[]) : null),
+  );
 
 const CALENDAR_QUERY =
   'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{contributionCount date}}}}}}';
 
-async function fetchCalendar(env: Env): Promise<Calendar | null> {
-  if (!env.GITHUB_TOKEN) return null;
-  try {
-    const response = await fetch('https://api.github.com/graphql', {
+const fetchCalendar = (env: Env) =>
+  github(
+    env,
+    'https://api.github.com/graphql',
+    {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'kimrolx.com',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: CALENDAR_QUERY, variables: { login: env.GITHUB_USER } }),
-    });
-    if (!response.ok) return null;
-    return shapeCalendar(await response.json());
-  } catch {
-    return null;
-  }
-}
+    },
+    (json) => shapeCalendar(json as CalendarResponse),
+  );
 
 async function handleSignals(env: Env): Promise<Response> {
   const json = (signals: Signals) =>

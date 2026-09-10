@@ -1,25 +1,5 @@
 import { useEffect } from 'react';
-import { resolveMeta, type RouteMeta } from '@/config/seo';
-
-function setMetaTag(attr: 'name' | 'property', key: string, content: string) {
-  let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
-  if (!el) {
-    el = document.createElement('meta');
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
-  }
-  el.setAttribute('content', content);
-}
-
-function setCanonical(href: string) {
-  let el = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-  if (!el) {
-    el = document.createElement('link');
-    el.setAttribute('rel', 'canonical');
-    document.head.appendChild(el);
-  }
-  el.setAttribute('href', href);
-}
+import { META_TAGS, resolveMeta, type RouteMeta } from '@/config/seo';
 
 /**
  * Updates document title, meta description, canonical URL, and OG/Twitter
@@ -32,40 +12,25 @@ export function useSEO(route: RouteMeta) {
   const { fullTitle, canonical, description } = resolveMeta(route);
 
   useEffect(() => {
+    const meta = { fullTitle, canonical, description };
+    const link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const tags = META_TAGS.map(({ attr, key, field }) => ({
+      el: document.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`),
+      value: meta[field],
+    }));
+
     const prevTitle = document.title;
-    const prevDescription =
-      document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
-    const prevCanonical =
-      document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '';
-    const prevOgTitle =
-      document.querySelector('meta[property="og:title"]')?.getAttribute('content') ?? '';
-    const prevOgDescription =
-      document.querySelector('meta[property="og:description"]')?.getAttribute('content') ?? '';
-    const prevOgUrl =
-      document.querySelector('meta[property="og:url"]')?.getAttribute('content') ?? '';
-    const prevTwTitle =
-      document.querySelector('meta[name="twitter:title"]')?.getAttribute('content') ?? '';
-    const prevTwDescription =
-      document.querySelector('meta[name="twitter:description"]')?.getAttribute('content') ?? '';
+    const prevCanonical = link?.getAttribute('href') ?? '';
+    const prevContents = tags.map(({ el }) => el?.getAttribute('content') ?? '');
 
     document.title = fullTitle;
-    setMetaTag('name', 'description', description);
-    setCanonical(canonical);
-    setMetaTag('property', 'og:title', fullTitle);
-    setMetaTag('property', 'og:description', description);
-    setMetaTag('property', 'og:url', canonical);
-    setMetaTag('name', 'twitter:title', fullTitle);
-    setMetaTag('name', 'twitter:description', description);
+    link?.setAttribute('href', canonical);
+    tags.forEach(({ el, value }) => el?.setAttribute('content', value));
 
     return () => {
       document.title = prevTitle;
-      setMetaTag('name', 'description', prevDescription);
-      setCanonical(prevCanonical);
-      setMetaTag('property', 'og:title', prevOgTitle);
-      setMetaTag('property', 'og:description', prevOgDescription);
-      setMetaTag('property', 'og:url', prevOgUrl);
-      setMetaTag('name', 'twitter:title', prevTwTitle);
-      setMetaTag('name', 'twitter:description', prevTwDescription);
+      link?.setAttribute('href', prevCanonical);
+      tags.forEach(({ el }, i) => el?.setAttribute('content', prevContents[i]));
     };
   }, [fullTitle, canonical, description]);
 }

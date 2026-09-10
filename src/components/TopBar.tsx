@@ -5,15 +5,7 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
 import { useTapSequence } from '@/hooks/useTapSequence';
-
-const SECTIONS = [
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
-] as const;
-
-const SECTION_IDS = ['home', ...SECTIONS.map((s) => s.id)];
+import { NAV_ITEMS, SECTION_IDS, type NavItem } from '@/data/nav';
 
 export function TopBar() {
   const { pathname } = useLocation();
@@ -21,9 +13,10 @@ export function TopBar() {
   const isHome = pathname === '/';
   // Only track section scroll-spy on the home page.
   const active = useActiveSection(isHome ? SECTION_IDS : []);
+  const isActive = (item: NavItem) => (isHome ? item.section === active : item.route === pathname);
 
   const { toggleCrt } = useEasterEgg();
-  const onDotTap = useTapSequence(toggleCrt, { count: 5, windowMs: 1500 });
+  const onDotTap = useTapSequence(toggleCrt);
 
   return (
     <header
@@ -54,12 +47,12 @@ export function TopBar() {
         </WipeLink>
 
         <ul className="flex items-center gap-5 lg:gap-8">
-          {SECTIONS.map((section) => {
-            const current = isHome && active === section.id;
+          {NAV_ITEMS.map((item) => {
+            const current = isActive(item);
             return (
-              <li key={section.id} className="hidden sm:block">
+              <li key={item.to} className={item.section ? 'hidden sm:block' : undefined}>
                 <WipeLink
-                  to={`/#${section.id}`}
+                  to={item.to}
                   aria-current={current ? 'true' : undefined}
                   className={cn(
                     'label inline-flex min-h-11 items-center text-ink-3 transition-colors hover:text-ink',
@@ -70,45 +63,11 @@ export function TopBar() {
                     aria-hidden="true"
                     className={cn('mr-2 h-px w-0 bg-red transition-[width] duration-300', current && 'w-4')}
                   />
-                  {section.label}
+                  {item.label}
                 </WipeLink>
               </li>
             );
           })}
-
-          <li>
-            <WipeLink
-              to="/gear"
-              aria-current={pathname === '/gear' ? 'true' : undefined}
-              className={cn(
-                'label inline-flex min-h-11 items-center text-ink-3 transition-colors hover:text-ink',
-                pathname === '/gear' && 'text-ink',
-              )}
-            >
-              <span
-                aria-hidden="true"
-                className={cn('mr-2 h-px w-0 bg-red transition-[width] duration-300', pathname === '/gear' && 'w-4')}
-              />
-              Gear
-            </WipeLink>
-          </li>
-
-          <li>
-            <WipeLink
-              to="/now"
-              aria-current={pathname === '/now' ? 'true' : undefined}
-              className={cn(
-                'label inline-flex min-h-11 items-center text-ink-3 transition-colors hover:text-ink',
-                pathname === '/now' && 'text-ink',
-              )}
-            >
-              <span
-                aria-hidden="true"
-                className={cn('mr-2 h-px w-0 bg-red transition-[width] duration-300', pathname === '/now' && 'w-4')}
-              />
-              Now
-            </WipeLink>
-          </li>
         </ul>
       </nav>
     </header>

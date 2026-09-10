@@ -50,6 +50,16 @@ export type ResolvedMeta = {
   description: string;
 };
 
+/** Every head meta tag a route rewrites, and the resolved field that feeds it. Shared by `useSEO` and the prerender. */
+export const META_TAGS = [
+  { attr: 'name', key: 'description', field: 'description' },
+  { attr: 'property', key: 'og:title', field: 'fullTitle' },
+  { attr: 'property', key: 'og:description', field: 'description' },
+  { attr: 'property', key: 'og:url', field: 'canonical' },
+  { attr: 'name', key: 'twitter:title', field: 'fullTitle' },
+  { attr: 'name', key: 'twitter:description', field: 'description' },
+] as const satisfies readonly { attr: 'name' | 'property'; key: string; field: keyof ResolvedMeta }[];
+
 /** Applies the title + canonical conventions shared by the hook and the build script. */
 export function resolveMeta(route: RouteMeta): ResolvedMeta {
   const fullTitle =

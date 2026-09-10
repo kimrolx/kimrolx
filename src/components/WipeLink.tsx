@@ -1,4 +1,4 @@
-import { forwardRef, type MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import { Link, useLocation, type LinkProps } from "react-router-dom";
 import { useWipeNavigate } from "@/hooks/useWipeNavigate";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -13,10 +13,7 @@ function pathOf(to: string): string {
  * different pathname. Same-path/hash links, modifier clicks, and
  * reduced-motion fall through to normal <Link> behavior.
  */
-export const WipeLink = forwardRef<HTMLAnchorElement, LinkProps>(function WipeLink(
-  { to, onClick, ...rest },
-  ref,
-) {
+export function WipeLink({ to, onClick, ...rest }: LinkProps) {
   const wipeNavigate = useWipeNavigate();
   const { pathname } = useLocation();
   const reduced = usePrefersReducedMotion();
@@ -32,5 +29,5 @@ export const WipeLink = forwardRef<HTMLAnchorElement, LinkProps>(function WipeLi
     wipeNavigate(to);
   };
 
-  return <Link ref={ref} to={to} onClick={handleClick} {...rest} />;
-});
+  return <Link to={to} onClick={handleClick} {...rest} />;
+}

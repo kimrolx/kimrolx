@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 
 import { AnimatePresence, motion } from 'motion/react';
 import { FiArrowRight, FiCornerDownLeft } from 'react-icons/fi';
 import { Button } from '@/components/base-components/button';
-import { toast } from '@/components/base-components/toast';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
 
@@ -199,16 +198,10 @@ export function ContactPrompt() {
         throw new Error(body?.error ?? `Something went wrong on the way out (${response.status}).`);
       }
       setStatus('sent');
-      toast.add({
-        title: 'Message sent',
-        description: 'Your message has been sent. I will reply as soon as possible.',
-        type: 'success',
-      });
     } catch (cause) {
       const text = cause instanceof Error ? cause.message : 'Something went wrong on the way out.';
       setProblem(text);
       setStatus('idle');
-      toast.add({ title: 'Message not sent', description: text, type: 'error' });
     } finally {
       setChallenging(false);
       // A token is single-use; re-arm the widget so a retry can execute again.

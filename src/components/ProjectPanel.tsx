@@ -34,7 +34,7 @@ export function ProjectPanel({ project, index, active = true, onOpenCaseStudy }:
 
       <div className="relative min-h-[100px] flex-1 px-5 pt-5 sm:px-14 sm:pt-8">
         <div className="h-full transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]">
-          <ProjectMedia project={project} variant="rail" />
+          <ProjectMedia project={project} />
         </div>
       </div>
 

@@ -10,7 +10,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { argv } from 'node:process';
-import { ROUTES, resolveMeta, type RouteMeta } from '../src/config/seo.ts';
+import { META_TAGS, ROUTES, resolveMeta, type ResolvedMeta, type RouteMeta } from '../src/config/seo.ts';
 
 /** Replaces the content="" of the first meta tag matching `attr="key"`. */
 function replaceMeta(html: string, attr: 'name' | 'property', key: string, value: string): string {
@@ -19,15 +19,10 @@ function replaceMeta(html: string, attr: 'name' | 'property', key: string, value
 }
 
 /** Applies all per-route meta rewrites to a copy of the home HTML. Pure. */
-export function rewriteMeta(html: string, m: { fullTitle: string; canonical: string; description: string }): string {
+export function rewriteMeta(html: string, m: ResolvedMeta): string {
   let out = html.replace(/<title>[^<]*<\/title>/i, `<title>${m.fullTitle}</title>`);
   out = out.replace(/(<link\s+rel="canonical"\s+href=")[^"]*(")/i, `$1${m.canonical}$2`);
-  out = replaceMeta(out, 'name', 'description', m.description);
-  out = replaceMeta(out, 'property', 'og:title', m.fullTitle);
-  out = replaceMeta(out, 'property', 'og:description', m.description);
-  out = replaceMeta(out, 'property', 'og:url', m.canonical);
-  out = replaceMeta(out, 'name', 'twitter:title', m.fullTitle);
-  out = replaceMeta(out, 'name', 'twitter:description', m.description);
+  for (const { attr, key, field } of META_TAGS) out = replaceMeta(out, attr, key, m[field]);
   return out;
 }
 

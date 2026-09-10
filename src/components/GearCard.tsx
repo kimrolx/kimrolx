@@ -1,24 +1,19 @@
-import type { ElementType } from 'react';
-import { FiArrowUpRight, FiImage } from 'react-icons/fi';
+import { FiArrowUpRight } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
+import { ZoomableImage } from '@/components/Lightbox';
 import type { GearItem } from '@/data/gearItems';
 
-/** A full-color, hairline-framed photo — or a labeled placeholder until one exists. */
-export function GearPhoto({ image, className }: { image: GearItem['image']; className?: string }) {
+const PHOTO_CLASS =
+  'h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.06]';
+
+/** A full-color, hairline-framed photo; `zoomable` opens it full screen on click. */
+function GearPhoto({ image, zoomable, className }: { image: GearItem['image']; zoomable: boolean; className?: string }) {
   return (
-    <div className={cn('overflow-hidden rounded-sm border border-line bg-inset', className)}>
-      {image.src ? (
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
-        />
+    <div className={cn('relative z-10 overflow-hidden rounded-sm border border-line bg-inset', className)}>
+      {zoomable ? (
+        <ZoomableImage src={image.src} alt={image.alt} className={PHOTO_CLASS} />
       ) : (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-ink-3 transition-[transform,color] duration-[600ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.06] group-hover:text-ink-2">
-          <FiImage aria-hidden="true" className="h-5 w-5" />
-          <span className="label">Placeholder</span>
-        </div>
+        <img src={image.src} alt={image.alt} loading="lazy" className={PHOTO_CLASS} />
       )}
     </div>
   );
@@ -26,30 +21,17 @@ export function GearPhoto({ image, className }: { image: GearItem['image']; clas
 
 /**
  * The canonical gear card: framed photo, name + maker, mono spec, personal note.
- * `compact` trims it down for the floating hover tooltip.
+ * The full card links out through its name, stretched over the card, while the
+ * photo sits above that link and opens full screen. `compact` trims it down for
+ * the floating hover tooltip.
  */
 export function GearCard({ item, compact = false }: { item: GearItem; compact?: boolean }) {
-  // With a source, the full card becomes an external link (new tab); otherwise
-  // it stays a plain <article>. The compact tooltip never links.
-  const linked = !compact && !!item.source;
-  const Root: ElementType = linked ? 'a' : 'article';
-  const linkProps = linked
-    ? {
-        href: item.source,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': `${item.name} — view source (opens in a new tab)`,
-      }
-    : {};
-
   return (
-    <Root
-      {...linkProps}
+    <article
       className={cn(
         'flex flex-col gap-3',
         !compact &&
           'group relative h-full overflow-hidden rounded-sm border border-line bg-surface p-4 transition-[border-color,background-color,box-shadow] duration-[450ms] ease-[cubic-bezier(0.65,0,0.35,1)] hover:border-line-2 hover:bg-[oklch(0.225_0_0)] hover:shadow-[0_18px_44px_-16px_oklch(0_0_0/0.7)]',
-        linked && 'cursor-pointer',
       )}
     >
       {!compact && (
@@ -59,7 +41,7 @@ export function GearCard({ item, compact = false }: { item: GearItem; compact?: 
           className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-red transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-x-100"
         />
       )}
-      <GearPhoto image={item.image} className={compact ? 'aspect-[16/10]' : 'aspect-[4/3]'} />
+      <GearPhoto image={item.image} zoomable={!compact} className={compact ? 'aspect-[16/10]' : 'aspect-[4/3]'} />
 
       <div className={cn('flex flex-col gap-2', !compact && 'flex-1')}>
         <div className="flex flex-col gap-0.5">
@@ -71,10 +53,22 @@ export function GearCard({ item, compact = false }: { item: GearItem; compact?: 
                 compact ? 'truncate text-base' : 'truncate text-md leading-[1.25]',
               )}
             >
-              {item.name}
+              {compact ? (
+                item.name
+              ) : (
+                <a
+                  href={item.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.name} — view source (opens in a new tab)`}
+                  className="after:absolute after:inset-0 after:rounded-sm focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-red"
+                >
+                  {item.name}
+                </a>
+              )}
             </h4>
             {/* new-tab cue sits right of the name: reddens + nudges on hover */}
-            {linked && (
+            {!compact && (
               <FiArrowUpRight
                 aria-hidden="true"
                 className="mt-0.5 h-4 w-4 shrink-0 text-ink-3 opacity-60 transition-[color,opacity,transform] duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-red group-hover:opacity-100"
@@ -100,6 +94,6 @@ export function GearCard({ item, compact = false }: { item: GearItem; compact?: 
 
         {!compact && item.spec && <span className="label mt-auto pt-1 text-[0.625rem] text-red-ink">{item.spec}</span>}
       </div>
-    </Root>
+    </article>
   );
 }

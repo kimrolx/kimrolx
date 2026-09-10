@@ -3,8 +3,7 @@ import { motion, type Variants } from 'motion/react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { skillGroups } from '@/data/skills';
 import { branchConfigs } from '@/data/skillTree';
-import { skillIcons, FallbackIcon } from '@/data/skillIcons';
-import { iconColor } from '@/data/skillIconColors';
+import { skillMark } from '@/data/skillIcons';
 import { layoutSkillTree } from '@/lib/skillTreeLayout';
 import { skillTreeTimings, type Phase } from '@/lib/skillTreeAnim';
 import { useWipeNavigate } from '@/hooks/useWipeNavigate';
@@ -190,7 +189,7 @@ export function SkillTree() {
                 {/* Skill nodes: brand-coloured icon + white ink label */}
                 {branch.nodes.map((node) => {
                   const rightHalf = node.x >= layout.core.x;
-                  const Icon = skillIcons[node.label] ?? FallbackIcon;
+                  const { Icon, color } = skillMark(node.label);
                   const isHov = node.label === hoveredNode;
                   const nodeOpacity = nodeHere && !isHov ? 0.45 : 1;
                   const phase = time.nodes[node.label].node;
@@ -219,7 +218,7 @@ export function SkillTree() {
                             y={node.y - ICON_SIZE / 2}
                             width={ICON_SIZE}
                             height={ICON_SIZE}
-                            style={{ color: iconColor(node.label) }}
+                            style={{ color }}
                           />
                         </g>
                       </motion.g>
@@ -320,7 +319,7 @@ export function SkillTree() {
               </motion.h3>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((item, ii) => {
-                  const Icon = skillIcons[item] ?? FallbackIcon;
+                  const { Icon, color } = skillMark(item);
                   return (
                     <motion.li
                       key={item}
@@ -330,7 +329,7 @@ export function SkillTree() {
                         to={projectsHref(item)}
                         className="flex items-center gap-1.5 rounded-sm border border-line px-2.5 py-1 text-[0.9375rem] text-ink transition-colors hover:border-line-2"
                       >
-                        <Icon aria-hidden="true" className="h-4 w-4 shrink-0" style={{ color: iconColor(item) }} />
+                        <Icon aria-hidden="true" className="h-4 w-4 shrink-0" style={{ color }} />
                         {item}
                       </WipeLink>
                     </motion.li>
