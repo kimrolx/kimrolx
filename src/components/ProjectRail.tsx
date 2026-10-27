@@ -13,7 +13,7 @@ const RAIL_GUTTER =
   'px-[max(1.25rem,calc((100%_-_72rem)/2))] sm:px-[max(2rem,calc((100%_-_72rem)/2))]';
 
 const CONTROL =
-  'flex h-11 w-11 items-center justify-center rounded-sm border border-line text-ink-2 transition-colors hover:border-red hover:text-red-ink disabled:pointer-events-none disabled:opacity-30';
+  'flex h-11 w-11 items-center justify-center rounded-sm border border-line text-ink-2 transition-colors hover:border-red hover:text-red-ink disabled:pointer-events-none disabled:opacity-50';
 
 const github = socials.find((social) => social.label === 'GitHub');
 

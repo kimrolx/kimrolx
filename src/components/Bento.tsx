@@ -90,7 +90,7 @@ export function Bento() {
       <Tile label="Status" accent>
         <div className="mt-auto flex flex-col gap-2">
           <span className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-red" />
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-red" />
             Available for work
           </span>
           <span className="text-sm text-ink-3">Open to roles and freelance builds.</span>

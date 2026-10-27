@@ -260,7 +260,7 @@ export function ContactPrompt() {
           ? 'Continue'
           : 'Send';
   const hint = problem
-    ? problem
+    ? `Error: ${problem}`
     : challenging
       ? "Confirm you're human to finish sending."
       : sent
@@ -282,7 +282,7 @@ export function ContactPrompt() {
         </span>
       </div>
 
-      <h2 className="mt-14 max-w-[22ch] text-[clamp(2.25rem,7vw,4.75rem)] font-black leading-[0.92] tracking-[-0.045em]">
+      <h2 className="mt-14 max-w-[22ch] text-[clamp(2.25rem,7vw,4.5rem)] font-black leading-[0.92] tracking-[-0.04em]">
         Say the thing. I&apos;ll build it<span className="text-red">.</span>
       </h2>
 
@@ -292,9 +292,9 @@ export function ContactPrompt() {
       >
         <div
           className={cn(
-            'flex min-h-11 items-center gap-3 border-b-2 pb-2 sm:col-start-1 sm:row-start-1',
+            'flex min-h-11 items-center gap-3 border-b-2 pb-2 focus-within:border-red sm:col-start-1 sm:row-start-1',
             fade,
-            value || sent ? 'border-red' : 'border-line-2',
+            value || sent || problem ? 'border-red' : 'border-line-3',
           )}
         >
           <span aria-hidden="true" className="text-[1.625rem] leading-none text-red">

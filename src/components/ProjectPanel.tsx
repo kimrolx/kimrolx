@@ -1,6 +1,6 @@
 import type { Project } from '@/types';
+import appStoreBadge from '@/assets/app_store_badge.svg';
 import { cn } from '@/lib/utils';
-import { AppStoreBadge } from './AppStoreBadge';
 import { Button, ButtonLink } from '@/components/base-components/button';
 import { ProjectMedia } from './ProjectMedia';
 import { StatusPill } from './StatusPill';
@@ -21,10 +21,7 @@ export function ProjectPanel({ project, index, active = true, onOpenCaseStudy }:
     <article
       id={project.id}
       data-rail-card=""
-      className={cn(
-        'group relative flex h-[min(720px,calc(100svh-9rem))] min-h-[26rem] w-[86vw] max-w-[900px] shrink-0 snap-center flex-col overflow-hidden rounded-sm border border-line transition-[border-color,opacity] duration-500 ease-out-expo hover:border-red hover:opacity-100 sm:min-h-[31.25rem]',
-        active ? 'opacity-100' : 'opacity-45',
-      )}
+      className="group relative flex h-[min(720px,calc(100svh-9rem))] min-h-[26rem] w-[86vw] max-w-[900px] shrink-0 snap-center flex-col overflow-hidden rounded-sm border border-line transition-colors duration-500 ease-out-expo hover:border-red sm:min-h-[31.25rem]"
     >
       <div
         aria-hidden="true"
@@ -32,7 +29,12 @@ export function ProjectPanel({ project, index, active = true, onOpenCaseStudy }:
         className="media-stripes pointer-events-none absolute inset-0 bg-inset"
       />
 
-      <div className="relative min-h-[100px] flex-1 px-5 pt-5 sm:px-14 sm:pt-8">
+      <div
+        className={cn(
+          'relative min-h-[100px] flex-1 px-5 pt-5 transition-opacity duration-500 ease-out-expo group-hover:opacity-100 sm:px-14 sm:pt-8',
+          active ? 'opacity-100' : 'opacity-60',
+        )}
+      >
         <div className="h-full transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]">
           <ProjectMedia project={project} />
         </div>
@@ -42,7 +44,7 @@ export function ProjectPanel({ project, index, active = true, onOpenCaseStudy }:
         <span aria-hidden="true" className="label text-red">
           {number}
         </span>
-        <h3 className="text-[clamp(1.5rem,2.8vw,3rem)] font-black leading-[0.95] tracking-[-0.04em] transition-transform duration-500 ease-out-expo group-hover:translate-x-2.5">
+        <h3 className="text-[clamp(1.5rem,2.8vw,2.5rem)] font-black leading-[0.95] tracking-[-0.04em] transition-transform duration-500 ease-out-expo group-hover:translate-x-2.5">
           {project.title}
         </h3>
       </div>
@@ -54,14 +56,22 @@ export function ProjectPanel({ project, index, active = true, onOpenCaseStudy }:
         </div>
 
         <p className="text-[1.0625rem] font-semibold leading-snug text-ink">{project.kind}</p>
-        <p className="line-clamp-2 text-[0.9375rem] leading-[1.62] text-ink-3">{project.description}</p>
+        <p className="line-clamp-2 text-[0.9375rem] leading-[1.62] text-ink-2">{project.description}</p>
 
         <TechList items={project.techStack} />
 
         <div className="mt-2 flex flex-wrap items-center gap-3">
           {project.links.map(({ label, href, icon: Icon }) =>
             href.includes('apps.apple.com') ? (
-              <AppStoreBadge key={label} href={href} />
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex transition-transform duration-200 hover:-translate-y-px"
+              >
+                <img src={appStoreBadge} alt="Download on the App Store" width={120} height={40} className="h-10 w-auto" />
+              </a>
             ) : (
               <ButtonLink
                 key={label}

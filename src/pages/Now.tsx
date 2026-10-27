@@ -45,7 +45,7 @@ function EntryHead({ entry }: { entry: NowEntry }) {
   return (
     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
       <h4 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink sm:text-xl">
-        {entry.active && <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-red" />}
+        {entry.active && <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-red" />}
         {entry.title}
       </h4>
       {entry.meta && <span className="label text-ink-3">{entry.meta}</span>}

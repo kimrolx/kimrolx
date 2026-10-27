@@ -33,6 +33,7 @@ export const projects: Project[] = [
         href: 'https://apps.apple.com/us/app/machina-know-your-ride/id6775355789',
         icon: FaApple,
       },
+      { label: 'Visit ridemachina.app', href: 'https://ridemachina.app', icon: FiExternalLink },
     ],
     images: [
       { src: machinaDashboard, alt: 'MACHINA dashboard showing odometer, overdue and due-soon service counts' },

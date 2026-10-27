@@ -53,7 +53,7 @@ export function MusicPlayer() {
           type="button"
           onClick={toggle}
           aria-label={isPlaying ? 'Pause' : 'Play'}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line-2 text-ink transition-colors hover:border-red hover:text-red-ink cursor-pointer"
+          className="flex h-9 w-9 items-center justify-center rounded-sm border border-line-2 text-ink transition-colors hover:border-red hover:text-red-ink cursor-pointer"
         >
           {isPlaying ? (
             <LuPause size={16} aria-hidden="true" />

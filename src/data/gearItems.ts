@@ -1,4 +1,4 @@
-import iphoneImg from '@/assets/gear/iphone_14_pro_max.webp';
+import iphoneImg from '@/assets/gear/iphone_18_pro_max.webp';
 import macbookImg from '@/assets/gear/macbook_pro_m4_pro.webp';
 import airpodsImg from '@/assets/gear/airpods_pro_4.webp';
 import amazfitImg from '@/assets/gear/amazfit_balance_2.webp';
@@ -72,13 +72,13 @@ export const gearItems: GearItem[] = [
   // ── Daily Carry ─────────────────────────────────────────────
   {
     id: 'iphone',
-    name: 'iPhone 14 Pro Max',
+    name: 'iPhone 18 Pro Max',
     brand: 'Apple',
     category: 'daily-carry',
-    spec: '6.7" · A16 Pro',
+    spec: '6.9" · A20 Pro',
     note: "The one device I can't leave home without.",
     source: 'https://www.apple.com/ph/iphone/',
-    image: { src: iphoneImg, alt: 'iPhone 14 Pro Max' },
+    image: { src: iphoneImg, alt: 'iPhone 18 Pro Max' },
   },
   {
     id: 'macbook',

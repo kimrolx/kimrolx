@@ -21,6 +21,7 @@
   /* Lines — hairline rules, light on dark */
   --color-line: oklch(1 0 0 / 0.1); /* fine separators */
   --color-line-2: oklch(1 0 0 / 0.2); /* structural rules */
+  --color-line-3: oklch(1 0 0 / 0.38); /* 3:1 control boundary */
 
   /* Ink — all clear AA on bg */
   --color-ink: oklch(0.97 0 0); /* ~17:1 — display + body */
@@ -30,6 +31,7 @@
   /* Swiss red — the one accent. Display marks, active state, hover, rules. */
   --color-red: oklch(0.63 0.23 25); /* vivid on dark (large/accents) */
   --color-red-ink: oklch(0.7 0.2 27); /* red as small text on dark */
+  --color-on-red: oklch(0.16 0 0); /* text on a red fill (selection only) */
 
   /* Radius — minimal */
   --radius-sm: 2px;
@@ -103,7 +105,7 @@
 
   ::selection {
     background: var(--color-red);
-    color: var(--color-ink);
+    color: var(--color-on-red);
   }
 }
 
