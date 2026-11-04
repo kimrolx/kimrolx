@@ -25,7 +25,7 @@
 
 ###
 
-**[MACHINA](https://ridemachina.app)** — iOS Motorcycle Maintenance Tracker - ([ridemachina.app](https://ridemachina.app))
+**[MACHINA](https://apps.apple.com/ph/app/machina-know-your-ride/id6775355789)** — iOS Motorcycle Maintenance Tracker - ([ridemachina.app](https://ridemachina.app))
 - Offline-first app tracking service intervals, history, and costs per bike — multi-bike, no account, fully on-device
 - Instrument-cluster aesthetic: monospace, signal-orange on near-black
 - Built with **React Native**, **Expo**, **TypeScript**, **SQLite**, **Drizzle ORM**, **Zustand**
