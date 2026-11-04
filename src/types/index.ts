@@ -21,25 +21,26 @@ export type CaseStudy = {
   stat?: { value: string; label: string };
 };
 
+export type ProjectCategory = "Production" | "University" | "Experiment";
+
 export type Project = {
   id: string;
   title: string;
-  /** One-line role/what-it-is, shown in mono. */
   kind: string;
-  /** Optional compact release/version note for shipped apps. */
-  version?: string;
-  period: string;
-  status: ProjectStatus;
+  category: ProjectCategory;
+  year: number;
+  /** Deck only, e.g. "2026 — Present". */
+  period?: string;
+  /** Deck only; archive entries omit it. */
+  status?: ProjectStatus;
   description: string;
+  /** Full list; drives `?stack=` matching. */
   techStack: string[];
+  /** Display subset for the deck and archive rows; defaults to `techStack`. */
+  stack?: string[];
+  /** `links[0]` is the primary CTA, `links[1]` the secondary text link. */
   links: ProjectLink[];
-  /** Optional screenshot. [mobile, desktop] when both exist. */
-  images?: { src: string; alt: string }[];
-  /** A real, live link to feature in the media frame when `images` is empty. */
-  demoLink?: { href: string; note: string };
-  /** Marks the flagship project for emphasis. */
-  featured?: boolean;
-  /** Optional expandable deep-dive, shown under the project. */
+  cover?: { src: string; alt: string };
   caseStudy?: CaseStudy;
 };
 

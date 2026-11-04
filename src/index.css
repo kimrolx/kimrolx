@@ -119,6 +119,19 @@
   }
 }
 
+/* Components layer, so a size utility beside it (e.g. the 11px compact deck
+   header) still wins. */
+@layer components {
+  /* Mechanical voice of the projects deck and archive. */
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
 /* Hero portrait: always full color. Desktop hover lights up the red frame
    accent — border turns red and the corner tick grows. Touch/coarse pointers
    have no hover, so the frame stays in its resting state. */
@@ -276,127 +289,70 @@
   }
 }
 
-/* ============================================================
-   Projects rail — per-project media tones + drifting hairlines
-   Dark tints of the existing surfaces; no new palette entries.
-   ============================================================ */
-@layer utilities {
-  [data-tone="machina"] {
-    background-image: linear-gradient(
-      150deg,
-      oklch(0.22 0.05 55),
-      oklch(0.13 0.024 50) 62%,
-      oklch(0.155 0.008 280)
-    );
-  }
-
-  [data-tone="trimly"] {
-    background-image: linear-gradient(
-      150deg,
-      oklch(0.19 0.011 280),
-      oklch(0.14 0.008 280) 60%,
-      oklch(0.155 0.008 280)
-    );
-  }
-
-  [data-tone="ecopoints"] {
-    background-image: linear-gradient(
-      150deg,
-      oklch(0.22 0.04 160),
-      oklch(0.15 0.025 163) 60%,
-      oklch(0.155 0.008 280)
-    );
-  }
-
-  /* Hairline texture drifting behind the media. Sits under the frame's
-     own children, which carry `relative`. The overhang to the right is the
-     travel room the drift translates into. */
-  .media-stripes::before {
-    content: "";
-    position: absolute;
-    inset: 0 -5rem 0 0;
-    background-image: repeating-linear-gradient(
-      115deg,
-      transparent 0 7px,
-      oklch(1 0 0 / 0.045) 7px 8px
-    );
-    animation: stripe-drift 7s linear infinite;
-    mask-image: linear-gradient(to bottom, oklch(0 0 0) 0%, transparent 62%);
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  /* A 1px hairline reads on a phone-width card and vanishes on a 900px one,
-     so desktop gets a slightly fatter stripe. The 8px period is fixed —
-     stripe-drift's travel is a multiple of it. */
-  @media (min-width: 48rem) {
-    .media-stripes::before {
-      background-image: repeating-linear-gradient(
-        115deg,
-        transparent 0 6.5px,
-        oklch(1 0 0 / 0.075) 6.5px 8px
-      );
-    }
-  }
+/* Projects deck: React sets data-depth, the layout owns the geometry. Each
+   back card sits up by exactly one header strip so its name stays visible.
+   The wide layout needs 880px + 2 × 96px of offset = 67rem of container. */
+.deck-stage {
+  position: relative;
+  height: 744px;
 }
 
-/* Proximity, not mandatory: the reader can rest between cards mid-gesture
-   and is never yanked. A native scrollbar reads foreign on this sheet. */
-.project-rail {
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
+.deck-card {
+  position: absolute;
+  width: min(calc(100% - 32px), 560px);
+  height: 680px;
+  transform-origin: top right;
+  transition:
+    left 0.5s var(--ease-out-expo),
+    top 0.5s var(--ease-out-expo),
+    scale 0.5s var(--ease-out-expo),
+    translate 0.2s ease-out,
+    border-color 0.2s ease-out;
 }
 
-/* Touch drags the rail directly, so snapping is committed rather than
-   advisory and each card lands centred. */
-@media (pointer: coarse) {
-  .project-rail {
-    scroll-snap-type: x mandatory;
-  }
+.deck-card[data-depth="0"] {
+  left: 0;
+  top: 64px;
+  z-index: 3;
 }
 
-.project-rail::-webkit-scrollbar {
-  display: none;
+.deck-card[data-depth="1"] {
+  left: 16px;
+  top: 32px;
+  scale: 0.97;
+  z-index: 2;
 }
 
-/* The rail card's running voice is mono — reached by scope rather than a
-   variant prop threaded through the pill, the chips, and every button. */
-[data-rail-card] :is(.label, .tech-chip, [data-slot^="button"]) {
-  font-family: var(--font-mono);
+.deck-card[data-depth="2"] {
+  left: 32px;
+  top: 0;
+  scale: 0.94;
+  z-index: 1;
 }
 
-[data-rail-card] [data-slot^="button"] {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-/* Translating the layer, not its background-position, keeps the drift at one
-   speed on a 320px card and a 900px one. 70.62px horizontal is exactly eight
-   8px stripe periods along the 115deg axis (8 * 8 / sin 115deg), so the loop
-   restarts on a stripe and never seams. */
-@keyframes stripe-drift {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-70.62px, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-rail {
-    scroll-snap-type: none;
+@container (min-width: 67rem) {
+  .deck-stage {
+    height: 656px;
   }
 
-  [data-rail-card],
-  [data-rail-card] *,
-  [data-rail-card] *::before {
-    animation: none !important;
-    transform: none !important;
-    transition-duration: 1ms !important;
+  .deck-card {
+    width: 880px;
+    height: 560px;
+  }
+
+  .deck-card[data-depth="0"] {
+    top: 96px;
+  }
+
+  .deck-card[data-depth="1"] {
+    left: 96px;
+    top: 48px;
+    scale: 0.96;
+  }
+
+  .deck-card[data-depth="2"] {
+    left: 192px;
+    scale: 0.92;
   }
 }
 

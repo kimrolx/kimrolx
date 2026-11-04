@@ -33,3 +33,11 @@ test('skills subpage resolves with site-name suffix and path canonical', () => {
 test('SITE_URL has no trailing slash', () => {
   assert.equal(SITE_URL.endsWith('/'), false);
 });
+
+test('projects route resolves with path canonical', () => {
+  assert.equal(ROUTES['/projects'].title, 'Projects');
+  assert.ok(ROUTES['/projects'].description.length > 20);
+  const m = resolveMeta(ROUTES['/projects']);
+  assert.equal(m.fullTitle, 'Projects — Kim Roland Berame');
+  assert.equal(m.canonical, 'https://www.kimrolx.com/projects');
+});

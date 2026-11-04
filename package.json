@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:worker": "npm run build && wrangler dev",
     "build": "tsc -b && vite build && tsx scripts/prerender.ts",
-    "test": "tsx --test src/config/seo.test.ts scripts/prerender.test.ts src/lib/skillTreeLayout.test.ts src/lib/skillTreeAnim.test.ts worker/index.test.ts",
+    "test": "tsx --test src/config/seo.test.ts scripts/prerender.test.ts src/lib/skillTreeLayout.test.ts src/lib/skillTreeAnim.test.ts src/lib/projectList.test.ts worker/index.test.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },

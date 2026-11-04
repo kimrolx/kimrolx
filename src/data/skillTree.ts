@@ -16,7 +16,7 @@ export type BranchConfig = {
 };
 
 export const branchConfigs: BranchConfig[] = [
-  { category: 'Frontend', angleDeg: 90, lenScale: 1.05 },
+  { category: 'Frontend', angleDeg: 90, lenScale: 1.3 },
   { category: 'Languages', angleDeg: 150, lenScale: 1.04 },
   { category: 'DevOps & Cloud', angleDeg: 210, lenScale: 1.22 },
   { category: 'Data', angleDeg: 270, lenScale: 1.28 },

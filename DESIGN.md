@@ -114,11 +114,11 @@ This is a **deliberate departure** from the prior "Drafting Table (Night)" — t
 
 **Achromatic Neutrals.** Every surface and ink is chroma 0. Warmth or coolness is never added "for mood"; the page is neutral so the red reads.
 
-**One Voice.** Exactly one typeface. Weight and scale carry every level; there is no second family. IBM Plex Mono appears only inside the project rail (counter, card labels, chips, buttons, DemoLink).
+**One Voice.** Exactly one typeface. Weight and scale carry every level; there is no second family. IBM Plex Mono appears only inside the projects deck and the `/projects` archive (header strips, labels, tabs, filters, CTAs).
 
 **The No-Shout Rule.** Only the hero name reaches 5.5rem; everything else ≤ 4.5rem; letter-spacing never tighter than `-0.04em`. The sheet reads compact and data-dense — never large-format.
 
-**Rules, Not Boxes.** Separation is a hairline and whitespace, not a bordered card. Where a frame is unavoidable (project media, DemoLink, the lightbox), it is a single hairline one level deep, never nested. Depth is tone and rule — never shadow or glass.
+**Rules, Not Boxes.** Separation is a hairline and whitespace, not a bordered card. Where a frame is unavoidable (project media, the lightbox), it is a single hairline one level deep, never nested. Depth is tone and rule — never shadow or glass.
 
 **Reveal-to-Visible.** Every reveal enhances an already-visible default. No content is gated behind a class-triggered transition; headless renders and background tabs always show full content.
 
@@ -133,11 +133,11 @@ This is a **deliberate departure** from the prior "Drafting Table (Night)" — t
 - **Do** give every animation a reduced-motion fallback: static greeting, no smooth scroll, reveals resolve to visible.
 
 ### Don't:
-- **Don't** reintroduce the blueprint: schematic grid, flow-field, CAD title blocks, monospace readouts outside the project rail, signal orange, or draw-on rails.
-- **Don't** add a second typeface. IBM Plex Mono only inside the project rail (counter, card labels, chips, buttons, DemoLink).
+- **Don't** reintroduce the blueprint: schematic grid, flow-field, CAD title blocks, monospace readouts outside the projects deck and archive, signal orange, or draw-on rails.
+- **Don't** add a second typeface. IBM Plex Mono only inside the projects deck and the `/projects` archive (header strips, labels, tabs, filters, CTAs).
 - **Don't** let red fill a surface or set body text (The Red Rule).
 - **Don't** wrap content in cards or nest frames (Rules, Not Boxes).
 - **Don't** tint the neutrals warm or cool (Achromatic Neutrals).
 - **Don't** add an uppercase tracked eyebrow above every heading; the `.label` is for ruled lists and one header tick, not a per-section kicker.
 - **Don't** gate content visibility on a scroll animation (Reveal-to-Visible).
-- **Don't** invent project metrics; DemoLink states only what is true.
+- **Don't** invent project metrics, or fake a screenshot; a project without one shows its initials.

@@ -8,10 +8,10 @@
 
 ## 1. Principles
 
-1. **Show, don't tell.** Use real projects, stack and links. Never invent a metric. A project with no screenshot shows its live URL (DemoLink).
+1. **Show, don't tell.** Use real projects, stack and links. Never invent a metric. A project with no screenshot shows its initials on `/projects` and is never featured in the deck.
 2. **Rules, Not Boxes.** Separate content with a hairline and whitespace. Frame only media, one level deep, never nested.
 3. **The Red Rule.** Red is an accent, never paint. It points at one thing per region, never fills a surface behind text, and never sets prose.
-4. **One Voice.** Schibsted Grotesk carries every level by weight and scale. IBM Plex Mono is allowed only inside the project rail.
+4. **One Voice.** Schibsted Grotesk carries every level by weight and scale. IBM Plex Mono is allowed only inside the projects deck and the `/projects` archive.
 5. **Reveal-to-Visible.** Motion only enhances content that is already visible. Every animation is gated on `usePrefersReducedMotion`.
 6. **Achromatic neutrals.** Every surface, ink and line has chroma 0, so the one red reads.
 
@@ -53,11 +53,11 @@ Roles say what a color is for. Until role tokens are added to `@theme` (optional
 | `surface-sunken` | `color-inset` | Media frames, the portrait well, project card grounds. |
 | `surface-inverse` | `color-ink` | The solid key: primary button and App Store badge fill. |
 | `border-subtle` | `color-line` | Default border: rows between ruled-list items, chips, icon keys, media frames. |
-| `border-strong` | `color-line-2` | Structural rules: section header rules, the first row of a ruled list, outline buttons. |
-| `border-control` | `color-line-3` | The resting boundary of a text input (PromptField underline) and any control whose edge is its only cue. |
+| `border-strong` | `color-line-2` | Structural rules: section header rules, the first row of a ruled list. |
+| `border-control` | `color-line-3` | The resting boundary of a text input (PromptField underline), outline buttons, deck arrow keys, and any control whose edge is its only cue. |
 | `border-accent` | `color-red` | Hover and focus borders, filled or focused input underline. |
 | `accent` | `color-red` | Marks: name period, header tick, highlight dashes, active nav rule, caret, scroll rule, progress steps. |
-| `status-live` | `color-red` | Status dot for Production and In Progress. Always beside the status word. |
+| `status-live` | `color-red` | Status dot for Production. Always beside the status word. |
 | `focus-ring` | `color-red` | 2px focus outline, offset 3px, on every focusable element. ≥4.2:1 on every surface. |
 | `selection-bg` | `color-red` | ::selection background. |
 | `selection-text` | `color-on-red` | ::selection text. |
@@ -98,7 +98,7 @@ Tailwind equivalents for the overlays: `bg-bg/92` (scrim) and `bg-bg/85` (nav), 
 - **Families:** `--font-sans` is "Schibsted Grotesk", system-ui, -apple-system, sans-serif (400–900). `--font-mono` is "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace (400–600). Both load from Google Fonts in `index.html`.
 - **Base:** body `line-height: 1.65`. h1–h3: `line-height: 1`, `letter-spacing: -0.035em`, weight 800, `text-wrap: balance`. Paragraphs: `text-wrap: pretty`. `font-synthesis-weight: none`.
 - **The No-Shout Rule:** only the hero name reaches 5.5rem; everything else tops out at 4.5rem. Tracking is never tighter than -0.04em.
-- Mono is allowed only in the project rail (`[data-rail-card]` scope, the rail counter, DemoLink).
+- Mono is allowed only in the projects deck and the `/projects` archive, always through `.mono-label` (12px / 500 / 0.14em / uppercase).
 
 | Style | Size (fluid) | Weight / leading / tracking | Tailwind recipe | Use |
 | --- | --- | --- | --- | --- |
@@ -117,8 +117,7 @@ Tailwind equivalents for the overlays: `bg-bg/92` (scrim) and `bg-bg/85` (nav), 
 | `chip` | 0.8125rem | 500 / 1.65 | `text-[0.8125rem] font-medium` | Tech chips |
 | `caption` | 0.75rem | 400 / 1.25 | `text-xs` | Field hints and errors |
 | `label` | 0.6875rem | 600 / 1.3 / 0.14em, UPPERCASE | `.label` utility | Running labels, nav, meta, status |
-| `mono-label` | 0.75rem | 500 / 1.3 / 0.14em, UPPERCASE | `label font-mono` (rail scope) | Rail counter, card labels, chips, buttons |
-| `mono-link` | `clamp(1.25rem, 3.2vw, 2.5rem)` | 500 / 1.25 / -0.02em | `font-mono text-[clamp(1.25rem,3.2vw,2.5rem)] font-medium leading-tight tracking-[-0.02em]` | DemoLink URL |
+| `mono-label` | 0.75rem | 500 / 1.3 / 0.14em, UPPERCASE | `.mono-label` component class | Projects deck and archive: header strips, labels, tabs, filters, CTAs |
 
 ## 4. Spacing, layout and sizes
 
@@ -227,21 +226,21 @@ Flat system: no `box-shadow` for elevation, no glass beyond the two overlays. De
 
 All live in `src/components/`. Anatomy uses Tailwind classes as written in code.
 
-- **Button / ButtonLink** (`base-components/button.tsx`). `default` is `bg-ink text-bg`, hovering to `bg-ink-2`. `outline` is `border border-line-2 text-ink`, hovering to `border-red text-red-ink`. Sizes: `px-5 py-2.5 text-sm` or `lg` `px-6 py-3`. All are `rounded-sm font-semibold tracking-tight`. Labels are verb + object. At most one `default` per row. In the rail, labels switch to mono uppercase 12px.
+- **Button / ButtonLink** (`base-components/button.tsx`). `default` is `bg-ink text-bg`, hovering to `bg-ink-2`. `outline` is `border border-line-3 text-ink`, hovering to `border-red text-red-ink`. Sizes: `px-5 py-2.5 text-sm` or `lg` `px-6 py-3`, both `font-semibold tracking-tight`; `mono` is `min-h-12 px-5 mono-label`, for the projects deck and archive. All are `rounded-sm`. Labels are verb + object. At most one `default` per row. `buttonClasses` (`button-styles.ts`) styles a router link as a button.
 - **TechList** (`TechTag.tsx`). `rounded-sm border border-line px-2.5 py-1 text-[0.8125rem] font-medium text-ink-2` chips, `gap-1.5`. No colors, no icons.
-- **StatusPill.** `label` text. Production and In Progress are `text-red-ink` with a `bg-red` 6px dot; Completed is `text-ink-3` with a hollow ring.
-- **SheetHeading.** A `border-t border-line-2 pt-3` rule, an 8px `bg-red` square tick, optional right-aligned `label text-ink-3` meta, then the H2 in `headline`, then optional `text-ink-2 max-w-prose` description. No eyebrow above the title.
+- **StatusPill.** Takes a `label` and a `live` flag. Live is `text-red-ink` with a `bg-red` 6px dot; anything else is the word alone in `text-ink-3`. Live means Production, both for a deck card's status and an archive row's type.
+- **SheetHeading.** A `border-t border-line-2 pt-3` rule, an 8px `bg-red` square tick, an optional `mono-label` label after it, optional right-aligned `label text-ink-3` meta, then the H2 (omit `title` to render the rule alone) in `headline`, then optional `text-ink-2 max-w-prose` description. No eyebrow above the title.
 - **SpecList** (Hero `SPECS`). A `<dl>`; each row is `grid grid-cols-[6rem_1fr] gap-4 border-t border-line py-2.5`, with `first:border-line-2`. Labels are `label text-ink-3`, values `text-sm text-ink`. At most one status row, with a red dot. Values are middle-dot spec lines.
 - **ExperienceEntry.** A `border-t border-line-2 pt-8` row: `lg:grid-cols-[14rem_1fr] lg:gap-12`, with meta (period, logo well on `bg-surface`, company, type) on the left and content on the right. Highlights in `text-ink-2`, each led by a 16px × 1px `bg-red` dash. Ends with a TechList.
 - **NowGroupRow.** `grid border-t border-line py-12 first:border-line-2 lg:grid-cols-[12rem_1fr] lg:gap-12`, with a `label text-ink-3` heading and optional meta.
 - **SocialLinks.** 44px square keys, `rounded-sm border border-line text-ink`, a Font Awesome brand icon at 1.1rem, `aria-label` on each.
-- **App Store badge** (inline in `ProjectPanel.tsx`). Apple's official black "Download on the App Store" badge (`src/assets/app_store_badge.svg`), unmodified, at 40px tall (Apple's on-screen minimum). App Store links only; never redraw it with tokens.
+- **App Store badge** (inline in `DeckCard.tsx`). Apple's official black "Download on the App Store" badge (`src/assets/app_store_badge.svg`), unmodified, at 48px tall, the deck's primary CTA height. App Store links only; never redraw it with tokens.
 - **Modal.** A native `<dialog>` on a `bg-bg/92 backdrop-blur-md` scrim. The close key is 40px, `bg-surface/80 border border-line-2 rounded-sm`. Escape, backdrop click and the close key all dismiss it; Lenis pauses while it's open.
 - **TopBar** (below lg) and **LeftRail** (lg and up). `bg-bg/85 backdrop-blur-md` with a hairline edge. The wordmark has a red period. Links are `label text-ink-3`; the current link is `text-ink` with a 16px red rule before it. Targets are 44px minimum.
 - **HeroName.** The `display-xl` name on two lines with a red period, then a 40px red dash plus the role, then the typed role line (`>` in `text-red-ink`, a 2px red caret). Tilt and glare apply only on a fine pointer without reduced motion.
 - **TypewriterGreeting.** `greeting` style in `text-ink-2`, a 2px red caret, Filipino first, with `sr-only` "Hello, welcome.". Don't reuse the typewriter effect anywhere else.
-- **ProjectCard** (`ProjectPanel.tsx` in `ProjectRail.tsx`). `rounded-sm border border-line` over `bg-inset` with an 8px hairline-stripe texture. The number is `label text-red`, the title `title-lg`, then StatusPill and period, `subtitle` kind, a `body-compact text-ink-2` description clamped to 2 lines, a TechList, and actions. Hover gives `border-red`. Off-center cards dim their media only. The rail counter is `01 / 05` in mono; the arrows are 44px keys.
-- **DemoLink** (`ProjectMedia.tsx`). A `label text-ink-3` note ("Live at"), then the URL in `mono-link` led by a red arrow-up-right. It's the honest stand-in for a missing screenshot.
+- **ProjectDeck / DeckCard** (`ProjectDeck.tsx`, `DeckCard.tsx`). Up to three featured projects stacked on `bg-inset rounded-sm` cards. React sets `data-depth`; `.deck-stage` / `.deck-card` in `index.css` own the geometry. Below a 67rem container the deck is compact (cards `min(100% - 32px, 560px)` × 680px, offsets 16px / 32px); from 67rem it's wide (880 × 560px, offsets 96px / 48px, so every back card's 48px header strip stays visible). Every card has a `mono-label` header strip: the number, the name and a StatusPill, plus an 8px `bg-red` tick on the front card. The front card is `border-line-2` with full detail: the cover runs full-bleed (wide: the 380px left column, edge to edge; compact: the top, filling the space the text leaves) so the project's brand colour carries the card, then period, `title-lg`, kind, a 2-line description and a middle-dot stack line (4 items in compact). Its CTAs come in three tiers: the solid primary (`links[0]`; App Store links render the badge), a `mono-label` text link (`links[1]`) and "Case study →". Back cards are `border-line` and show media only at `opacity-60`; hover lifts them 6px, turns the border and name red and raises the media to `.85`; a full-cover button brings one to the front. Swaps move `left`/`top`/`scale` over 500ms `ease-out-expo`. Wide controls are `aria-pressed` tabs with a 2px red rule. Compact controls are a `01 / 03` counter, 24×2px progress steps, 44px `border-line-3` arrow keys and a touch swipe (>40px). A polite live region announces the front project.
+- **ProjectRow** (`ProjectRow.tsx`, on `/projects`). One link per row: to `?case=<id>` when there's a case study, otherwise out to `links[0]`. From a 64rem container it's a 7-column grid (`56px 96px 1fr 160px 280px 96px 24px`): number, a 4:3 thumbnail (initials when there's no cover), name over kind, type as a StatusPill, stack, year, arrow. Below that it's `72px 1fr 20px` with a mono meta line. Hover turns the name red and nudges the arrow 4px.
 - **PromptField** (`ContactPrompt.tsx`). The SheetHeading rule with a "Contact" label and 24×2px step bars. The field row is `min-h-11` with a red ▸ marker and the `prompt` input with `caret-red`. The underline is `border-b-2`: `border-line-3` at rest, `border-red` when focused, filled or errored. A `text-xs` hint sits below, and an outline `lg` submit key sits to the right.
 
 ## 8. Content and voice
@@ -263,7 +262,7 @@ All live in `src/components/`. Anatomy uses Tailwind classes as written in code.
 ## 10. Don't
 
 - Don't reintroduce the retired blueprint look: schematic grids, flow fields, CAD title blocks, signal orange, draw-on rails.
-- Don't add a second display typeface, or use mono outside the project rail.
+- Don't add a second display typeface, or use mono outside the projects deck and archive.
 - Don't let red fill a surface or set prose.
 - Don't wrap content in cards, or nest frames.
 - Don't add an uppercase eyebrow above every heading.

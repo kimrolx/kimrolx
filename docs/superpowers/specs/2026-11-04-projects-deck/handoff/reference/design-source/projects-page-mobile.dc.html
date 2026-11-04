@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All projects, mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Schibsted+Grotesk:wght@400..900&amp;display=swap">
+<style>
+body{margin:0;background:oklch(0.16 0 0)}
+a{color:oklch(0.74 0 0)}a:hover{color:oklch(0.7 0.2 27)}
+.k-text:focus-visible,.row:focus-visible,.flt:focus-visible{outline:2px solid oklch(0.63 0.23 25);outline-offset:3px}
+</style>
+</helmet>
+<div style="width: 390px; height: 1500px; box-sizing: border-box; padding: 32px 20px 64px; background: oklch(0.16 0 0); color: oklch(0.97 0 0); font-family: 'Schibsted Grotesk', system-ui, sans-serif; overflow: hidden">
+<main style="display: flex; flex-direction: column; gap: 32px">
+
+<a class="k-text" href="Landing-Mobile.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.74 0 0); text-decoration: none">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Home</a>
+
+<header style="display: flex; flex-direction: column; gap: 20px">
+<div style="position: relative; border-top: 1px solid oklch(1 0 0 / 0.2); padding-top: 16px; display: flex; justify-content: space-between">
+<span aria-hidden="true" style="position: absolute; top: -4px; left: 0; width: 8px; height: 8px; background: oklch(0.63 0.23 25)"></span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">Projects · Archive</span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">{{total}} entries</span>
+</div>
+<h1 style="margin: 0; font-size: 40px; line-height: 0.92; font-weight: 900; letter-spacing: -0.04em">All projects<span style="color: oklch(0.63 0.23 25)">.</span></h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: oklch(0.74 0 0); text-wrap: pretty">Everything I've shipped, studied or tinkered with, newest first.</p>
+</header>
+
+<div style="display: flex; flex-direction: column">
+<div role="group" aria-label="Filter projects by type" style="display: flex; flex-wrap: wrap; column-gap: 4px; border-bottom: 1px solid oklch(1 0 0 / 0.1)">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button class="flt" type="button" aria-pressed="{{f.on}}" onClick="{{f.pick}}" style="min-height: 44px; padding: 0 10px; margin-bottom: -1px; background: transparent; border: 0; border-bottom: 2px solid {{f.rule}}; color: {{f.color}}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer">{{f.label}} <span style="color: oklch(0.62 0 0)">{{f.count}}</span></button>
+</sc-for>
+</div>
+
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{rows}}" as="p" hint-placeholder-count="6">
+<li style="border-bottom: 1px solid oklch(1 0 0 / 0.1)">
+<a class="row" href="#" style="display: grid; grid-template-columns: 72px minmax(0, 1fr) 20px; gap: 16px; align-items: center; padding: 16px 0; color: inherit; text-decoration: none">
+<span aria-hidden="true" style="width: 72px; height: 54px; box-sizing: border-box; background: oklch(0.135 0 0); border: 1px solid oklch(1 0 0 / 0.1); border-radius: 2px; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: oklch(0.62 0 0)">[IMG]</span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="display: flex; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase">
+<span style="color: oklch(0.62 0 0)">{{p.no}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: {{p.typeColor}}"><sc-if value="{{p.live}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: oklch(0.63 0.23 25)"></span></sc-if>{{p.type}}</span>
+<span style="color: oklch(0.62 0 0)">{{p.year}}</span>
+</span>
+<span style="font-size: 22px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em">{{p.name}}</span>
+<span style="font-size: 14px; line-height: 1.43; color: oklch(0.74 0 0)">{{p.kind}}</span>
+</span>
+<span aria-hidden="true" style="color: oklch(0.74 0 0)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+</a>
+</li>
+</sc-for>
+</ol>
+</div>
+
+<footer style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">Showing {{shown}} of {{total}}</span>
+<a class="k-text" href="#" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.74 0 0); text-decoration: none">More on GitHub ↗</a>
+</footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1500}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { filter: 'All' };
+}
+renderVals() {
+const all = [
+{ name: 'MACHINA', kind: 'iOS motorcycle maintenance tracker', type: 'Production', year: '2026' },
+{ name: 'Trimly', kind: 'URL shortener and link manager', type: 'Production', year: '2026' },
+{ name: 'EcoPoints', kind: '[One-line project kind]', type: 'University', year: '[Year]' },
+{ name: '[Project name]', kind: '[One-line project kind]', type: 'University', year: '[Year]' },
+{ name: '[Project name]', kind: '[One-line project kind]', type: 'Experiment', year: '[Year]' },
+{ name: '[Project name]', kind: '[One-line project kind]', type: 'Experiment', year: '[Year]' }
+];
+const cur = this.state.filter;
+const kinds = ['All', 'Production', 'University', 'Experiment'];
+const filters = kinds.map((k) => {
+const on = cur === k;
+const n = k === 'All' ? all.length : all.filter((p) => p.type === k).length;
+return {
+label: k === 'Experiment' ? 'Exp.' : (k === 'University' ? 'Uni' : (k === 'Production' ? 'Prod' : k)),
+count: String(n).padStart(2, '0'),
+on: on,
+rule: on ? 'oklch(0.63 0.23 25)' : 'transparent',
+color: on ? 'oklch(0.97 0 0)' : 'oklch(0.74 0 0)',
+pick: () => this.setState({ filter: k })
+};
+});
+const rows = all
+.map((p, i) => Object.assign({}, p, { no: String(i + 1).padStart(2, '0') }))
+.filter((p) => cur === 'All' || p.type === cur)
+.map((p) => Object.assign({}, p, {
+live: p.type === 'Production',
+typeColor: p.type === 'Production' ? 'oklch(0.7 0.2 27)' : 'oklch(0.62 0 0)'
+}));
+return {
+filters: filters,
+rows: rows,
+total: String(all.length).padStart(2, '0'),
+shown: String(rows.length).padStart(2, '0')
+};
+}
+}
+</script>
+</body>
+</html>

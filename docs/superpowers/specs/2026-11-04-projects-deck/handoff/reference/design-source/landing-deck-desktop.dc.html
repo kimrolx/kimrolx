@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Selected work deck, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Schibsted+Grotesk:wght@400..900&amp;display=swap">
+<style>
+body{margin:0;background:oklch(0.16 0 0)}
+a{color:oklch(0.74 0 0)}a:hover{color:oklch(0.7 0.2 27)}
+.card{transition:left 500ms cubic-bezier(0.16,1,0.3,1),top 500ms cubic-bezier(0.16,1,0.3,1),transform 500ms cubic-bezier(0.16,1,0.3,1),translate 200ms cubic-bezier(0.16,1,0.3,1),border-color 200ms}
+.card.back:hover{translate:0 -6px;border-color:oklch(0.63 0.23 25) !important}
+.card.back:hover .nm{color:oklch(0.7 0.2 27)}
+.card .media{transition:opacity 300ms}
+.card.back:hover .media{opacity:0.85 !important}
+.k{transition:transform 200ms cubic-bezier(0.16,1,0.3,1),border-color 200ms,color 200ms,background-color 200ms}
+.k:hover{transform:translateY(-1px)}
+.k:active{transform:none}
+.k:focus-visible,.cover:focus-visible,.tab:focus-visible{outline:2px solid oklch(0.63 0.23 25);outline-offset:3px}
+.k-solid:hover{background-color:oklch(0.74 0 0) !important}
+.k-line:hover{border-color:oklch(0.63 0.23 25) !important;color:oklch(0.7 0.2 27) !important}
+.k-text:hover{color:oklch(0.7 0.2 27) !important}
+.tab{transition:color 200ms,border-color 300ms}
+.tab:hover{color:oklch(0.7 0.2 27) !important}
+@media (prefers-reduced-motion: reduce){.card,.k,.tab{transition:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1180px; box-sizing: border-box; padding: 112px 0; background: oklch(0.16 0 0); color: oklch(0.97 0 0); font-family: 'Schibsted Grotesk', system-ui, sans-serif; overflow: hidden">
+<section aria-labelledby="deck-h" style="width: 1152px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
+
+<header style="display: flex; flex-direction: column; gap: 20px">
+<div style="position: relative; border-top: 1px solid oklch(1 0 0 / 0.2); padding-top: 16px; display: flex; justify-content: space-between">
+<span aria-hidden="true" style="position: absolute; top: -4px; left: 0; width: 8px; height: 8px; background: oklch(0.63 0.23 25)"></span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">02 · Projects</span>
+<span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">03 selected</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="deck-h" style="margin: 0; font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Selected work</h2>
+<p style="margin: 0; max-width: 65ch; font-size: 16px; line-height: 1.65; color: oklch(0.74 0 0)">Production builds, university work, and the things I keep tending.</p>
+</div>
+</header>
+
+<div style="position: relative; width: 1152px; height: 656px">
+<sc-for list="{{cards}}" as="p" hint-placeholder-count="3">
+<article class="card {{p.cls}}" aria-label="{{p.label}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; z-index: {{p.z}}; transform: scale({{p.scale}}); transform-origin: top right; width: 880px; height: 560px; box-sizing: border-box; background: oklch(0.135 0 0); border: 1px solid {{p.edge}}; border-radius: 2px; overflow: hidden; display: flex; flex-direction: column">
+
+<div style="height: 48px; flex: 0 0 48px; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid oklch(1 0 0 / 0.1); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase">
+<span style="display: inline-flex; align-items: center; gap: 12px">
+<sc-if value="{{p.isFront}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="display: inline-block; width: 8px; height: 8px; background: oklch(0.63 0.23 25)"></span></sc-if>
+<span style="color: oklch(0.62 0 0)">{{p.no}}</span>
+<span class="nm" style="color: oklch(0.97 0 0); transition: color 200ms">{{p.name}}</span>
+</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: {{p.statusColor}}">
+<sc-if value="{{p.live}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: oklch(0.63 0.23 25)"></span></sc-if>{{p.status}}</span>
+</div>
+
+<sc-if value="{{p.isFront}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1; box-sizing: border-box; padding: 32px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 40px">
+<div style="aspect-ratio: 4 / 3; background: oklch(0.16 0 0); border: 1px solid oklch(1 0 0 / 0.1); border-radius: 2px; display: grid; place-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">{{p.media}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">{{p.period}}</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-size: 40px; line-height: 0.95; font-weight: 900; letter-spacing: -0.04em">{{p.title}}</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.375; font-weight: 600">{{p.kind}}</p>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.62; color: oklch(0.74 0 0); text-wrap: pretty">{{p.desc}}</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.43; color: oklch(0.62 0 0)">{{p.stack}}</p>
+<span style="flex: 1"></span>
+<div style="display: flex; align-items: center; flex-wrap: wrap; column-gap: 24px; row-gap: 4px">
+<sc-if value="{{p.badge}}" hint-placeholder-val="{{ true }}">
+<a class="k k-solid" href="#" style="display: inline-flex; flex-direction: column; justify-content: center; height: 48px; box-sizing: border-box; padding: 0 20px; background: oklch(0.97 0 0); color: oklch(0.16 0 0); border-radius: 2px; text-decoration: none">
+<span style="font-size: 10px; line-height: 1.1; font-weight: 500; opacity: 0.7">Download on the</span>
+<span style="font-size: 18px; line-height: 1.1; font-weight: 700; letter-spacing: -0.025em">App Store</span>
+</a>
+</sc-if>
+<sc-if value="{{p.plain}}" hint-placeholder-val="{{ false }}">
+<a class="k k-solid" href="#" style="display: inline-flex; align-items: center; height: 48px; box-sizing: border-box; padding: 0 20px; background: oklch(0.97 0 0); color: oklch(0.16 0 0); border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none">{{p.primary}}</a>
+</sc-if>
+<sc-if value="{{p.hasSecondary}}" hint-placeholder-val="{{ true }}">
+<a class="k-text" href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.97 0 0); text-decoration: none">{{p.secondary}}</a>
+</sc-if>
+<sc-if value="{{p.hasCase}}" hint-placeholder-val="{{ true }}">
+<a class="k-text" href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.74 0 0); text-decoration: none">Case study →</a>
+</sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.isBack}}" hint-placeholder-val="{{ false }}">
+<div class="media" style="flex: 1; opacity: 0.6; background: oklch(0.16 0 0); display: grid; place-items: center"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.62 0 0)">{{p.media}}</span></div>
+<button class="cover" type="button" aria-label="{{p.bringLabel}}" onClick="{{p.bring}}" style="position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer"></button>
+</sc-if>
+</article>
+</sc-for>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<div role="group" aria-label="Choose project" style="display: flex; gap: 8px; border-bottom: 1px solid oklch(1 0 0 / 0.1)">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+<button class="tab" type="button" aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="min-height: 44px; padding: 0 16px; margin-bottom: -1px; background: transparent; border: 0; border-bottom: 2px solid {{t.rule}}; color: {{t.color}}; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer"><span style="color: oklch(0.62 0 0)">{{t.no}}</span> {{t.name}}</button>
+</sc-for>
+</div>
+<a class="k k-line" href="Projects-Desktop.dc.html" style="display: inline-flex; align-items: center; gap: 12px; height: 48px; box-sizing: border-box; padding: 0 24px; border: 1px solid oklch(1 0 0 / 0.38); border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.97 0 0); text-decoration: none">See all projects
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { front: 0 };
+}
+renderVals() {
+const data = [
+{ name: 'MACHINA', title: 'MACHINA', status: 'Production', live: true, period: '2026 — Present', kind: 'iOS motorcycle maintenance tracker', desc: 'Offline-first app that tracks service intervals, history and costs per bike. Multi-bike, no account, fully on-device.', stack: 'TypeScript · React Native · Expo · SQLite · Drizzle ORM', badge: true, primary: '', secondary: 'ridemachina.app ↗', hasCase: true, media: '[MACHINA · dashboard · 4:3]' },
+{ name: 'Trimly', title: 'Trimly', status: 'Production', live: true, period: '2026 — Present', kind: 'URL shortener and link manager', desc: 'Shorten long links and manage them in one place. Built on a NestJS backend with MongoDB and Redis.', stack: 'TypeScript · NestJS · React · MongoDB · Redis', badge: false, primary: 'Visit trimmly.xyz ↗', secondary: '', hasCase: false, media: '[Trimly · dashboard]' },
+{ name: 'EcoPoints', title: 'EcoPoints', status: '[Status]', live: false, period: '[Year]', kind: '[One-line project kind]', desc: '[Two sentences: what it does, who it was for.]', stack: '[Stack · Stack · Stack]', badge: false, primary: '[Live link]', secondary: '', hasCase: true, media: '[EcoPoints · main screen]' }
+];
+const f = this.state.front;
+const n = data.length;
+const pos = [
+{ left: '0px', top: '96px', scale: 1, z: 3 },
+{ left: '96px', top: '48px', scale: 0.96, z: 2 },
+{ left: '192px', top: '0px', scale: 0.92, z: 1 }
+];
+const bring = (i) => () => this.setState({ front: i });
+const cards = data.map((d, i) => {
+const depth = (i - f + n) % n;
+const p = pos[depth];
+const isFront = depth === 0;
+return Object.assign({}, d, {
+no: String(i + 1).padStart(2, '0'),
+left: p.left, top: p.top, scale: p.scale, z: p.z,
+isFront: isFront, isBack: !isFront,
+cls: isFront ? 'front' : 'back',
+edge: isFront ? 'oklch(1 0 0 / 0.2)' : 'oklch(1 0 0 / 0.1)',
+statusColor: d.live ? 'oklch(0.7 0.2 27)' : 'oklch(0.62 0 0)',
+plain: !d.badge,
+hasSecondary: !!d.secondary,
+label: 'Project ' + (i + 1) + ' of ' + n + ': ' + d.name,
+bringLabel: 'Show ' + d.name,
+bring: bring(i)
+});
+});
+const tabs = data.map((d, i) => ({
+no: String(i + 1).padStart(2, '0'),
+name: d.name,
+on: i === f,
+rule: i === f ? 'oklch(0.63 0.23 25)' : 'transparent',
+color: i === f ? 'oklch(0.97 0 0)' : 'oklch(0.74 0 0)',
+pick: bring(i)
+}));
+return { cards: cards, tabs: tabs };
+}
+}
+</script>
+</body>
+</html>

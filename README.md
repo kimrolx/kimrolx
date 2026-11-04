@@ -31,15 +31,17 @@
 - Built with **React Native**, **Expo**, **TypeScript**, **SQLite**, **Drizzle ORM**, **Zustand**
 - Live on the App Store since June 2026, peaked **#3 in Utilities**
 
+**[Pars](https://apps.apple.com/us/app/pars-split-bills-expenses/id6822402266)** — Trip Expense Splitter for Friend Groups
+- Log who paid, split it fair, and settle up in a tap — split the trip, not the friendship
+- Five split modes, multiple payers, receipt scanning, and settling up over GCash, Maya, bank transfer or cash
+- Built with **React Native**, **Expo**, **TypeScript**, **TanStack Query**, **Hono**; site on **Astro**, **GSAP**, **Preact** ([splitpars.app](https://splitpars.app))
+
 **[Trimly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
 - Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
 - Built with **NestJS**, **React**, **MongoDB**, **Redis**
 - Production-grade infrastructure handling high-volume link operations
 
-**[EcoPoints](https://github.com/kimrolx/EcoPoints-Mobile)** — Gamified Sustainability Platform
-- Mobile and web applications for engaging university community in recycling initiatives
-- Implemented point-based reward system with real-time tracking
-- Tech: **Flutter**, **Dart**, **React**, **Firebase**, **Firestore**
+Also: **[EcoPoints](https://github.com/kimrolx/EcoPoints-Mobile)** (university, Flutter + React + Firebase) and more in the **[full archive](https://www.kimrolx.com/projects)**.
 
 ###
 

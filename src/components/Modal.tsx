@@ -24,20 +24,27 @@ export function Modal({ open, onClose, label, closeLabel, children }: ModalProps
     const dialog = ref.current;
     if (!open || !dialog) return;
     dialog.showModal();
-    // Lenis drives scroll off window wheel events and ignores body overflow,
-    // so pause it explicitly — otherwise the page pans behind the dialog.
+    return () => dialog.close();
+  }, [open]);
+
+  // Lenis drives scroll off window wheel events and ignores body overflow,
+  // so pause it explicitly — otherwise the page pans behind the dialog. Kept
+  // apart from the effect above: Lenis can arrive after a modal opened on
+  // load, and re-running that effect would close the dialog (firing onClose).
+  useEffect(() => {
+    if (!open) return;
     lenis?.stop();
-    return () => {
-      dialog.close();
-      lenis?.start();
-    };
+    return () => lenis?.start();
   }, [open, lenis]);
 
   return (
     <dialog
       ref={ref}
       aria-label={label}
-      onClose={onClose}
+      onClose={(e) => {
+        // `close` fires async; if the dialog was reopened meanwhile (effect re-run), it's stale.
+        if (!e.currentTarget.open) onClose();
+      }}
       onClick={(e) => {
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}

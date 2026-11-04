@@ -1,5 +1,6 @@
 import { profile, socials } from "@/data/profile";
-import { projects } from "@/data/projects";
+import { featuredProjects } from "@/data/projects";
+import type { Project } from "@/types";
 import { experiences } from "@/data/experience";
 import { skillGroups } from "@/data/skills";
 
@@ -22,7 +23,7 @@ const emailSocial = socials.find((s) => s.label === "Email");
 const emailHref = emailSocial?.href ?? "mailto:beramekimrol@gmail.com";
 const emailAddr = emailSocial?.handle ?? "beramekimrol@gmail.com";
 
-function projectUrl(p: (typeof projects)[number]): string {
+function projectUrl(p: Project): string {
   return p.links[0]?.href ?? githubHref;
 }
 
@@ -67,7 +68,7 @@ export const commands: Record<string, CommandHandler> = {
     lines: [
       "projects:",
       "",
-      ...projects.map(
+      ...featuredProjects.map(
         (p, i) => `  [${i + 1}] ${p.title} — ${p.kind} · ${p.status}`,
       ),
       "",
@@ -116,10 +117,10 @@ export const commands: Record<string, CommandHandler> = {
       return { lines: ["usage: open <n> — run 'projects' to see the numbers."] };
     }
     const n = parseInt(args[0], 10);
-    if (!Number.isFinite(n) || n < 1 || n > projects.length) {
+    if (!Number.isFinite(n) || n < 1 || n > featuredProjects.length) {
       return { lines: [`no project #${args[0]}. type 'projects'.`] };
     }
-    const p = projects[n - 1];
+    const p = featuredProjects[n - 1];
     return {
       lines: [`opening ${p.title}...`],
       action: { type: "openUrl", url: projectUrl(p) },

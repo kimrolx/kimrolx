@@ -36,6 +36,12 @@ export const ROUTES = {
       'The gear Kim Roland Berame carries and the battlestation he builds on — a working inventory of daily-carry tech, desk setup, and PC build.',
     path: '/gear',
   },
+  '/projects': {
+    title: 'Projects',
+    description:
+      'Everything Kim Roland Berame has shipped, studied, or tinkered with — production apps, university work, and experiments.',
+    path: '/projects',
+  },
   '/skills': {
     title: 'Skills',
     description:

@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
 
 type SheetHeadingProps = {
-  title: string;
+  /** Omit to render the rule alone, when the page sets its own heading. */
+  title?: string;
+  /** Optional mono label after the red tick, e.g. "02 · Projects". */
+  label?: string;
   /** Optional short meta aligned to the right of the top rule, e.g. a count. */
   meta?: string;
   description?: ReactNode;
@@ -11,22 +14,25 @@ type SheetHeadingProps = {
  * A Swiss section header: a full-width hairline rule marked by a single red
  * tick, then an oversized title. No repeated eyebrow; the title carries it.
  */
-export function SheetHeading({ title, meta, description }: SheetHeadingProps) {
+export function SheetHeading({ title, label, meta, description }: SheetHeadingProps) {
   return (
     <header className="flex flex-col gap-5">
       <div className="flex items-center gap-3 border-t border-line-2 pt-3">
         <span aria-hidden="true" className="h-2 w-2 bg-red" />
+        {label && <span className="mono-label text-ink-3">{label}</span>}
         {meta && <span className="label ml-auto text-ink-3">{meta}</span>}
       </div>
 
-      <div className="flex flex-col gap-3">
-        <h2 className="text-[clamp(1.75rem,4.5vw,2.75rem)] font-extrabold tracking-[-0.04em]">
-          {title}
-        </h2>
-        {description && (
-          <p className="max-w-prose text-ink-2">{description}</p>
-        )}
-      </div>
+      {title && (
+        <div className="flex flex-col gap-3">
+          <h2 className="text-[clamp(1.75rem,4.5vw,2.75rem)] font-extrabold tracking-[-0.04em]">
+            {title}
+          </h2>
+          {description && (
+            <p className="max-w-prose text-ink-2">{description}</p>
+          )}
+        </div>
+      )}
     </header>
   );
 }

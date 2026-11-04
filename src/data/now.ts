@@ -3,11 +3,11 @@
  * nownownow.com. Hand-edited; bump `nowUpdated` whenever this changes.
  */
 
-import buildingMachina from '@/assets/now/building_machina.webp';
-import freedive from '@/assets/now/freedive.webp';
-import gym from '@/assets/now/gym.webp';
-import griffin31_team from '@/assets/now/griffin31.webp';
-import hiking from '@/assets/now/hiking.webp';
+import buildingMachina from "@/assets/now/building_machina.webp";
+import freedive from "@/assets/now/freedive.webp";
+import gym from "@/assets/now/gym.webp";
+import griffin31_team from "@/assets/now/griffin31.webp";
+import hiking from "@/assets/now/hiking.webp";
 
 export type NowImage = {
   /** Real asset path. Leave empty to render a labeled placeholder slot. */
@@ -16,9 +16,9 @@ export type NowImage = {
   /** Short caption under the frame, in the label style. */
   caption?: string;
   /** Frame proportion; varies the rhythm down the page. */
-  aspect: 'landscape' | 'portrait' | 'square';
+  aspect: "landscape" | "portrait" | "square";
   /** Which side the media sits on at md+. Alternated for editorial rhythm. */
-  side?: 'left' | 'right';
+  side?: "left" | "right";
 };
 
 export type NowEntry = {
@@ -40,89 +40,107 @@ export type NowGroup = {
 };
 
 /** ISO date of the last meaningful edit. Drives the "Updated" line. */
-export const nowUpdated = '2026-06-29';
+export const nowUpdated = "2026-11-04";
 
 export const nowIntro =
   "What I'm building, learning, and living right now. A small, standing snapshot of my current focus — not a changelog — refreshed whenever and wherever life takes me.";
 export const nowGroups: NowGroup[] = [
   {
-    label: 'Building',
+    label: "Building",
     entries: [
       {
-        title: 'MACHINA: Know Your Ride',
-        meta: 'Maintaining',
+        title: "MACHINA: Know Your Ride",
+        meta: "Maintaining",
         detail:
-          'Maintaining and improving MACHINA in App Store: service reminders, ownership history, and a smoother day-to-day experience for riders.',
+          "Maintaining and improving MACHINA in App Store: service reminders, ownership history, and a smoother day-to-day experience for riders.",
         active: true,
         image: {
           src: buildingMachina,
-          alt: 'My MacBook and desk setup while building Machina',
-          caption: 'The bench, building Machina',
-          aspect: 'landscape',
-          side: 'right',
+          alt: "My MacBook and desk setup while building Machina",
+          caption: "The bench, building Machina",
+          aspect: "landscape",
+          side: "right",
         },
       },
       {
-        title: 'The Griffin31 Team',
-        meta: 'Day to day',
+        title: "Pars - Split Your Bills",
+        meta: "Maintaining",
         detail:
-          'Building with a sharp, close-knit team: shipping features together, swapping ideas across system design, NestJS APIs, the React frontend, and Azure delivery. The people make the work.',
+          "Maintaining and improving Pars on the App Store: trip groups, receipt scanning, five ways to split a bill, and settling up over GCash or Maya.",
+        active: true,
+      },
+      {
+        title: "The Griffin31 Team",
+        meta: "Day to day",
+        detail:
+          "Building with a sharp, close-knit team: shipping features together, swapping ideas across system design, NestJS APIs, the React frontend, and Azure delivery. The people make the work.",
         active: true,
         image: {
           src: griffin31_team,
-          alt: 'The Griffin31 team',
-          caption: 'The Griffin31 team',
-          aspect: 'landscape',
-          side: 'left',
+          alt: "The Griffin31 team",
+          caption: "The Griffin31 team",
+          aspect: "landscape",
+          side: "left",
         },
       },
       {
-        title: 'This site',
+        title: "This site",
         detail:
-          'Iterating on the portfolio itself: a Swiss, type-led specimen with an interactive hero and a bento About.',
+          "Iterating on the portfolio itself: a Swiss, type-led specimen with an interactive hero and a bento About.",
       },
     ],
   },
   {
-    label: 'Learning',
+    label: "Learning",
     entries: [
       {
-        title: 'Distributed systems',
+        title: "Distributed systems",
         detail:
-          'Going deeper on queues, idempotency, and failure modes so the services I ship hold up under real production load, not just the happy path.',
+          "Going deeper on queues, idempotency, and failure modes so the services I ship hold up under real production load, not just the happy path.",
       },
       {
-        title: 'React Native internals',
-        detail: 'Sharpening native module and performance work off the back of MACHINA, beyond the framework surface.',
+        title: "React Native internals",
+        detail:
+          "Sharpening native module and performance work off the back of MACHINA, beyond the framework surface.",
       },
     ],
   },
   {
-    label: 'Life',
+    label: "Life",
     entries: [
       {
-        title: 'Freediving',
-        meta: 'Cebu',
+        title: "Freediving",
+        meta: "Cebu",
         detail:
-          'Training breath-hold and depth off the coast. Equal parts discipline and quiet, a useful counterweight to screen time.',
+          "Training breath-hold and depth off the coast. Equal parts discipline and quiet, a useful counterweight to screen time.",
         active: true,
         image: {
           src: freedive,
-          alt: 'Freediving off the Cebu coast',
-          caption: 'Depth training, Cebu',
-          aspect: 'portrait',
-          side: 'right',
+          alt: "Freediving off the Cebu coast",
+          caption: "Depth training, Cebu",
+          aspect: "portrait",
+          side: "right",
         },
       },
       {
-        title: 'Gym and Lifestyle',
-        meta: 'Most days',
+        title: "Gym and Lifestyle",
+        meta: "Most days",
         detail:
-          'Strength training and steadier habits: lifting most days, real food, earlier nights. It keeps my energy up for everything else.',
+          "Strength training and steadier habits: lifting most days, real food, earlier nights. It keeps my energy up for everything else.",
         active: true,
         images: [
-          { src: gym, alt: 'A gym training session', caption: 'Lifting', aspect: 'portrait' },
-          { src: hiking, alt: 'A hiking session', caption: 'Hiking', aspect: 'portrait' },
+          {
+            src: gym,
+            alt: "A gym training session",
+            caption: "Lifting",
+            aspect: "portrait",
+          },
+          {
+            src: hiking,
+            alt: "A hiking session",
+            caption: "Hiking",
+            aspect: "portrait",
+          },
         ],
       },
     ],

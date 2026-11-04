@@ -5,7 +5,7 @@ export function TechList({ items }: { items: string[] }) {
       {items.map((label) => (
         <li
           key={label}
-          className="tech-chip rounded-sm border border-line px-2.5 py-1 text-[0.8125rem] font-medium text-ink-2"
+          className="rounded-sm border border-line px-2.5 py-1 text-[0.8125rem] font-medium text-ink-2"
         >
           {label}
         </li>

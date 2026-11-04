@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 
 const ICON_SIZE = 30; // tech-icon box (SVG user units)
 const HUB_R = 9; // hairline category-hub ring
-const CORE = 24; // side of the red core square (the page's one red mark)
+const CORE = 48; // side of the red core square (the page's one red mark), sized to hold the name
 const NODE_FONT = 18;
 const CAT_FONT = 16; // category caption
 
@@ -63,9 +63,9 @@ const SELF_ORIGIN = { transformBox: 'fill-box', transformOrigin: 'center' } as c
 
 const hypot = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
 
-/** Jump to the Projects section, filtered to a given tech. */
+/** The projects archive, filtered to a given tech. */
 function projectsHref(label: string): string {
-  return `/?stack=${encodeURIComponent(label)}#projects`;
+  return `/projects?stack=${encodeURIComponent(label)}`;
 }
 
 export function SkillTree() {
@@ -285,6 +285,19 @@ export function SkillTree() {
             }}
             {...anim(popIn, timings.core)}
           />
+          <motion.text
+            x={layout.core.x}
+            y={layout.core.y}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fill="var(--color-on-red)"
+            fontSize={NODE_FONT}
+            fontWeight={800}
+            pointerEvents="none"
+            {...anim(fadeIn, timings.core)}
+          >
+            Kim
+          </motion.text>
         </svg>
 
         {/* Screen-reader / crawler access to the same skills the decorative SVG

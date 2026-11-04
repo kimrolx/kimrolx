@@ -1,0 +1,226 @@
+{
+  "name": "kimrolx",
+  "version": 2,
+  "meta": {
+    "source": "github",
+    "repo": "kimrolx/kimrolx",
+    "ref": "main@165521d",
+    "package": ".",
+    "paths": {
+      "tokens": ["src/index.css", "DESIGN.md"],
+      "fonts": ["index.html"],
+      "assets": ["public/og.png", "public/favicon.png", "public/apple-touch-icon.png"],
+      "docs": ["DESIGN.md", "PRODUCT.md"]
+    },
+    "components": {
+      "Button": "src/components/base-components/button.tsx",
+      "TechList": "src/components/TechTag.tsx",
+      "StatusPill": "src/components/StatusPill.tsx",
+      "SheetHeading": "src/components/SheetHeading.tsx",
+      "SocialLinks": "src/components/SocialLinks.tsx",
+      "ExperienceEntry": "src/components/ExperienceEntry.tsx",
+      "NowGroupRow": "src/components/NowGroupRow.tsx",
+      "AppStoreBadge": "src/components/AppStoreBadge.tsx",
+      "Modal": "src/components/Modal.tsx",
+      "TopBar": "src/components/TopBar.tsx",
+      "HeroName": "src/components/HeroName.tsx",
+      "SpecList": "src/sections/Hero.tsx",
+      "ProjectCard": "src/components/ProjectPanel.tsx",
+      "DemoLink": "src/components/ProjectMedia.tsx",
+      "PromptField": "src/components/ContactPrompt.tsx",
+      "TypewriterGreeting": "src/components/TypewriterGreeting.tsx"
+    },
+    "synced": "2026-10-27",
+    "leads": "system: version 2 deliberately changes values the code does not have yet"
+  },
+  "color": {
+    "themes": [
+      { "id": "dark", "name": "Sheet (Dark)" },
+      { "id": "light", "name": "Paper (Light)" }
+    ],
+    "tokens": [
+      { "name": "color-bg", "value": { "dark": "oklch(0.16 0 0)", "light": "oklch(0.985 0 0)" }, "usage": "Base. The sheet: page background behind everything. Achromatic in both themes. Use surface-page in components." },
+      { "name": "color-surface", "value": { "dark": "oklch(0.205 0 0)", "light": "oklch(1 0 0)" }, "usage": "Base. Raised tone, one step off the sheet. Use surface-raised in components." },
+      { "name": "color-inset", "value": { "dark": "oklch(0.135 0 0)", "light": "oklch(0.955 0 0)" }, "usage": "Base. Recessed tone for media frames and wells. Use surface-sunken in components." },
+      { "name": "color-line", "value": { "dark": "oklch(1 0 0 / 0.1)", "light": "oklch(0 0 0 / 0.1)" }, "usage": "Base. Fine decorative hairline. Use border-subtle in components." },
+      { "name": "color-line-2", "value": { "dark": "oklch(1 0 0 / 0.2)", "light": "oklch(0 0 0 / 0.2)" }, "usage": "Base. Structural rule. Use border-strong in components. Decorative only (1.6–1.9:1), too faint to be a control's only boundary." },
+      { "name": "color-line-3", "value": { "dark": "oklch(1 0 0 / 0.38)", "light": "oklch(0 0 0 / 0.45)" }, "usage": "Base, new in v2. A boundary that meets 3:1 on every surface in both themes (3.5:1 dark, 3.3:1 light). Use border-control in components." },
+      { "name": "color-ink", "value": { "dark": "oklch(0.97 0 0)", "light": "oklch(0.16 0 0)" }, "usage": "Base. Highest-contrast ink: 16.4–19.4:1 on every surface in both themes. Use text-primary in components." },
+      { "name": "color-ink-2", "value": { "dark": "oklch(0.74 0 0)", "light": "oklch(0.42 0 0)" }, "usage": "Base. Secondary ink: 7.4–8.7:1 on every surface. Use text-secondary in components." },
+      { "name": "color-ink-3", "value": { "dark": "oklch(0.62 0 0)", "light": "oklch(0.5 0 0)" }, "usage": "Base. Meta ink: 4.9–6.0:1 on every surface. Use text-meta in components." },
+      { "name": "color-red", "value": { "dark": "oklch(0.63 0.23 25)", "light": "oklch(0.58 0.22 27)" }, "usage": "Base. Swiss red, the one accent. 4.2–5.1:1 on every surface, enough for marks, rules and focus rings. Use accent in components." },
+      { "name": "color-red-ink", "value": { "dark": "oklch(0.7 0.2 27)", "light": "oklch(0.52 0.2 27)" }, "usage": "Base. Red tuned to read as small text: 5.4–6.7:1 on every surface. Use text-accent in components." },
+      { "name": "color-on-red", "value": { "dark": "{color-bg}", "light": "{color-surface}" }, "usage": "Base, new in v2. The only text allowed on a color-red fill: 5.0:1 dark, 4.8:1 light. Replaces color-ink on red (3.6:1)." },
+
+      { "name": "text-primary", "value": "{color-ink}", "usage": "Headings, display type, body prose and control labels on surface-page, surface-raised and surface-sunken." },
+      { "name": "text-secondary", "value": "{color-ink-2}", "usage": "Secondary prose, descriptions, highlights, chip labels. The floor for any running sentence." },
+      { "name": "text-meta", "value": "{color-ink-3}", "usage": "label-style meta only: periods, counts, nav at rest, placeholders, hints. Never a paragraph." },
+      { "name": "text-accent", "value": "{color-red-ink}", "usage": "Red words: live status, field errors, hover text on links, outline buttons and icon keys." },
+      { "name": "text-inverse", "value": "{color-bg}", "usage": "Text on surface-inverse (primary button, App Store badge)." },
+      { "name": "text-on-accent", "value": "{color-on-red}", "usage": "Text on an accent fill: text selection only." },
+
+      { "name": "surface-page", "value": "{color-bg}", "usage": "The page and every open-field section." },
+      { "name": "surface-raised", "value": "{color-surface}", "usage": "Logo wells, the modal close key, small chrome that sits one level up." },
+      { "name": "surface-sunken", "value": "{color-inset}", "usage": "Media frames, the portrait well, project card grounds." },
+      { "name": "surface-inverse", "value": "{color-ink}", "usage": "The solid key: primary button and App Store badge fill." },
+
+      { "name": "border-subtle", "value": "{color-line}", "usage": "Default border: rows between ruled-list items, chips, icon keys, media frames." },
+      { "name": "border-strong", "value": "{color-line-2}", "usage": "Structural rules: section header rules, the first row of a ruled list, outline buttons." },
+      { "name": "border-control", "value": "{color-line-3}", "usage": "The resting boundary of a text input (PromptField underline) and any control whose edge is its only cue." },
+      { "name": "border-accent", "value": "{color-red}", "usage": "Hover and focus borders, filled or focused input underline." },
+
+      { "name": "accent", "value": "{color-red}", "usage": "Marks: name period, header tick, highlight dashes, active nav rule, caret, scroll rule, progress steps." },
+      { "name": "status-live", "value": "{color-red}", "usage": "Status dot for Production and In Progress. Always beside the status word." },
+      { "name": "focus-ring", "value": "{color-red}", "usage": "2px focus outline, offset 3px, on every focusable element. ≥4.2:1 on every surface." },
+      { "name": "selection-bg", "value": "{color-red}", "usage": "::selection background." },
+      { "name": "selection-text", "value": "{color-on-red}", "usage": "::selection text." },
+
+      { "name": "overlay-scrim", "value": { "dark": "oklch(0.16 0 0 / 0.92)", "light": "oklch(0.985 0 0 / 0.92)" }, "usage": "Modal and lightbox scrim, with a 12px backdrop blur." },
+      { "name": "overlay-nav", "value": { "dark": "oklch(0.16 0 0 / 0.85)", "light": "oklch(0.985 0 0 / 0.85)" }, "usage": "Sticky top bar ground, with a 12px backdrop blur." },
+
+      { "name": "crt-green", "value": "oklch(0.86 0.18 150)", "usage": "Easter egg only: green phosphor of the CRT mode and terminal. Same in both themes (the CRT forces its own dark screen)." },
+      { "name": "crt-amber", "value": "oklch(0.83 0.15 75)", "usage": "Easter egg only: amber phosphor variant of the CRT terminal." }
+    ]
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "sans": "\"Schibsted Grotesk\", system-ui, -apple-system, sans-serif",
+      "mono": "\"IBM Plex Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "groups": [
+      {
+        "name": "Display",
+        "family": "sans",
+        "styles": [
+          { "name": "display-xl", "fontSize": "5.5rem", "lineHeight": 0.9, "fontWeight": 900, "letterSpacing": "-0.04em", "sample": "Kim Roland Berame.", "usage": "The hero name only, once per site. Fluid: fs-display-xl, floor 3.5rem." },
+          { "name": "display", "fontSize": "4.5rem", "lineHeight": 0.92, "fontWeight": 900, "letterSpacing": "-0.04em", "sample": "Say the thing. I'll build it.", "usage": "The Contact headline and any other page-level statement. Fluid: fs-display, floor 2.25rem." },
+          { "name": "headline", "fontSize": "2.75rem", "lineHeight": 1, "fontWeight": 800, "letterSpacing": "-0.04em", "sample": "Experience", "usage": "H2 section titles under a SheetHeading rule. Fluid: fs-headline, floor 1.75rem." },
+          { "name": "title-lg", "fontSize": "2.5rem", "lineHeight": 0.95, "fontWeight": 900, "letterSpacing": "-0.04em", "sample": "MACHINA", "usage": "Project card titles. Sits under headline so a card never outranks its section. Fluid: fs-title-lg, floor 1.5rem." },
+          { "name": "title", "fontSize": "1.75rem", "lineHeight": 1.05, "fontWeight": 800, "letterSpacing": "-0.035em", "sample": "Software Engineer", "usage": "H3 role and sub-section titles. Fluid: fs-title, floor 1.25rem." },
+          { "name": "wordmark", "fontSize": "1rem", "lineHeight": 1.5, "fontWeight": 800, "letterSpacing": "-0.025em", "sample": "kimrolx.", "usage": "The kimrolx. wordmark; the period is always accent." }
+        ]
+      },
+      {
+        "name": "Text",
+        "family": "sans",
+        "styles": [
+          { "name": "prompt", "fontSize": "1.875rem", "lineHeight": 1.2, "fontWeight": 500, "letterSpacing": "-0.02em", "sample": "Tell me what you're building…", "usage": "The Contact prompt input and its confirmation. Fluid: fs-prompt, floor 1.25rem." },
+          { "name": "greeting", "fontSize": "1.25rem", "lineHeight": 1.4, "fontWeight": 500, "sample": "Kumusta?", "usage": "The typewriter greeting in text-secondary; 1.125rem below 640px." },
+          { "name": "subtitle", "fontSize": "1.0625rem", "lineHeight": 1.375, "fontWeight": 600, "sample": "iOS motorcycle maintenance tracker", "usage": "One-line project kind under a title-lg, in text-primary." },
+          { "name": "body", "fontSize": "1rem", "lineHeight": 1.65, "fontWeight": 400, "sample": "I'm a software engineer who ships full-stack systems end to end.", "usage": "Prose in text-primary or text-secondary at a measure of 65ch." },
+          { "name": "body-compact", "fontSize": "0.9375rem", "lineHeight": 1.62, "fontWeight": 400, "sample": "Offline-first app tracking service intervals, history and costs per bike.", "usage": "Dense prose: project descriptions and skill lines, in text-secondary." },
+          { "name": "body-sm", "fontSize": "0.875rem", "lineHeight": 1.4286, "fontWeight": 400, "sample": "TypeScript · NestJS · PostgreSQL · React", "usage": "Spec-list values, employment type, handles. Button labels use it at 600, -0.025em." },
+          { "name": "chip", "fontSize": "0.8125rem", "lineHeight": 1.65, "fontWeight": 500, "sample": "NestJS", "usage": "Tech chips in text-secondary." },
+          { "name": "caption", "fontSize": "0.75rem", "lineHeight": 1.25, "fontWeight": 400, "sample": "Press Enter to continue", "usage": "Field hints in text-meta and field errors in text-accent." },
+          { "name": "label", "fontSize": "0.6875rem", "lineHeight": 1.3, "fontWeight": 600, "letterSpacing": "0.14em", "sample": "SOFTWARE ENGINEER", "usage": "Swiss running label, always uppercase. Spec labels, meta, nav, status, step counters. Never an eyebrow over every heading." }
+        ]
+      },
+      {
+        "name": "Mono",
+        "family": "mono",
+        "styles": [
+          { "name": "mono-label", "fontSize": "0.75rem", "lineHeight": 1.3, "fontWeight": 500, "letterSpacing": "0.14em", "sample": "01 / 05", "usage": "Inside the project rail only: counters, card labels, chips and buttons, uppercase." },
+          { "name": "mono-link", "fontSize": "2.5rem", "lineHeight": 1.25, "fontWeight": 500, "letterSpacing": "-0.02em", "sample": "trimmly.xyz", "usage": "A project's live URL set as its visual (DemoLink). Fluid: fs-mono-link, floor 1.25rem." }
+        ]
+      }
+    ]
+  },
+  "spacing": {
+    "note": "A 4px scale whose names match Tailwind's integer steps (space-4 = p-4 = 16px). Half steps (6, 10, 14px) are allowed only inside a component for optical padding.",
+    "tokens": [
+      { "name": "space-1", "value": "4px", "usage": "Label to meta, dot to word." },
+      { "name": "space-2", "value": "8px", "usage": "Icon to label inside a control; chip rows." },
+      { "name": "space-3", "value": "12px", "usage": "Between controls in a row; heading to its description." },
+      { "name": "space-4", "value": "16px", "usage": "Default gap between related blocks; spec-row column gap." },
+      { "name": "space-5", "value": "20px", "usage": "Mobile page gutter; SheetHeading rule to title." },
+      { "name": "space-6", "value": "24px", "usage": "Between parts of an entry (title, list, chips)." },
+      { "name": "space-8", "value": "32px", "usage": "Wide page gutter from 640px; above an entry's rule." },
+      { "name": "space-10", "value": "40px", "usage": "Between groups inside a section; card side padding at desktop." },
+      { "name": "space-12", "value": "48px", "usage": "Column gap of ruled two-column rows at desktop." },
+      { "name": "space-14", "value": "56px", "usage": "Headline to content in Contact." },
+      { "name": "space-16", "value": "64px", "usage": "Section padding on mobile." },
+      { "name": "space-20", "value": "80px", "usage": "Section padding on tablet." },
+      { "name": "space-28", "value": "112px", "usage": "Section padding at desktop." }
+    ]
+  },
+  "radius": {
+    "tokens": [
+      { "name": "radius-sm", "value": "2px", "usage": "The only corner: buttons, chips, icon keys, inputs, frames, cards." },
+      { "name": "radius-full", "value": "9999px", "usage": "Circles only: status dots and slider thumbs. Never a pill-shaped control." }
+    ]
+  },
+  "layout": {
+    "tokens": [
+      { "name": "content-max", "value": "72rem", "usage": "The centered content column (max-w-6xl)." },
+      { "name": "measure", "value": "65ch", "usage": "Prose measure (max-w-prose)." },
+      { "name": "measure-display", "value": "22ch", "usage": "Max width of a display statement, so it breaks into 2–3 lines." },
+      { "name": "gutter", "value": "20px", "usage": "Page side padding below 640px." },
+      { "name": "gutter-wide", "value": "32px", "usage": "Page side padding from 640px." },
+      { "name": "spec-label-col", "value": "6rem", "usage": "Label column of the hero SpecList." },
+      { "name": "row-label-col", "value": "12rem", "usage": "Label column of NowGroupRow and other ruled rows at desktop." },
+      { "name": "entry-meta-col", "value": "14rem", "usage": "Meta column of ExperienceEntry at desktop." }
+    ]
+  },
+  "size": {
+    "tokens": [
+      { "name": "size-target", "value": "44px", "usage": "Minimum touch target: icon keys, rail arrows, nav links, input rows." },
+      { "name": "size-close", "value": "40px", "usage": "The modal close key." },
+      { "name": "size-nav", "value": "64px", "usage": "Top bar height." },
+      { "name": "size-tick", "value": "8px", "usage": "The red square tick on header rules." },
+      { "name": "size-dot", "value": "6px", "usage": "Status dots and the portrait corner tick at rest." },
+      { "name": "size-dash", "value": "16px", "usage": "Length of the red highlight dash and the active-nav rule." },
+      { "name": "size-icon", "value": "16px", "usage": "Icons inside buttons and controls." }
+    ]
+  },
+  "borderWidth": {
+    "tokens": [
+      { "name": "border-hairline", "value": "1px", "usage": "Every rule, frame and control border." },
+      { "name": "border-thick", "value": "2px", "usage": "Input underline, scroll rule, progress steps, caret, focus ring." }
+    ]
+  },
+  "fluidType": {
+    "note": "Exact clamp() values for the fluid styles; the type styles hold the ceilings.",
+    "tokens": [
+      { "name": "fs-display-xl", "value": "clamp(3.5rem, 12vw, 5.5rem)", "usage": "display-xl, hero name." },
+      { "name": "fs-display", "value": "clamp(2.25rem, 7vw, 4.5rem)", "usage": "display, Contact headline." },
+      { "name": "fs-headline", "value": "clamp(1.75rem, 4.5vw, 2.75rem)", "usage": "headline, section titles." },
+      { "name": "fs-title-lg", "value": "clamp(1.5rem, 2.8vw, 2.5rem)", "usage": "title-lg, project card titles." },
+      { "name": "fs-title", "value": "clamp(1.25rem, 2.5vw, 1.75rem)", "usage": "title, role titles." },
+      { "name": "fs-prompt", "value": "clamp(1.25rem, 2.5vw, 1.875rem)", "usage": "prompt, Contact input." },
+      { "name": "fs-mono-link", "value": "clamp(1.25rem, 3.2vw, 2.5rem)", "usage": "mono-link, DemoLink URL." }
+    ]
+  },
+  "opacity": {
+    "tokens": [
+      { "name": "opacity-disabled", "value": "0.5", "usage": "Every disabled control (buttons and rail arrows alike)." },
+      { "name": "opacity-recede", "value": "0.6", "usage": "Off-center project card media. Never applied to a card's text." },
+      { "name": "opacity-kicker", "value": "0.7", "usage": "Small kicker text on surface-inverse (App Store badge \"Download on the\")." }
+    ]
+  },
+  "duration": {
+    "tokens": [
+      { "name": "duration-fast", "value": "200ms", "usage": "Hover color, border and 1px lift." },
+      { "name": "duration-base", "value": "300ms", "usage": "Modal fade, nav rule growth, icon reveal." },
+      { "name": "duration-slow", "value": "500ms", "usage": "Card border and focus shifts, image zoom." },
+      { "name": "duration-reveal", "value": "700ms", "usage": "Scroll reveals and hero stagger steps (70ms apart)." }
+    ]
+  },
+  "easing": {
+    "tokens": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "usage": "Default for reveals, stagger, card and frame transitions." },
+      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "usage": "CRT boot flash and achievement pop." }
+    ]
+  },
+  "zIndex": {
+    "tokens": [
+      { "name": "z-content", "value": "10", "usage": "Content raised above section backgrounds." },
+      { "name": "z-nav", "value": "100", "usage": "Sticky top bar." },
+      { "name": "z-progress", "value": "110", "usage": "Red scroll rule, above the nav." },
+      { "name": "z-transition", "value": "500", "usage": "Page wipe transition." },
+      { "name": "z-crt-terminal", "value": "8000", "usage": "CRT terminal takeover, below the scanline overlay." },
+      { "name": "z-crt", "value": "9000", "usage": "CRT scanline and boot overlays." },
+      { "name": "z-crt-exit", "value": "9100", "usage": "CRT exit button, above everything." }
+    ]
+  }
+}

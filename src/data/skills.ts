@@ -4,9 +4,9 @@ export const skillGroups: SkillGroup[] = [
   { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Dart', 'Java'] },
   {
     category: 'Frontend',
-    items: ['React', 'Next.js', 'Remix', 'React Native', 'Expo', 'Flutter', 'Tailwind CSS', 'NativeWind'],
+    items: ['React', 'Next.js', 'Remix', 'Astro', 'Preact', 'React Native', 'Expo', 'Flutter', 'Tailwind CSS', 'NativeWind', 'GSAP'],
   },
-  { category: 'Backend', items: ['Node.js', 'NestJS', 'Firebase', 'Supabase'] },
+  { category: 'Backend', items: ['Node.js', 'NestJS', 'Hono', 'Firebase', 'Supabase'] },
   { category: 'State', items: ['Zustand', 'Redux Toolkit', 'TanStack Query', 'React Context'] },
   {
     category: 'Data',

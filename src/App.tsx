@@ -10,6 +10,7 @@ import { Home } from '@/pages/Home';
 import { Now } from '@/pages/Now';
 import { Gear } from '@/pages/Gear';
 import { Skills } from '@/pages/Skills';
+import { Projects as ProjectsPage } from '@/pages/Projects';
 import { EasterEggProvider } from '@/context/EasterEggProvider';
 import { MusicProvider } from '@/context/MusicProvider';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/now" element={<Now />} />
                 <Route path="/gear" element={<Gear />} />
+                <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/skills" element={<Skills />} />
               </Routes>
             </div>
