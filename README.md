@@ -25,16 +25,16 @@
 
 ###
 
-**[MACHINA](https://ridemachina.app)** — iOS Motorcycle Maintenance Tracker
+**[MACHINA](https://ridemachina.app)** — iOS Motorcycle Maintenance Tracker - ([ridemachina.app](https://ridemachina.app))
 - Offline-first app tracking service intervals, history, and costs per bike — multi-bike, no account, fully on-device
 - Instrument-cluster aesthetic: monospace, signal-orange on near-black
 - Built with **React Native**, **Expo**, **TypeScript**, **SQLite**, **Drizzle ORM**, **Zustand**
 - Live on the App Store since June 2026, peaked **#3 in Utilities**
 
-**[Pars](https://apps.apple.com/us/app/pars-split-bills-expenses/id6822402266)** — Trip Expense Splitter for Friend Groups
+**[Pars](https://apps.apple.com/us/app/pars-split-bills-expenses/id6822402266)** — Trip Expense Splitter for Friend Groups - ([splitpars.app](https://splitpars.app))
 - Log who paid, split it fair, and settle up in a tap — split the trip, not the friendship
 - Five split modes, multiple payers, receipt scanning, and settling up over GCash, Maya, bank transfer or cash
-- Built with **React Native**, **Expo**, **TypeScript**, **TanStack Query**, **Hono**; site on **Astro**, **GSAP**, **Preact** ([splitpars.app](https://splitpars.app))
+- Built with **React Native**, **Expo**, **TypeScript**, **TanStack Query**, **Hono**; site on **Astro**, **GSAP**, **Preact**
 
 **[Trimly](https://www.trimmly.xyz)** — Production URL Shortener & Link Management Platform
 - Fast, intuitive interface for shortening URLs, organizing links, and tracking analytics
